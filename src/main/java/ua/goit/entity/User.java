@@ -7,6 +7,8 @@ import java.util.Collection;
  * Created by User on 23.08.2017.
  */
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//TODO на каждую entity - по таблице
 @Table(name = "users")
 public class User {
 
@@ -14,6 +16,7 @@ public class User {
     private String username;
     private String password;
     private String email;
+//    private boolean isAdmin;
 
     @ElementCollection(targetClass=Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
@@ -21,7 +24,7 @@ public class User {
     @Column(name="role") // Column name in user_roles
     private Collection<Role> roles;
 
-    //TODO 6 обсудить поля
+    //TODO 6 обсудить поля - делать коллекцию ролей или isAdmin?
 
     public String getUsername() {
         return username;
