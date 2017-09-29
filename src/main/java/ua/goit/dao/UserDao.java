@@ -6,6 +6,7 @@ import ua.goit.entity.User;
 
 /**
  * Data access object for {@link ua.goit.entity.User}
+ * @KontarMaryna
  */
 public interface UserDao extends JpaRepository<User, String> {
 

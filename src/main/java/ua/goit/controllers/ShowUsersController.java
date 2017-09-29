@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ua.goit.entity.Role;
 import ua.goit.entity.User;
 import ua.goit.services.UserService;
 
@@ -41,33 +40,7 @@ public class ShowUsersController {
         return modelAndView;
     }
 
-    @PostConstruct
-    public void initDefaultUsers() {
-        User user = new User();
-        user.setUsername("admin");
-        user.setPassword(passwordEncoder.encode("admin"));
-        user.setEmail("email");
-        Collection<Role> roles = Arrays.asList(Role.DEVELOPER, Role.INVESTOR, Role.ADMIN);
-        user.setRoles(roles);
-        usersService.save(user);
 
-
-        User user1 = new User();
-        user1.setUsername("investor");
-        user1.setPassword(passwordEncoder.encode("investor"));
-        user1.setEmail("emailtolik");
-        Collection<Role> roles1 = Arrays.asList(Role.INVESTOR, Role.ADMIN);
-        user1.setRoles(roles1);
-        usersService.save(user1);
-
-        User user2 = new User();
-        user2.setUsername("user");
-        user2.setPassword(passwordEncoder.encode("userpassword"));
-        user2.setEmail("emailuser");
-        Collection<Role> roles2 = Arrays.asList(Role.DEVELOPER, Role.INVESTOR);
-        user2.setRoles(roles2);
-        usersService.save(user2);
-    }
 
 //    @RequestMapping(method = RequestMethod.POST, value = "/create", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 //    public void createUser(@RequestParam("username") @NotEmpty String username,

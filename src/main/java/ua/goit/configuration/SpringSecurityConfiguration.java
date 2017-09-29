@@ -23,21 +23,31 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     //TODO 2. дописать правила доступа (antMatchers(...).hasAnyRole(...))
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/user/show").hasAnyRole("DEVELOPER", "INVESTOR", "ADMIN")
+        http.authorizeRequests() .antMatchers("/", "/startup").permitAll()
+                .antMatchers("/registration", "/registration/**").not().authenticated()
+                .antMatchers("/users", "/admins", "/admins/**").hasRole("ADMIN")
+                .antMatchers("/users/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/user/show").hasAnyRole( "ADMIN")
                 .antMatchers("/user/**").hasRole("ADMIN")
                 .antMatchers("/index.jsp").hasRole("ADMIN")
+
                 .anyRequest().denyAll()
                 .and().formLogin()
-                .and().csrf().disable();
-
-//        http.authorizeRequests()
-//                .antMatchers("/registration", "/register").not().authenticated()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .and()
-//                .csrf().disable()
-
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .defaultSuccessUrl("/main")
+                .permitAll()
+                .and()
+                // разрешаем делать логаут всем
+                .logout().permitAll()
+                // указываем URL логаута
+                .logoutUrl("/logout")
+                // указываем URL при удачном логауте
+//                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/")
+                // делаем не валидной текущую сессию
+                .invalidateHttpSession(true).permitAll()
+                .and()
+                .csrf().disable();
     }
 }
