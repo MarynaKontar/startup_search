@@ -12,13 +12,16 @@ import org.springframework.web.servlet.ModelAndView;
 import ua.goit.entity.User;
 import ua.goit.entity.enums.Country;
 import ua.goit.entity.enums.Role;
+import ua.goit.services.ProjectService;
 import ua.goit.services.UserService;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * Created by User on 20.09.2017.
+ * Controller for {@link ua.goit.entity.User}
+ *
+ * @KontarMaryna
  */
 @Controller
 @RequestMapping("/")
@@ -26,17 +29,18 @@ public class RegistrationController {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
-
+    private final ProjectService projectService;
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder) {
+    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder, ProjectService projectService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
+        this.projectService = projectService;
     }
 
     @ModelAttribute("roles")
-    public Role[] industries() {
+    public Role[] roles() {
         return Role.values();
     }
 
@@ -48,17 +52,19 @@ public class RegistrationController {
     /**
      * Mapping for url ":/registration/"
      * Saves {@link User} to database
+     *
      * @param user to save
-     * @return redirect link to login page and than to main page
-     * @throws IOException if throws IOException during saving user to database
+     * @return redirect link to login page
+     * @throws IOException if {@link ua.goit.entity.User} was not saved in the database
      */
     @PostMapping("registration/")
 //    @RequestMapping(value = "registration/", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("user") User user) throws IOException {
         //TODO При пустых полях формы переходит на /save, а не на "redirect:/registration_form". Исправить
-        //сюда приходит пустой user, а не null, т.е. проверку или на странице делать или здесь все поля
+        //сюда приходит пустой user, а не null, т.е. проверку или на странице делать или здесь все поля проверять. Наверное лучше прямо на странице - разобраться как
         if (user.getUsername() == null || user.getPassword() == null || user.getContact().getEmail() == null) {
             LOGGER.info("User " + user + " didn't save to database. Some fields from the form are empty.");
+            //TODO redirect:/error
             return new ModelAndView("redirect:/registration/");
         }
 
@@ -71,10 +77,10 @@ public class RegistrationController {
             throw new IOException("Exception during saving user to database", e);
         }
         LOGGER.info("User " + user + " saved to database. Redirecting to login page after registration and than to main page");
-//            return new ModelAndView("redirect:/main");
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/main");
     }
 
+    //TODO в чем разница между этими двумя способами? Какой лучше?
 //    /**
 //     * Mapping for url ":/registration/"
 //     * Saves {@link User} to database

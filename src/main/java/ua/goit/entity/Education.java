@@ -125,7 +125,7 @@ public class Education {
         Education education = (Education) o;
 
         if (id != null ? !id.equals(education.id) : education.id != null) return false;
-        if (user != null ? !user.equals(education.user) : education.user != null) return false;
+//        if (user != null ? !user.equals(education.user) : education.user != null) return false;
         if (educationalInstitution != null ? !educationalInstitution.equals(education.educationalInstitution) : education.educationalInstitution != null)
             return false;
         if (educationalStage != null ? !educationalStage.equals(education.educationalStage) : education.educationalStage != null)
@@ -141,7 +141,7 @@ public class Education {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (user != null ? user.hashCode() : 0);
+//        result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (educationalInstitution != null ? educationalInstitution.hashCode() : 0);
         result = 31 * result + (educationalStage != null ? educationalStage.hashCode() : 0);
         result = 31 * result + (faculty != null ? faculty.hashCode() : 0);
@@ -152,18 +152,5 @@ public class Education {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Education{" +
-                "id=" + id +
-//                ", user=" + user +
-                ", educationalInstitution='" + educationalInstitution + '\'' +
-                ", educationalStage='" + educationalStage + '\'' +
-                ", faculty='" + faculty + '\'' +
-                ", fieldOfStudy='" + fieldOfStudy + '\'' +
-                ", modeOfStudy=" + modeOfStudy +
-                ", fromDate=" + fromDate +
-                ", untilDate=" + untilDate +
-                '}';
-    }
+
 }

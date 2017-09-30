@@ -25,6 +25,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests() .antMatchers("/", "/startup").permitAll()
                 .antMatchers("/registration", "/registration/**").not().authenticated()
+                .antMatchers("/main/").authenticated()
+                .antMatchers("/startup/**").authenticated()
+                .antMatchers("/main/").permitAll()
                 .antMatchers("/users", "/admins", "/admins/**").hasRole("ADMIN")
                 .antMatchers("/users/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/user/show").hasAnyRole( "ADMIN")
@@ -35,7 +38,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error")
-                .defaultSuccessUrl("/main")
+                .defaultSuccessUrl("/main/")
                 .permitAll()
                 .and()
                 // разрешаем делать логаут всем

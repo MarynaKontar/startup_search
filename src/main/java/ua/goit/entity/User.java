@@ -1,5 +1,8 @@
 package ua.goit.entity;
 
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import ua.goit.entity.enums.Role;
 
 import javax.persistence.*;
@@ -32,14 +35,17 @@ public class User {
     private String aboutMe;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection( LazyCollectionOption.FALSE )
     private Collection<Experience> experiences;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection( LazyCollectionOption.FALSE)
     private Collection<Education> educations;
 
     private String skills;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection( LazyCollectionOption.FALSE )
     private Collection<Project> projects;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -145,6 +151,7 @@ public class User {
     }
 
     public void addExperience(Experience experience) {
+        Hibernate.initialize(experiences);
         if (experiences == null) {
             experiences = new HashSet<>(0);
         }
@@ -153,6 +160,7 @@ public class User {
     }
 
     public void removeExperience(Experience experience) {
+        Hibernate.initialize(experiences);
         if (experiences != null) {
             experiences.remove(experience);
             experience.setUser(null);
@@ -160,6 +168,7 @@ public class User {
     }
 
     public void addEducation(Education education) {
+        Hibernate.initialize(experiences);
         if (educations == null) {
             educations = new HashSet<>(0);
         }
@@ -168,6 +177,7 @@ public class User {
     }
 
     public void removeEducatione(Education education) {
+        Hibernate.initialize(experiences);
         if (educations != null) {
             educations.remove(education);
             education.setUser(null);
@@ -189,61 +199,7 @@ public class User {
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
 
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (contact != null ? !contact.equals(user.contact) : user.contact != null) return false;
-        if (profileFotoLink != null ? !profileFotoLink.equals(user.profileFotoLink) : user.profileFotoLink != null)
-            return false;
-        if (personalPageFotoLink != null ? !personalPageFotoLink.equals(user.personalPageFotoLink) : user.personalPageFotoLink != null)
-            return false;
-        if (youtubeLink != null ? !youtubeLink.equals(user.youtubeLink) : user.youtubeLink != null) return false;
-        if (aboutMe != null ? !aboutMe.equals(user.aboutMe) : user.aboutMe != null) return false;
-        if (experiences != null ? !experiences.equals(user.experiences) : user.experiences != null) return false;
-        if (educations != null ? !educations.equals(user.educations) : user.educations != null) return false;
-        if (skills != null ? !skills.equals(user.skills) : user.skills != null) return false;
-        if (projects != null ? !projects.equals(user.projects) : user.projects != null) return false;
-        return roles != null ? roles.equals(user.roles) : user.roles == null;
-    }
 
-    @Override
-    public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (contact != null ? contact.hashCode() : 0);
-        result = 31 * result + (profileFotoLink != null ? profileFotoLink.hashCode() : 0);
-        result = 31 * result + (personalPageFotoLink != null ? personalPageFotoLink.hashCode() : 0);
-        result = 31 * result + (youtubeLink != null ? youtubeLink.hashCode() : 0);
-        result = 31 * result + (aboutMe != null ? aboutMe.hashCode() : 0);
-        result = 31 * result + (experiences != null ? experiences.hashCode() : 0);
-        result = 31 * result + (educations != null ? educations.hashCode() : 0);
-        result = 31 * result + (skills != null ? skills.hashCode() : 0);
-        result = 31 * result + (projects != null ? projects.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", contact=" + contact +
-                ", profileFotoLink='" + profileFotoLink + '\'' +
-                ", personalPageFotoLink='" + personalPageFotoLink + '\'' +
-                ", youtubeLink='" + youtubeLink + '\'' +
-                ", aboutMe='" + aboutMe + '\'' +
-//                ", experiences=" + experiences +
-//                ", educations=" + educations +
-//                ", skills='" + skills + '\'' +
-//                ", projects=" + projects +
-                ", roles=" + roles +
-                '}';
-    }
 }

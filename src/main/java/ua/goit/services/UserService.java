@@ -33,12 +33,6 @@ public class UserService {
 
     @Transactional
     public <S extends User> S save(S entity) {
-//        Contact contact = entity.getContact();
-//        if (contact != null) {
-//            contactDao.save(contact);//нужно для случая @OneToOne Contact; в случае @Embeddable Contact - убрать
-//        }
-
-
         return dao.save(entity);
     }
 

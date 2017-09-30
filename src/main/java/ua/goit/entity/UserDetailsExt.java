@@ -29,7 +29,7 @@ public class UserDetailsExt implements UserDetails {
        return grantedAuthorities;
    }
 
-   @Override
+    @Override
    public String getPassword() {
        return user.getPassword();
    }
@@ -59,13 +59,6 @@ public class UserDetailsExt implements UserDetails {
        return true;
    }
 
-    public void setUsername(String username) {
-        user.setUsername(username);
-    }
-
-    public void setPassword(String password) {
-        user.setPassword(password);
-    }
 
     public Contact getContact() {
         return user.getContact();

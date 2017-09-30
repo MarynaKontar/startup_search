@@ -15,14 +15,14 @@ public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    private User user;
     private String company;
     private String position;
     private String responsibility;
     private LocalDate fromDate;
     private LocalDate untilDate;
-
-    @ManyToOne
-    private User user;
 
     public Experience() {
     }
@@ -99,37 +99,26 @@ public class Experience {
         Experience that = (Experience) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
+//        if (user != null ? !user.equals(that.user) : that.user != null) return false;
         if (company != null ? !company.equals(that.company) : that.company != null) return false;
         if (position != null ? !position.equals(that.position) : that.position != null) return false;
         if (responsibility != null ? !responsibility.equals(that.responsibility) : that.responsibility != null)
             return false;
         if (fromDate != null ? !fromDate.equals(that.fromDate) : that.fromDate != null) return false;
-        if (untilDate != null ? !untilDate.equals(that.untilDate) : that.untilDate != null) return false;
-        return user != null ? user.equals(that.user) : that.user == null;
+        return untilDate != null ? untilDate.equals(that.untilDate) : that.untilDate == null;
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+//        result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (company != null ? company.hashCode() : 0);
         result = 31 * result + (position != null ? position.hashCode() : 0);
         result = 31 * result + (responsibility != null ? responsibility.hashCode() : 0);
         result = 31 * result + (fromDate != null ? fromDate.hashCode() : 0);
         result = 31 * result + (untilDate != null ? untilDate.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Experience{" +
-                "id=" + id +
-                ", company='" + company + '\'' +
-                ", position='" + position + '\'' +
-                ", responsibility='" + responsibility + '\'' +
-                ", fromDate=" + fromDate +
-                ", untilDate=" + untilDate +
-//                ", user=" + user +
-                '}';
-    }
+
 }

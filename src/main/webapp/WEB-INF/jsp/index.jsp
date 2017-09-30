@@ -94,8 +94,8 @@
     </aside>
     <nav class="nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/login">Login</a><br></li>
-            <li><a href="${pageContext.request.contextPath}/registration">Registration</a><br></li>
+            <li><a href="${pageContext.request.contextPath}/login">Login</a><br></li><br>
+            <li><a href="${pageContext.request.contextPath}/registration">Registration</a><br></li><br>
             <li></li>
         </ul>
     </nav>
@@ -126,11 +126,11 @@
                                 <td class="tb1" style="width:60%">${project.address.city}</td>
                             </tr>
                             <tr>
-                                <td class="tb1" style="width:30%">Country :</td>
+                                <td class="tb1" style="width:30%">Country:</td>
                                 <td class="tb1" style="width:60%">${project.address.country}</td>
                             </tr>
                             <tr>
-                                <td class="tb1" style="width:30%">Expected Return:</td>
+                                <td class="tb1" style="width:30%">Total:</td>
                                 <td class="tb1" style="width:60%">${project.funds}</td>
                             </tr>
                             <tr>
@@ -142,8 +142,7 @@
                                 <td class="tb1" style="width:60%">${project.lastChange}</td>
                             </tr>
                             <tr>
-                                <td class="tb2" style="width:50%"><a href="/project/${project.id}">Learn more about
-                                    project</a>
+                                <td class="tb2" style="width:50%"><a href="/project/${project.id}">Learn more</a>
                                 </td>
                             </tr>
                         </div>

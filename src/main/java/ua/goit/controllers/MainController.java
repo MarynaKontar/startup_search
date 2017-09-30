@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.entity.User;
+import ua.goit.services.EducationService;
+import ua.goit.services.ExperienceService;
 import ua.goit.services.ProjectService;
 import ua.goit.services.UserService;
 import ua.goit.util.InitDefaultEntities;
@@ -24,33 +26,51 @@ public class MainController {
 
     private final UserService userService;
     private final ProjectService projectService;
+    private final ExperienceService experienceService;
+    private final EducationService educationService;
     private final PasswordEncoder passwordEncoder;
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    public MainController(UserService userService, ProjectService projectService, PasswordEncoder passwordEncoder) {
+    public MainController(UserService userService, ProjectService projectService,
+                          ExperienceService experienceService, EducationService educationService,
+                          PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.projectService = projectService;
+        this.experienceService = experienceService;
+        this.educationService = educationService;
         this.passwordEncoder = passwordEncoder;
     }
-
 
     /**
      * Mapping for url ":/"
      * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String},
-     * and {@link java.util.List} of last 10 startups from database
+     * and {@link java.util.List} of projects from database
      */
     @GetMapping
     public ModelAndView index() {
         LOGGER.info("Building start page");
         return new ModelAndView("/index", "projects", projectService.findAll());
     }
-//
-//    @PostConstruct
-//    public void initDefaultUsers() {
-//        InitDefaultEntities.initDefaultUsers(userService, projectService, passwordEncoder);
-//    }
+
+
+    /**
+     * Mapping for url ":/"
+     * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String},
+     * and {@link java.util.List} of projects from database
+     */
+    @GetMapping("main")
+    public ModelAndView main() {
+        LOGGER.info("Building main page after login");
+        return new ModelAndView("main-after-login", "projects", projectService.findAll());
+    }
+
+
+    @PostConstruct
+    public void initDefaultUsers() {
+        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
+    }
 
 //@PostConstruct
 //    public void deleteUser(){

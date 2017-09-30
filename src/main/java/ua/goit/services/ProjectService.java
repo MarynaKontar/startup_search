@@ -31,7 +31,9 @@ public class ProjectService {
     @Transactional
     public <S extends Project> S save(S entity) {
         Address address = entity.getAddress();
-        if (address != null) {
+        if (address != null && ((address.getCity() != null)
+                || (address.getCountry() != null)
+                || (address.getRegion() != null))) {
             addressDao.save(address);
         }
         return dao.save(entity);

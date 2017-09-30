@@ -1,5 +1,7 @@
 package ua.goit.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import ua.goit.entity.enums.Industry;
 
 import javax.persistence.*;
@@ -38,6 +40,7 @@ public class Project {
     private String description;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection( LazyCollectionOption.FALSE )
     private Set<BusinessPlan> businessPlans;
 
     private LocalDate lastChange;
@@ -48,7 +51,7 @@ public class Project {
     }
 
     public Project(String name, BigDecimal funds, BigDecimal minInvestment,
-                   Industry industry, Address address, String description, Set<BusinessPlan> businessPlans,
+                   Industry industry, Address address, String description,
                    LocalDate lastChange) {
         this.name = name;
         this.funds = funds;
@@ -56,7 +59,6 @@ public class Project {
         this.industry = industry;
         this.address = address;
         this.description = description;
-        this.businessPlans = businessPlans;
         this.lastChange = lastChange;
         this.isActive = true;
     }
@@ -174,7 +176,7 @@ public class Project {
         if (isActive != project.isActive) return false;
         if (id != null ? !id.equals(project.id) : project.id != null) return false;
         if (name != null ? !name.equals(project.name) : project.name != null) return false;
-        if (user != null ? !user.equals(project.user) : project.user != null) return false;
+//        if (user != null ? !user.equals(project.user) : project.user != null) return false;
         if (funds != null ? !funds.equals(project.funds) : project.funds != null) return false;
         if (minInvestment != null ? !minInvestment.equals(project.minInvestment) : project.minInvestment != null)
             return false;
@@ -190,7 +192,7 @@ public class Project {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
+//        result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (funds != null ? funds.hashCode() : 0);
         result = 31 * result + (minInvestment != null ? minInvestment.hashCode() : 0);
         result = 31 * result + (industry != null ? industry.hashCode() : 0);
@@ -211,7 +213,7 @@ public class Project {
                 ", funds=" + funds +
                 ", minInvestment=" + minInvestment +
                 ", industry=" + industry +
-                ", address=" + address +
+//                ", address=" + address +
                 ", description='" + description + '\'' +
 //                ", businessPlans=" + businessPlans +
                 ", lastChange=" + lastChange +
