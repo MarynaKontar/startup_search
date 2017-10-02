@@ -103,7 +103,7 @@ public class BusinessPlan {
                 ", idea='" + idea + '\'' +
                 ", currentState='" + currentState + '\'' +
                 ", market='" + market + '\'' +
-//                ", project=" + project +
+                ", project=" + project.getName() +
                 '}';
     }
 }

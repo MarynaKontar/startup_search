@@ -168,7 +168,7 @@ public class User {
     }
 
     public void addEducation(Education education) {
-        Hibernate.initialize(experiences);
+        Hibernate.initialize(educations);
         if (educations == null) {
             educations = new HashSet<>(0);
         }
@@ -177,7 +177,7 @@ public class User {
     }
 
     public void removeEducatione(Education education) {
-        Hibernate.initialize(experiences);
+        Hibernate.initialize(educations);
         if (educations != null) {
             educations.remove(education);
             education.setUser(null);
@@ -199,7 +199,8 @@ public class User {
         }
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "User{} I don't override toString with all fields ";
+    }
 }

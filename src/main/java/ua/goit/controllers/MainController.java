@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import ua.goit.entity.Project;
 import ua.goit.entity.User;
 import ua.goit.services.EducationService;
 import ua.goit.services.ExperienceService;
@@ -66,16 +68,21 @@ public class MainController {
         return new ModelAndView("main-after-login", "projects", projectService.findAll());
     }
 
-
-    @PostConstruct
-    public void initDefaultUsers() {
-        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
-    }
-
+//
+//    @PostConstruct
+//    public void initDefaultUsers() {
+//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
+//    }
+//
 //@PostConstruct
 //    public void deleteUser(){
-//     userService.delete("user1");
+//     userService.delete("user2");
 //}
-
+//    @PostConstruct
+//    @Transactional
+//    public void deleteProject(){
+//        Project project = projectService.getOne(105L);
+//        projectService.delete(project);
+//    }
 
 }

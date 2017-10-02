@@ -152,5 +152,8 @@ public class Education {
         return result;
     }
 
-
+    @Override
+    public String toString() {
+        return "Education{}";
+    }
 }

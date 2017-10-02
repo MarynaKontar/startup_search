@@ -133,7 +133,7 @@ public class InitDefaultEntities {
 //user3
         User user3 = new User();
         user3.setUsername("user2");
-        user3.setPassword(passwordEncoder.encode("user1"));
+        user3.setPassword(passwordEncoder.encode("user2"));
         Collection<Role> roles2 = Arrays.asList(Role.USER);
         user3.setRoles(roles2);
         Contact contact2 = new Contact("emailuser1", "333", "London", Country.UNITED_KINGDOM);

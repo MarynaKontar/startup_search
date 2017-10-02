@@ -124,31 +124,31 @@
 
     <article class="article">
         <c:if test="${isOwner || isAdmin}">
-        <section>
-            <h1>Add project</h1>
-            <p>Place your project on the Startup.Network or operational business in order to:</p>
-            <ul>
-                <li>find investments</li>
-                <li>get a loan for development</li>
-                <li>sell a business (share)</li>
-            </ul>
-            <br>
-            <a href="${pageContext.request.contextPath}/startup/create">Add new project</a>
-            <br>
-        </section>
-        <section>
-            <h1>Add interest</h1>
-            <p>Detail your investment interests and get up-to-date info about projects and existing businesses that
-                are:</p>
-            <ul>
-                <li>attracting investments</li>
-                <li>looking for a loan for development</li>
-                <li>selling shares in the business</li>
-            </ul>
-            <br>
-            <a href="${pageContext.request.contextPath}/main">Add new interest</a>
-            <br>
-        </section>
+            <section>
+                <h1>Add project</h1>
+                <p>Place your project on the Startup.Network or operational business in order to:</p>
+                <ul>
+                    <li>find investments</li>
+                    <li>get a loan for development</li>
+                    <li>sell a business (share)</li>
+                </ul>
+                <br>
+                <a href="${pageContext.request.contextPath}/startup/create">Add new project</a>
+                <br>
+            </section>
+            <section>
+                <h1>Add interest</h1>
+                <p>Detail your investment interests and get up-to-date info about projects and existing businesses that
+                    are:</p>
+                <ul>
+                    <li>attracting investments</li>
+                    <li>looking for a loan for development</li>
+                    <li>selling shares in the business</li>
+                </ul>
+                <br>
+                <a href="${pageContext.request.contextPath}/main">Add new interest</a>
+                <br>
+            </section>
         </c:if>
 
         <section>

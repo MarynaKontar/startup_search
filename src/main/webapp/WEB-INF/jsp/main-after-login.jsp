@@ -95,7 +95,9 @@
 
     <header>
         <h3>STARTUP</h3>
-        <a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account</a>
+        <th>                           </th>
+        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account</a></th>
+
     </header>
     <aside>
 
@@ -111,6 +113,9 @@
     </nav>
 
     <article class="article">
+        <section>
+            <h3 align="center">All startups</h3>
+        </section>
         <section>
             <c:forEach var="project" items="${projects}">
                 <section>

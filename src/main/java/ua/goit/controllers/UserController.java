@@ -41,6 +41,13 @@ public class UserController {
         return new ModelAndView("personalAccount", "user", user);
     }
 
+    @GetMapping("/personalAccount/{username}/delete")
+    public ModelAndView delete(@PathVariable("username") String username) {
+        userService.deletePersonalAccount(username);
+        LOGGER.info("Redirecting to logout page after deleting personal account with username='{}'", username);
+        return new ModelAndView("redirect:/logout");
+    }
+
 //    @ExceptionHandler(Exception.class)
 //    public ResponseEntity<String> handleException(Exception ex) {
 //        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

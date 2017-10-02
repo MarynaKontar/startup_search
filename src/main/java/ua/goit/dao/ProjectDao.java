@@ -2,6 +2,9 @@ package ua.goit.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ua.goit.entity.Project;
+import ua.goit.entity.User;
+
+import java.util.List;
 
 
 /**
@@ -9,6 +12,7 @@ import ua.goit.entity.Project;
  * @KontarMaryna
  */
 public interface ProjectDao extends JpaRepository<Project, Long>{
+List<Project> findAllByUserUsername(String username);
 
     /*Project findByName(String name);
     List<Project> findByIndustry(String industry);

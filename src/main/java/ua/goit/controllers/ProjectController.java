@@ -1,22 +1,22 @@
 package ua.goit.controllers;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.entity.BusinessPlan;
 import ua.goit.entity.Project;
+import ua.goit.entity.User;
 import ua.goit.entity.enums.Country;
 import ua.goit.entity.enums.Industry;
 import ua.goit.entity.enums.Role;
 import ua.goit.services.AddressService;
 import ua.goit.services.BusinessPlanService;
 import ua.goit.services.ProjectService;
+import ua.goit.services.UserService;
 
 import java.io.IOException;
 
@@ -30,14 +30,16 @@ public class ProjectController {
     private final ProjectService projectService;
     private final BusinessPlanService businessPlanService;
     private final AddressService addressService;
+    private final UserService userService;
 
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    public ProjectController(ProjectService projectService, BusinessPlanService businessPlanService, AddressService addressService) {
+    public ProjectController(ProjectService projectService, BusinessPlanService businessPlanService, AddressService addressService, UserService userService) {
         this.projectService = projectService;
         this.businessPlanService = businessPlanService;
         this.addressService = addressService;
+        this.userService = userService;
     }
 
     @ModelAttribute("industries")
@@ -76,8 +78,41 @@ public class ProjectController {
             LOGGER.info("Project " + project + " didn't save to database.");
             throw new IOException("Exception during saving project to database", e);
         }
-        LOGGER.info("Project " + project + " saved to database. Redirecting to main page");
+        LOGGER.info("Project " + project + " saved to database. Redirecting to personal account page");
         return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getUsername());
-//        return new ModelAndView("redirect:/main");
+    }
+
+    @GetMapping("{username}/{id}/delete")
+    public ModelAndView delete(@PathVariable("username") String username, @PathVariable("id") Long id) {
+        projectService.deleteProjectFromUser(id, username);
+        LOGGER.info("Redirecting to personal account page after deleting startup with id='{}'", id);
+        //TODO ссылке выходит /user/personalAccount/{username}?{все industries и все countries} и страница пустая - оставляю только /user/personalAccount/{username} и все работает. Dblbvj cdzpfyj c @ModelAttribute
+        return new ModelAndView("redirect:/user/personalAccount/" + username);
+    }
+
+//    @GetMapping("/{id}/edit")
+//    public ModelAndView edit(@PathVariable("id") Long id) {
+//        ModelAndView modelAndView = new ModelAndView("project-update-form");
+//        modelAndView.addObject("project", projectService.findOne(id));
+//        modelAndView.addObject("countries", countries());
+//        modelAndView.addObject("industries", industries());
+//        return modelAndView;
+//    }
+
+    @GetMapping("/{id}/edit")
+    public ModelAndView edit(@PathVariable("id") Long id) {
+        Project project = projectService.findOne(id);
+        ModelAndView modelAndView = new ModelAndView("project-update-form", "command", project);
+        modelAndView.addObject("countries", countries());
+        modelAndView.addObject("industries", industries());
+        return modelAndView;
+    }
+
+    @PostMapping("/update/")
+    public ModelAndView update(@ModelAttribute("project") Project project) throws IOException {
+//        Project project = projectService.findOne(id);
+//        Hibernate.initialize(project.getBusinessPlans());
+        projectService.save(project);
+        return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getUsername());
     }
 }

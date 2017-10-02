@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
-    <title>Update Project form</title>
+    <title>Create Project form</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <style>
 
@@ -83,55 +84,92 @@
 </c:set>
 <div class="flex-container" align="center">
     <header>
-        <h3 align="center">Adding a project</h3>
+        <h3 align="center">Edit a project</h3>
     </header>
     <article>
         <div align="center">
-            <form method="post" action="${pageContext.request.contextPath}/startup/create/" >
-                <input type="text" name="user.username" value="${username}" hidden>
+            <form:form method="post" action="/startup/update/">
+                <form:input path="user.username" type="text" name="user.username" value="${username}" hidden="true"/>
+                <form:input path="address.id" type="number" name="command.address.id" value="${command.address.id}" hidden="true"/>
+
+                <form:input path="id" type="number" name="command.id" value="${command.id}" hidden="true"/>
+
+
                 <table align="center">
                     <tr align="center">
                         <th>Name of the project</th>
                         <td>
-                            <input autofocus type="text" name="name" placeholder="your name- companies, enterprise or brands name">
+                            <form:input path="name" type="text" name="name" value="${command.name}"/>
                         </td>
                     </tr>
                     <tr align="center">
                         <th>The announcement (brief description)</th>
                         <td>
-                            <input type="text" name="description" placeholder="">
+                            <form:input path="description" type="text" name="description" value="${command.description}"/>
                         </td>
                     </tr>
                     <tr align="center">
                         <th>Funds</th>
                         <td>
-                            <input type="number" name="funds" placeholder="necessary investments">
+                            <form:input path="funds" type="number" name="funds" value="${command.funds}"/>
                         </td>
                     </tr>
                     <tr align="center">
                         <th>Industry</th>
-                        <td><select name="industry">
-                                <option value="">Industry</option>
-                                <c:forEach items="${industries}" var="industry">
-                                    <option value="${industry}">${industry}</option>
-                                </c:forEach>
-                        </select></td>
+                        <td><form:select path="industry" name="industry">
+                            <form:option value="">Industry</form:option>
+                            <c:forEach items="${industries}" var="industry">
+                                <form:option value="${industry}">${industry}</form:option>
+                            </c:forEach>
+                        </form:select></td>
                     </tr>
                     <tr align="center">
                         <th>Country</th>
-                        <td><select name="address.country">
-                            <option value="">Country</option>
+                        <td><form:select path="address.country" name="country">
+                            <form:option value="">Country</form:option>
                             <c:forEach items="${countries}" var="country">
-                                <option value="${country}">${country}</option>
+                                <form:option value="${country}">${country}</form:option>
                             </c:forEach>
-                        </select></td>
+                        </form:select></td>
                     </tr>
                     <tr align="center">
                         <th>City</th>
                         <td>
-                            <input type="text" name="address.city" placeholder="city">
+                            <form:input path="address.city" type="text" name="address.city" value="${command.address.city}"/>
                         </td>
                     </tr>
+
+
+
+
+                    <c:forEach items="${command.businessPlans}" var="businessPlan">
+
+                        <tr align="center">
+                            <th>Idea</th>
+                            <td>
+                                <form:input path="businessPlans.idea" type="text" name="businessPlan.idea" value="${businessPlan.idea}"/>
+                            </td>
+                        </tr>
+
+                        <tr align="center">
+                            <th>Current state</th>
+                            <td>
+                                <form:input path="businessPlans.currentState" type="text" name="businessPlan.currentState" value="${businessPlan.currentState}"/>
+                            </td>
+                        </tr>
+
+                        <tr align="center">
+                            <th>Market</th>
+                            <td>
+                                <form:input path="businessPlans.market" type="text" name="businessPlan.market" value="${businessPlan.market}"/>
+                            </td>
+                        </tr>
+
+
+                    </c:forEach>
+
+
+
                     <tr></tr>
                     <tr align="center">
                         <td>
@@ -139,7 +177,7 @@
                         </td>
                     </tr>
                 </table>
-            </form>
+            </form:form>
         </div>
     </article>
     <footer>Copyright &copy; javaEE group7</footer>

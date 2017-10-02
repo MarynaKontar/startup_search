@@ -84,11 +84,6 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", city='" + city + '\'' +
-                ", country=" + country +
-                '}';
+        return "Contact{}";
     }
 }

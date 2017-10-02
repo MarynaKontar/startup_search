@@ -120,5 +120,8 @@ public class Experience {
         return result;
     }
 
-
+    @Override
+    public String toString() {
+        return "Experience{}";
+    }
 }

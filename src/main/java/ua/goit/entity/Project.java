@@ -7,6 +7,7 @@ import ua.goit.entity.enums.Industry;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -40,8 +41,8 @@ public class Project {
     private String description;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection( LazyCollectionOption.FALSE )
-    private Set<BusinessPlan> businessPlans;
+    @LazyCollection( LazyCollectionOption.FALSE)
+    private Collection<BusinessPlan> businessPlans;
 
     private LocalDate lastChange;
 
@@ -127,11 +128,11 @@ public class Project {
         this.description = description;
     }
 
-    public Set<BusinessPlan> getBusinessPlans() {
+    public Collection<BusinessPlan> getBusinessPlans() {
         return businessPlans;
     }
 
-    public void setBusinessPlans(Set<BusinessPlan> businessPlans) {
+    public void setBusinessPlans(Collection<BusinessPlan> businessPlans) {
         this.businessPlans = businessPlans;
     }
 
@@ -167,55 +168,14 @@ public class Project {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Project project = (Project) o;
-
-        if (isActive != project.isActive) return false;
-        if (id != null ? !id.equals(project.id) : project.id != null) return false;
-        if (name != null ? !name.equals(project.name) : project.name != null) return false;
-//        if (user != null ? !user.equals(project.user) : project.user != null) return false;
-        if (funds != null ? !funds.equals(project.funds) : project.funds != null) return false;
-        if (minInvestment != null ? !minInvestment.equals(project.minInvestment) : project.minInvestment != null)
-            return false;
-        if (industry != project.industry) return false;
-        if (address != null ? !address.equals(project.address) : project.address != null) return false;
-        if (description != null ? !description.equals(project.description) : project.description != null) return false;
-        if (businessPlans != null ? !businessPlans.equals(project.businessPlans) : project.businessPlans != null)
-            return false;
-        return lastChange != null ? lastChange.equals(project.lastChange) : project.lastChange == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-//        result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (funds != null ? funds.hashCode() : 0);
-        result = 31 * result + (minInvestment != null ? minInvestment.hashCode() : 0);
-        result = 31 * result + (industry != null ? industry.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (businessPlans != null ? businessPlans.hashCode() : 0);
-        result = 31 * result + (lastChange != null ? lastChange.hashCode() : 0);
-        result = 31 * result + (isActive ? 1 : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Project{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-//                ", user=" + user +
                 ", funds=" + funds +
                 ", minInvestment=" + minInvestment +
                 ", industry=" + industry +
-//                ", address=" + address +
                 ", description='" + description + '\'' +
-//                ", businessPlans=" + businessPlans +
                 ", lastChange=" + lastChange +
                 ", isActive=" + isActive +
                 '}';
