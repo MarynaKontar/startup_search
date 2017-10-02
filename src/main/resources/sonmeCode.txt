@@ -1,0 +1,33 @@
+
+ <c:forEach items="${command.businessPlans}" var="businessPlan">
+                     <form:input path="businessPlans" type="number" name="${businessPlan.id}" value="${businessPlan.id}" hidden="true"/>
+                 </c:forEach>
+
+
+
+
+ <c:forEach items="${command.businessPlans}" var="businessPlan">
+
+                        <tr align="center">
+                            <th>Idea</th>
+                            <td>
+                                <form:input path="businessPlans.idea" type="text" name="businessPlan.idea" value="${businessPlan.idea}"/>
+                            </td>
+                        </tr>
+
+                        <tr align="center">
+                            <th>Current state</th>
+                            <td>
+                                <form:input path="businessPlans.currentState" type="text" name="businessPlan.currentState" value="${businessPlan.currentState}"/>
+                            </td>
+                        </tr>
+
+                        <tr align="center">
+                            <th>Market</th>
+                            <td>
+                                <form:input path="businessPlans.market" type="text" name="businessPlan.market" value="${businessPlan.market}"/>
+                            </td>
+                        </tr>
+
+
+                    </c:forEach>

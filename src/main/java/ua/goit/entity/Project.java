@@ -7,7 +7,6 @@ import ua.goit.entity.enums.Industry;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,7 +41,7 @@ public class Project {
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection( LazyCollectionOption.FALSE)
-    private Collection<BusinessPlan> businessPlans;
+    private Set<BusinessPlan> businessPlans;
 
     private LocalDate lastChange;
 
@@ -128,11 +127,11 @@ public class Project {
         this.description = description;
     }
 
-    public Collection<BusinessPlan> getBusinessPlans() {
+    public Set<BusinessPlan> getBusinessPlans() {
         return businessPlans;
     }
 
-    public void setBusinessPlans(Collection<BusinessPlan> businessPlans) {
+    public void setBusinessPlans(Set<BusinessPlan> businessPlans) {
         this.businessPlans = businessPlans;
     }
 
@@ -169,15 +168,6 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", funds=" + funds +
-                ", minInvestment=" + minInvestment +
-                ", industry=" + industry +
-                ", description='" + description + '\'' +
-                ", lastChange=" + lastChange +
-                ", isActive=" + isActive +
-                '}';
+        return "";
     }
 }

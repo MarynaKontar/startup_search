@@ -19,6 +19,7 @@ import ua.goit.services.ProjectService;
 import ua.goit.services.UserService;
 
 import java.io.IOException;
+import java.util.*;
 
 /**
  * Created by User on 30.09.2017.
@@ -102,16 +103,21 @@ public class ProjectController {
     @GetMapping("/{id}/edit")
     public ModelAndView edit(@PathVariable("id") Long id) {
         Project project = projectService.findOne(id);
-        ModelAndView modelAndView = new ModelAndView("project-update-form", "command", project);
+        Map<String,? super Object> map = new HashMap<>();
+        map.put("command", project);
+        map.put("businessPlans", project.getBusinessPlans());
+        ModelAndView modelAndView = new ModelAndView("startup-update-form", map);
+//        modelAndView.addObject("businessplans", project.getBusinessPlans());
         modelAndView.addObject("countries", countries());
         modelAndView.addObject("industries", industries());
         return modelAndView;
     }
 
     @PostMapping("/update/")
-    public ModelAndView update(@ModelAttribute("project") Project project) throws IOException {
+    public ModelAndView update(@ModelAttribute("command") Project project, @ModelAttribute("businessPlans")HashSet<BusinessPlan> businessPlans) throws IOException {
 //        Project project = projectService.findOne(id);
 //        Hibernate.initialize(project.getBusinessPlans());
+        project.setBusinessPlans(businessPlans);
         projectService.save(project);
         return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getUsername());
     }

@@ -90,30 +90,32 @@
         <div align="center">
             <form:form method="post" action="/startup/update/">
                 <form:input path="user.username" type="text" name="user.username" value="${username}" hidden="true"/>
-                <form:input path="address.id" type="number" name="command.address.id" value="${startup.address.id}" hidden="true"/>
+                <form:input path="address.id" type="number" name="command.address.id" value="${command.address.id}" hidden="true"/>
 
+                <c:forEach items="${businessPlans}" var="businessPlan">
+                    <form:input path="businessPlan.id" type="number" name="${businessPlan.id}" value="${businessPlan.id}" hidden="true"/>
+                </c:forEach>
 
-
-                <form:input path="id" type="number" name="startup.id" value="${startup.id}" hidden="true"/>
+                <form:input path="id" type="number" name="command.id" value="${command.id}" hidden="true"/>
 
 
                 <table align="center">
                     <tr align="center">
                         <th>Name of the project</th>
                         <td>
-                            <form:input path="name" type="text" name="name" value="${startup.name}"/>
+                            <form:input path="name" type="text" name="name" value="${command.name}"/>
                         </td>
                     </tr>
                     <tr align="center">
                         <th>The announcement (brief description)</th>
                         <td>
-                            <form:input path="description" type="text" name="description" value="${startup.description}"/>
+                            <form:input path="description" type="text" name="description" value="${command.description}"/>
                         </td>
                     </tr>
                     <tr align="center">
                         <th>Funds</th>
                         <td>
-                            <form:input path="funds" type="number" name="funds" value="${startup.funds}"/>
+                            <form:input path="funds" type="number" name="funds" value="${command.funds}"/>
                         </td>
                     </tr>
                     <tr align="center">
@@ -137,12 +139,36 @@
                     <tr align="center">
                         <th>City</th>
                         <td>
-                            <form:input path="address.city" type="text" name="address.city" value="${startup.address.city}"/>
+                            <form:input path="address.city" type="text" name="address.city" value="${command.address.city}"/>
                         </td>
                     </tr>
 
 
+                    <c:forEach items="${businessPlans}" var="businessPlan">
 
+                        <tr align="center">
+                            <th>Idea</th>
+                            <td>
+                                <form:input path="businessPlan.idea" type="text" name="businessPlan.idea" value="${businessPlan.idea}"/>
+                            </td>
+                        </tr>
+
+                        <tr align="center">
+                            <th>Current state</th>
+                            <td>
+                                <form:input path="businessPlan.currentState" type="text" name="businessPlan.currentState" value="${businessPlan.currentState}"/>
+                            </td>
+                        </tr>
+
+                        <tr align="center">
+                            <th>Market</th>
+                            <td>
+                                <form:input path="businessPlan.market" type="text" name="businessPlan.market" value="${businessPlan.market}"/>
+                            </td>
+                        </tr>
+
+
+                    </c:forEach>
 
 
 
