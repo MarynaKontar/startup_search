@@ -1,11 +1,11 @@
-<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <!-- <link rel="stylesheet" href="/WEB-INF/css/style.css"> -->
+    <title>Registration form</title>
+     <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css"> -->
     <style>
         .flex-container {
             display: -webkit-flex;
@@ -76,142 +76,91 @@
     </style>
 </head>
 <body>
-
-<c:set var="username">
-    <sec:authentication property="principal.username"/>
-</c:set>
-
-<c:set var="isOwner" value="${user.username == username}"/>
-
-<c:set var="isAdmin" value="false"/>
-
-<sec:authorize access="hasRole('ADMIN')">
-    <c:set var="isAdmin" value="true"/>
-</sec:authorize>
-
-<div class="flex-container">
+<div class="flex-container" align="center">
     <header>
-        <h3>Personal account</h3>
-        <c:if test="${isOwner || isAdmin}">
-            <a href="/user/editUser/${user.username}">Edit profile</a>
-        </c:if>
+        <h3 align="center">Edit account</h3>
     </header>
+    <article>
+        <div align="center">
+            <form method="post" action="/user/personalAccount/${user.username}/update/" >
+                <table align="center">
+                    <tr align="center">
 
-    <aside>
-        <img src="${user.youtubeLink}" alt=" ${user.username} youtube video" style="width: 76px;height: 82px;">
-        <p>
-        <h2>${user.username}</h2></p>
+                    <tr align="center">
+                        <th>Name</th>
+                        <td>
+                            <input autofocus type="text" name="firstName" value="${user.firstName}" placeholder="first name">
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <th>Last name</th>
+                        <td>
+                            <input autofocus type="text" name="lastName" value="${user.lastName}" placeholder="last name">
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <th></th>
+                        <td>
+                            <input type="password" name="password" value="${user.password}" placeholder="Password" hidden>
+                        </td>
+                    </tr>
 
-        <adress>
-            <p>${user.contact.country} , ${user.contact.city}</p>
+                    <tr align="center">
+                        <th>Email</th>
+                        <td>
+                            <input type="text" name="contact.email"  value="${user.contact.email}" placeholder="Email" >
+                        </td>
+                    </tr>
 
-            <p>${user.contact.phoneNumber}</p>
+                    <tr align="center">
+                        <th>Phone number</th>
+                        <td>
+                            <input type="text" name="contact.phoneNumber" value="${user.contact.phoneNumber}" placeholder="phone number">
+                        </td>
+                    </tr>
 
-            <p>${user.contact.email}</p>
-        </adress>
-    </aside>
-    <nav class="nav">
-        <ul>
-            <c:if test="${isOwner || isAdmin}">
-                <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a></li><br>
-                <li><a href="${pageContext.request.contextPath}/main">Add interest</a></li><br>
-                <li><a href="${pageContext.request.contextPath}/user/editUser/${user.username}">Edit profile</a></li><br>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
-                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.username}/delete">Delete profile</a></li><br>
-            </c:if>
-        </ul>
-    </nav>
+                    <tr align="center">
+                        <th>Country</th>
+                        <td><select name="address.country">
+                            <option value="${user.contact.country}">Country</option>
+                            <c:forEach items="${countries}" var="country">
+                                <option value="${user.contact.country}">${country}</option>
+                            </c:forEach>
+                        </select></td>
+                    </tr>
 
-    <article class="article">
-        <c:if test="${isOwner || isAdmin}">
-            <section>
-                <h1>Add project</h1>
-                <p>Place your project on the Startup.Network or operational business in order to:</p>
-                <ul>
-                    <li>find investments</li>
-                    <li>get a loan for development</li>
-                    <li>sell a business (share)</li>
-                </ul>
-                <br>
-                <a href="${pageContext.request.contextPath}/startup/create">Add new project</a>
-                <br>
-            </section>
-            <section>
-                <h1>Add interest</h1>
-                <p>Detail your investment interests and get up-to-date info about projects and existing businesses that
-                    are:</p>
-                <ul>
-                    <li>attracting investments</li>
-                    <li>looking for a loan for development</li>
-                    <li>selling shares in the business</li>
-                </ul>
-                <br>
-                <a href="${pageContext.request.contextPath}/main">Add new interest</a>
-                <br>
-            </section>
-        </c:if>
+                    <tr align="center">
+                        <th>City</th>
+                        <td>
+                            <input type="text" name="contact.city" value="${user.contact.city}" placeholder="city">
+                        </td>
+                    </tr>
 
-        <section>
-            <c:forEach var="project" items="${user.projects}">
-                <section>
-                    <div class="first"
-                         style="float: left; width:27%; margin:0.5%; box-shadow: 10px 10px 5px grey; background-color: #f1f1f1">
-                        <table>
-                            <div class="second" style="height:80px">
-                                <tr>
-                                    <c:if test="${isOwner || isAdmin}">
-                                        <a href="${pageContext.request.contextPath}/startup/${project.id}/edit">Edit</a><br>
-                                        <a href="${pageContext.request.contextPath}/startup/${user.username}/${project.id}/delete">Delete</a>
-                                    </c:if>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Project Name:</td>
-                                    <td class="tb1" style="width:60%">${project.name}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${project.industry}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Description:</td>
-                                    <td class="tb1" style="width:60%">${project.description}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">City:</td>
-                                    <td class="tb1" style="width:60%">${project.address.city}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${project.address.country}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Total:</td>
-                                    <td class="tb1" style="width:60%">${project.funds}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Minimum Investment:</td>
-                                    <td class="tb1" style="width:60%">${project.minInvestment}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Changed:</td>
-                                    <td class="tb1" style="width:60%">${project.lastChange}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb2" style="width:50%"><a href="${pageContext.request.contextPath}/project/${project.id}">Learn more</a>
-                                    </td>
-                                </tr>
-                            </div>
-                        </table>
-                    </div>
-                </section>
-            </c:forEach>
-        </section>
-        <br>
+                    <tr align="center">
+                        <th>Your video message</th>
+                        <td>
+                            <input type="text" name="youtubeLink" value="${user.youtubeLink}" placeholder="link to youtube">
+                        </td>
+                    </tr>
+
+                    <tr align="center">
+                        <th>About me</th>
+                        <td>
+                            <input type="text" name="aboutMe" value="${user.aboutMe}" placeholder="">
+                        </td>
+                    </tr>
+
+                    <tr></tr>
+                    <tr align="center">
+                        <td>
+                            <input type="submit" value="Save">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </article>
-
-
     <footer>Copyright &copy; javaEE group7</footer>
 </div>
-
 </body>
 </html>

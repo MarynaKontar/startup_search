@@ -86,7 +86,7 @@
                     <tr align="center">
                         <th>Login</th>
                         <td>
-                            <input autofocus type="text" name="username" placeholder="Login">
+                            <input autofocus type="text" name="username" placeholder="Login" >
                         </td>
                     </tr>
                     <tr align="center">

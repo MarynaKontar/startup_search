@@ -96,7 +96,7 @@
     <header>
         <h3>STARTUP</h3>
         <th>                           </th>
-        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account</a></th>
+        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a></th>
 
     </header>
     <aside>
@@ -106,9 +106,9 @@
     </aside>
     <nav class="nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account</a><br></li><br>
+            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a><br></li><br>
             <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li><br>
+            <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
         </ul>
     </nav>
 

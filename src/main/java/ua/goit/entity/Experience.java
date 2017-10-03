@@ -1,6 +1,7 @@
 package ua.goit.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -10,7 +11,7 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "experience")
-public class Experience {
+public class Experience implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

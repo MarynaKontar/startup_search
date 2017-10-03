@@ -3,13 +3,14 @@ package ua.goit.entity;
 import ua.goit.entity.enums.Country;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Maryna Kontar on 13.09.2017.
  * @KontarMaryna
  */
 @Embeddable
-public class Contact {
+public class Contact implements Serializable {
 
     //    @Email
     private String email;

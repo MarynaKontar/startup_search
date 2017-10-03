@@ -89,6 +89,8 @@ create table user
  username varchar(45) not null
   primary key,
  PASSWORD varchar(455) not null,
+ firstName varchar(45) null,
+ lastName varchar(45) null,
  email varchar(45) null,
  phoneNumber varchar(45) null,
  country varchar(45) null,

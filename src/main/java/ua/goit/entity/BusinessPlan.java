@@ -1,6 +1,7 @@
 package ua.goit.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  *
@@ -9,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "businessplan")
-public class BusinessPlan {
+public class BusinessPlan implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

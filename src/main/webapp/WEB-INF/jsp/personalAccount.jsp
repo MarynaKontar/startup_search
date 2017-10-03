@@ -93,62 +93,75 @@
     <header>
         <h3>Personal account</h3>
         <c:if test="${isOwner || isAdmin}">
-            <a href="/user/editUser/${user.username}">Edit profile</a>
+            <a href=" /user/personalAccount/${user.username}/edit">Edit profile</a>
         </c:if>
     </header>
 
     <aside>
-        <img src="${user.youtubeLink}" alt=" ${user.username} youtube video" style="width: 76px;height: 82px;">
-        <p>
-        <h2>${user.username}</h2></p>
+        <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
+
+        <p><c:choose>
+            <c:when test="${empty(user.lastName) || empty(user.firstName)}">
+                <h2>${user.firstName} ${user.lastName}</h2>
+            </c:when>
+            <c:otherwise>
+                <h2>${user.username}</h2>
+            </c:otherwise>
+            </c:choose>
+        </p>
 
         <adress>
             <p>${user.contact.country} , ${user.contact.city}</p>
-
             <p>${user.contact.phoneNumber}</p>
-
             <p>${user.contact.email}</p>
         </adress>
     </aside>
     <nav class="nav">
         <ul>
             <c:if test="${isOwner || isAdmin}">
-                <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a></li><br>
-                <li><a href="${pageContext.request.contextPath}/main">Add interest</a></li><br>
-                <li><a href="${pageContext.request.contextPath}/user/editUser/${user.username}">Edit profile</a></li><br>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
-                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.username}/delete">Delete profile</a></li><br>
+                <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a></li>
+                </br>
+                <li><a href="${pageContext.request.contextPath}/main">Add interest</a></li>
+                </br>
+                <li><a href="${pageContext.request.contextPath} /user/personalAccount/${user.username}/edit">Edit
+                    profile</a></li>
+                <br>
+                <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
+                <br>
+                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.username}/delete">Delete
+                    profile</a></li>
+                <br>
             </c:if>
         </ul>
     </nav>
 
     <article class="article">
         <c:if test="${isOwner || isAdmin}">
-        <section>
-            <h1>Add project</h1>
-            <p>Place your project on the Startup.Network or operational business in order to:</p>
-            <ul>
-                <li>find investments</li>
-                <li>get a loan for development</li>
-                <li>sell a business (share)</li>
-            </ul>
-            <br>
-            <a href="${pageContext.request.contextPath}/startup/create">Add new project</a>
-            <br>
-        </section>
-        <section>
-            <h1>Add interest</h1>
-            <p>Detail your investment interests and get up-to-date info about projects and existing businesses that
-                are:</p>
-            <ul>
-                <li>attracting investments</li>
-                <li>looking for a loan for development</li>
-                <li>selling shares in the business</li>
-            </ul>
-            <br>
-            <a href="${pageContext.request.contextPath}/main">Add new interest</a>
-            <br>
-        </section>
+            <section>
+                <h1>Add project</h1>
+                <p>Place your project on the Startup.Network or operational business in order to:</p>
+                <ul>
+                    <li>find investments</li>
+                    <li>get a loan for development</li>
+                    <li>sell a business (share)</li>
+                </ul>
+                <br>
+                <a href="${pageContext.request.contextPath}/startup/create">Add new project</a>
+                <br>
+            </section>
+            <section>
+                <h1>Add interest</h1>
+                <p>Detail your investment interests and get up-to-date info about projects and existing businesses that
+                    are:</p>
+                <ul>
+                    <li>attracting investments</li>
+                    <li>looking for a loan for development</li>
+                    <li>selling shares in the business</li>
+                </ul>
+                <br>
+                <a href="${pageContext.request.contextPath}/main">Add new interest</a>
+                <br>
+            </section>
         </c:if>
 
         <section>
@@ -197,7 +210,9 @@
                                     <td class="tb1" style="width:60%">${project.lastChange}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tb2" style="width:50%"><a href="${pageContext.request.contextPath}/project/${project.id}">Learn more</a>
+                                    <td class="tb2" style="width:50%"><a
+                                            href="${pageContext.request.contextPath}/project/${project.id}">Learn
+                                        more</a>
                                     </td>
                                 </tr>
                             </div>

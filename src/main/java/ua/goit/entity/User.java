@@ -6,7 +6,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import ua.goit.entity.enums.Role;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -17,7 +17,7 @@ import java.util.HashSet;
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
 
 //для случая, если захотим хранить и id и NaturalId
 //    @Id
@@ -27,6 +27,8 @@ public class User {
     @Id
     private String username;
     private String password;
+    private String firstName;
+    private String lastName;
     @Embedded
     private Contact contact;
     private String profileFotoLink;
@@ -68,6 +70,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Contact getContact() {

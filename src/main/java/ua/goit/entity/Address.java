@@ -3,6 +3,7 @@ package ua.goit.entity;
 import ua.goit.entity.enums.Country;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Guillaume Gingembre on 14/09/2017.
@@ -10,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "address")
-public class Address {
+public class Address implements Serializable {
 
 
     @Id

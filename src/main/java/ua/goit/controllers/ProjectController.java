@@ -103,10 +103,10 @@ public class ProjectController {
     @GetMapping("/{id}/edit")
     public ModelAndView edit(@PathVariable("id") Long id) {
         Project project = projectService.findOne(id);
-        Map<String,? super Object> map = new HashMap<>();
-        map.put("command", project);
-        map.put("businessPlans", project.getBusinessPlans());
-        ModelAndView modelAndView = new ModelAndView("startup-update-form", map);
+        Map<String,? super Object> modelMap = new HashMap<>();
+        modelMap.put("command", project);
+        modelMap.put("businessPlans", project.getBusinessPlans());
+        ModelAndView modelAndView = new ModelAndView("startup-update-form", modelMap);
 //        modelAndView.addObject("businessplans", project.getBusinessPlans());
         modelAndView.addObject("countries", countries());
         modelAndView.addObject("industries", industries());

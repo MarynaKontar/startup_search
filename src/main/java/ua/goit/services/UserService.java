@@ -1,6 +1,7 @@
 package ua.goit.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.dao.ProjectDao;
@@ -24,11 +25,13 @@ public class UserService {
 
     private final UserDao dao;
     private final ProjectDao projectDao;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserDao dao, ProjectDao projectDao) {
+    public UserService(UserDao dao, ProjectDao projectDao, PasswordEncoder passwordEncoder) {
         this.dao = dao;
         this.projectDao = projectDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional(readOnly = true)
@@ -39,6 +42,17 @@ public class UserService {
     @Transactional
     public <S extends User> S save(S entity) {
         return dao.save(entity);
+    }
+
+    @Transactional
+    public <S extends User> S update(S updatedUser, String username) {
+        User user = dao.findOne(username);
+        updatedUser.setProjects(user.getProjects());
+        updatedUser.setExperiences(user.getExperiences());
+        updatedUser.setEducations(user.getEducations());
+        updatedUser.setRoles(user.getRoles());
+
+        return dao.save(updatedUser);
     }
 
     @Transactional(readOnly = true)
@@ -69,16 +83,13 @@ public class UserService {
     @Transactional
     public void deletePersonalAccount(String username) {
         User user = dao.findOne(username);
-
-        Collection<Project> projects = user.getProjects();
-        projects.forEach(user::removeProject);
-        projectDao.delete(projects);
-
         Collection<Education> educations = user.getEducations();
-        educations.forEach(user::removeEducatione);
-
         Collection<Experience> experiences = user.getExperiences();
+        Collection<Project> projects = user.getProjects();
+        educations.forEach(user::removeEducatione);
         experiences.forEach(user::removeExperience);
-
+        projectDao.delete(projects);
+        projects.forEach(user::removeProject);
+        dao.delete(username);
     }
 }

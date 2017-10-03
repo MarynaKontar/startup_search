@@ -3,6 +3,7 @@ package ua.goit.entity;
 import ua.goit.entity.enums.ModeOfStudy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -12,7 +13,7 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "education")
-public class Education {
+public class Education implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

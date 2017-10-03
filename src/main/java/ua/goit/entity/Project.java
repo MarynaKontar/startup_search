@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import ua.goit.entity.enums.Industry;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "project")
-public class Project {
+public class Project implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,76 +6,8 @@
 <html>
 <head>
     <title>Create Project form</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <style>
-
-        .flex-container {
-            display: -webkit-flex;
-            display: flex;
-            -webkit-flex-flow: row wrap;
-            flex-flow: row wrap;
-            text-align: center;
-        }
-
-        .flex-container > * {
-            padding: 15px;
-            -webkit-flex: 1 100%;
-            flex: 1 100%;
-        }
-
-        .article {
-            text-align: left;
-        }
-
-        aside {
-            text-align: right;
-        }
-
-        header {
-            background: burlywood;
-            color: white;
-        }
-
-        footer {
-            background: #aaa;
-            color: white;
-        }
-
-        .nav {
-            background: #eee;
-        }
-
-        .nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .nav ul a {
-            text-decoration: none;
-        }
-
-        @media all and (min-width: 768px) {
-            .nav {
-                text-align: left;
-                -webkit-flex: 1 auto;
-                flex: 1 auto;
-                -webkit-order: 1;
-                order: 1;
-            }
-
-            .article {
-                -webkit-flex: 5 0px;
-                flex: 5 0px;
-                -webkit-order: 2;
-                order: 2;
-            }
-
-            footer {
-                -webkit-order: 3;
-                order: 3;
-            }
-        }
-    </style>
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
+    <%----%>
 </head>
 <body>
 
@@ -91,11 +23,6 @@
             <form:form method="post" action="/startup/update/">
                 <form:input path="user.username" type="text" name="user.username" value="${username}" hidden="true"/>
                 <form:input path="address.id" type="number" name="command.address.id" value="${command.address.id}" hidden="true"/>
-
-                <c:forEach items="${businessPlans}" var="businessPlan">
-                    <form:input path="businessPlan.id" type="number" name="${businessPlan.id}" value="${businessPlan.id}" hidden="true"/>
-                </c:forEach>
-
                 <form:input path="id" type="number" name="command.id" value="${command.id}" hidden="true"/>
 
 
@@ -144,31 +71,7 @@
                     </tr>
 
 
-                    <c:forEach items="${businessPlans}" var="businessPlan">
 
-                        <tr align="center">
-                            <th>Idea</th>
-                            <td>
-                                <form:input path="businessPlan.idea" type="text" name="businessPlan.idea" value="${businessPlan.idea}"/>
-                            </td>
-                        </tr>
-
-                        <tr align="center">
-                            <th>Current state</th>
-                            <td>
-                                <form:input path="businessPlan.currentState" type="text" name="businessPlan.currentState" value="${businessPlan.currentState}"/>
-                            </td>
-                        </tr>
-
-                        <tr align="center">
-                            <th>Market</th>
-                            <td>
-                                <form:input path="businessPlan.market" type="text" name="businessPlan.market" value="${businessPlan.market}"/>
-                            </td>
-                        </tr>
-
-
-                    </c:forEach>
 
 
 

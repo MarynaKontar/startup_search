@@ -68,11 +68,11 @@ public class MainController {
         return new ModelAndView("main-after-login", "projects", projectService.findAll());
     }
 
-//
-//    @PostConstruct
-//    public void initDefaultUsers() {
-//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
-//    }
+
+    @PostConstruct
+    public void initDefaultUsers() {
+        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
+    }
 //
 //@PostConstruct
 //    public void deleteUser(){
