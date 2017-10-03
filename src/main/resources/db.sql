@@ -76,6 +76,24 @@ create table IF NOT EXISTS project
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
+create table interest
+(
+ id bigint auto_increment
+  primary key,
+ name varchar(455) null,
+ description varchar(2000) null,
+ budget int null,
+ user_username varchar(45) null,
+ country varchar(45) null,
+ industry varchar(45) null,
+ lastChange timestamp default '0000-00-00 00:00:00' null,
+ constraint interest_id_uindex
+ unique (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+
+
 create table IF NOT EXISTS user
 (
  username varchar(45) not null

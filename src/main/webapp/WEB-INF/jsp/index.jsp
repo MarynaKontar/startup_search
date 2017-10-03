@@ -6,8 +6,8 @@
 <html>
 <head>
     <title>Start page for startup application</title>
-
-    <!-- <link rel="stylesheet" href="../css/style.css" type="text/css"> -->
+    <%--<%@include file="header.jsp" %>--%>
+    <%--<<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles.css">--%>
     <style>
 
         .flex-container {
@@ -84,7 +84,8 @@
 
 <div class="flex-container">
     <header>
-        <h3>STARTUP</h3>
+        <%--<%@include file="navbar.jsp" %>--%>
+        <h3>Startup</h3>
         <a href="${pageContext.request.contextPath}/login">Login</a>
     </header>
 
@@ -142,7 +143,7 @@
                                 <td class="tb1" style="width:60%">${project.lastChange}</td>
                             </tr>
                             <tr>
-                                <td class="tb2" style="width:50%"><a href="/project/${project.id}">Learn more</a>
+                                <td class="tb2" style="width:50%"><a href="/login">Learn more</a>
                                 </td>
                             </tr>
                         </div>

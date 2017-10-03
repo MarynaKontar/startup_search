@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>Update Project form</title>
+    <title>Project form</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <style>
 

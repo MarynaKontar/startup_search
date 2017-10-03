@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head>
-    <title>Registration form</title>
-     <!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css"> -->
+    <title>Interest create form</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
     <style>
+
         .flex-container {
             display: -webkit-flex;
             display: flex;
@@ -76,85 +77,54 @@
     </style>
 </head>
 <body>
+
+<c:set var="username">
+    <sec:authentication property="principal.username"/>
+</c:set>
 <div class="flex-container" align="center">
     <header>
-        <h3 align="center">Edit account</h3>
+        <h3 align="center">Adding an interest</h3>
     </header>
     <article>
         <div align="center">
-            <form method="post" action="/user/personalAccount/${user.username}/update/" >
+            <form method="post" action="${pageContext.request.contextPath}/interest/create/" >
+                <input type="text" name="user.username" value="${username}" hidden>
                 <table align="center">
                     <tr align="center">
-
-                    <tr align="center">
-                        <th>Name</th>
+                        <th>Name of the interest</th>
                         <td>
-                            <input autofocus type="text" name="firstName" value="${user.firstName}" placeholder="first name">
+                            <input autofocus type="text" name="name" placeholder="your name of interest">
                         </td>
                     </tr>
                     <tr align="center">
-                        <th>Last name</th>
+                        <th>The announcement (brief description)</th>
                         <td>
-                            <input autofocus type="text" name="lastName" value="${user.lastName}" placeholder="last name">
+                            <input type="text" name="description" placeholder="">
                         </td>
                     </tr>
                     <tr align="center">
-                        <th>Password</th>
+                        <th>Funds</th>
                         <td>
-                            <input type="password" name="password" value="${user.password}" placeholder="Password">
+                            <input type="number" name="budget" placeholder="budget that you want to invest">
                         </td>
                     </tr>
-
                     <tr align="center">
-                        <th>Email</th>
-                        <td>
-                            <input type="text" name="contact.email"  value="${user.contact.email}" placeholder="Email" >
-                        </td>
-                    </tr>
-
-                    <tr align="center">
-                        <th>Phone number</th>
-                        <td>
-                            <input type="text" name="contact.phoneNumber" value="${user.contact.phoneNumber}" placeholder="phone number">
-                        </td>
-                    </tr>
-
-                    <tr align="center">
-                        <th>Country</th>
-                        <td><select name="address.country">
-                            <option value="${user.contact.country}">Country</option>
-                            <c:forEach items="${countries}" var="country">
-                                <option value="${user.contact.country}">${country}</option>
+                        <th>Industry</th>
+                        <td><select name="industry">
+                            <option value="">Industry</option>
+                            <c:forEach items="${industries}" var="industry">
+                                <option value="${industry}">${industry}</option>
                             </c:forEach>
                         </select></td>
                     </tr>
-
                     <tr align="center">
-                        <th>City</th>
-                        <td>
-                            <input type="text" name="contact.city" value="${user.contact.city}" placeholder="city">
-                        </td>
-                    </tr>
-
-                    <tr align="center">
-                        <th>Your video message</th>
-                        <td>
-                            <input type="text" name="youtubeLink" value="${user.youtubeLink}" placeholder="link to youtube">
-                        </td>
-                    </tr>
-
-                    <tr align="center">
-                        <th>About me</th>
-                        <td>
-                            <input type="text" name="aboutMe" value="${user.aboutMe}" placeholder="">
-                        </td>
-                    </tr>
-
-                    <tr align="center">
-                        <th>Skills</th>
-                        <td>
-                            <input type="text" name="skills" value="${user.skills}" placeholder="skills">
-                        </td>
+                        <th>Country</th>
+                        <td><select name="address.country">
+                            <option value="">Country</option>
+                            <c:forEach items="${countries}" var="country">
+                                <option value="${country}">${country}</option>
+                            </c:forEach>
+                        </select></td>
                     </tr>
 
                     <tr></tr>

@@ -83,6 +83,15 @@ public class ProjectController {
         return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getUsername());
     }
 
+    @GetMapping("/{id}")
+    public ModelAndView info(@PathVariable("id") Long id) {
+        ModelAndView projectInfo = new ModelAndView("project-info");
+        Project project = projectService.findOne(id);
+        projectInfo.addObject("project", project);
+        LOGGER.info("Building info page for " + project);
+        return projectInfo;
+    }
+
     @GetMapping("{username}/{id}/delete")
     public ModelAndView delete(@PathVariable("username") String username, @PathVariable("id") Long id) {
         projectService.deleteProjectFromUser(id, username);

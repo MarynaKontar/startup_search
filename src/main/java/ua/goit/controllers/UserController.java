@@ -76,10 +76,16 @@ public class UserController {
     }
 
     @PostMapping("/personalAccount/{username}/update")
-    public ModelAndView update(@PathVariable("username") String username, @ModelAttribute("user") User user) throws IOException {
-        userService.update(user, username);
+    public ModelAndView update(@PathVariable("username") String username, @ModelAttribute("user") User user, @RequestParam(value = "password", required = false) String password) throws IOException {
+        userService.update(user, username,password);
         LOGGER.info("Redirecting to personal account page after updating personal account with username='{}'", user.getUsername());
         return new ModelAndView("redirect:/user/personalAccount/"  + username);
+    }
+
+    @RequestMapping("/users")
+    public ModelAndView viewUsers() {
+        List<User> users = userService.findAll();
+        return new ModelAndView("users", "users", users);
     }
 
 //    @ExceptionHandler(Exception.class)

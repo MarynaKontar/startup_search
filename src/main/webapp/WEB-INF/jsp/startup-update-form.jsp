@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Create Project form</title>
+    <title>Update Project form</title>
      <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
     <%----%>
 </head>

@@ -1,5 +1,6 @@
 package ua.goit.entity;
 
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import ua.goit.entity.enums.Industry;
@@ -153,6 +154,7 @@ public class Project implements Serializable {
     }
 
     public void addBusinessPlan(BusinessPlan businessPlan) {
+        Hibernate.initialize(businessPlans);
         if (businessPlans == null) {
             businessPlans = new HashSet<>(0);
         }
@@ -161,6 +163,7 @@ public class Project implements Serializable {
     }
 
     public void removeBusinessPlan(BusinessPlan businessPlan) {
+        Hibernate.initialize(businessPlans);
         if (businessPlans != null) {
             businessPlans.remove(businessPlan);
             businessPlan.setProject(null);

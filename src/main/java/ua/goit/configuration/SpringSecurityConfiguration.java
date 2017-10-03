@@ -23,13 +23,18 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     //TODO 2. дописать правила доступа (antMatchers(...).hasAnyRole(...))
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests() .antMatchers("/", "/startup").permitAll()
+
+        http.authorizeRequests()
+                .antMatchers("/*.css", "/*.jpg").permitAll()
+                .antMatchers("/", "/startup/","/*.css").permitAll()
                 .antMatchers("/registration", "/registration/**").not().authenticated()
-                .antMatchers("/main/").authenticated()
-                .antMatchers("/startup/**", "/user/**", "/user/*", "/startup/*").authenticated()
+
+                .antMatchers("/main/").hasRole("ADMIN")
+                .antMatchers("/user/users/").hasRole("ADMIN")
+                .antMatchers("/interest/**","/interest/*","/startup/**", "/user/**", "/user/*", "/startup/*").authenticated()
                 .antMatchers("/startup/**", "/user/**", "/user/*", "/startup/*").permitAll()
-                .antMatchers("/main/").permitAll()
-                .antMatchers("/*.css").permitAll()
+                .antMatchers("/main/").authenticated()
+
                 .antMatchers("/index.jsp").hasRole("ADMIN")
 
                 .anyRequest().denyAll()

@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Maryna Kontar on 23.08.2017.
@@ -49,6 +50,10 @@ public class User implements Serializable{
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @LazyCollection( LazyCollectionOption.FALSE )
     private Collection<Project> projects;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection( LazyCollectionOption.FALSE)
+    private Collection<Interest> interests;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
@@ -216,6 +221,23 @@ public class User implements Serializable{
         if (projects != null) {
             projects.remove(project);
             project.setUser(null);
+        }
+    }
+
+    public void addInterest(Interest interest) {
+        Hibernate.initialize(interests);
+        if (interests == null) {
+            interests = new HashSet<>(0);
+        }
+        interests.add(interest);
+        interest.setUser(this);
+    }
+
+    public void removeInterest(Interest interest) {
+        Hibernate.initialize(interests);
+        if (interests != null) {
+            interests.remove(interest);
+            interest.setUser(null);
         }
     }
 

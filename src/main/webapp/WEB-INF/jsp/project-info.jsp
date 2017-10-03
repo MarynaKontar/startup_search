@@ -86,12 +86,12 @@
 </c:set>
 
 <c:set var="isAdmin" value="false"/>
-
+<c:set var="isOwner" value="${project.user.username == username}"/>
 <sec:authorize access="hasRole('ADMIN')">
     <c:set var="isAdmin" value="true"/>
 </sec:authorize>
-<div class="flex-container">
 
+<div class="flex-container">
 
     <header>
         <h3>STARTUP</h3>
@@ -99,54 +99,72 @@
         <th><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a></th>
 
     </header>
+
     <aside>
 
-
-
     </aside>
+
     <nav class="nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
-            <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
-            <c:if test="${isAdmin}">
-                <li><a href="${pageContext.request.contextPath}/user/users">All users</a><br></li><br>
+            <c:if test="${isOwner || isAdmin}">
+                    <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a></li>
+                    <br>
+                    <li><a href="${pageContext.request.contextPath}/main/">Add interest</a></li>
+                    <br>
+                    <li><a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.username}/edit">Edit
+                        profile</a></li>
+                    <br>
+                    <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
+                    <br>
+                    <li><a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.username}/delete">Delete
+                        profile</a></li>
+                    <br>
+                </c:if>
+            <c:if test="${!(isOwner || isAdmin)}">
+                <li><a href="${pageContext.request.contextPath}/main/">Home</a></li>
+                <br>
+                <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
+                <br>
             </c:if>
         </ul>
     </nav>
 
     <article class="article">
         <section>
-            <h3 align="center">All startups</h3>
+
         </section>
-        <section>
-            <c:forEach var="project" items="${projects}">
+
                 <section>
+
                     <div class="first"
                          style="float: left; width:27%; margin:0.5%; box-shadow: 10px 10px 5px grey; background-color: #f1f1f1">
                         <table>
                             <div class="second" style="height:80px">
+                                <h3 align="center">Startup ${project.name}</h3>
+
+                                <c:if test="${!(isOwner)}">
+                                <tr>
+                                    <td class="tb1" style="width:30%">
+                                        <a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.username}">
+                                            To startup's owner page</a>
+                                    </td>
+                                </tr>
+                                </c:if>
 
                                 <tr>
-                                    <td class="tb1" style="width:30%">Project Name:</td>
-                                    <td class="tb1" style="width:60%">${project.name}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${project.industry}</td>
+                                    <td class="tb1" style="width:60%">${project.lastChange}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Description:</td>
                                     <td class="tb1" style="width:60%">${project.description}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tb1" style="width:30%">City:</td>
-                                    <td class="tb1" style="width:60%">${project.address.city}</td>
-                                </tr>
-                                <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
                                     <td class="tb1" style="width:60%">${project.address.country}</td>
+                                </tr>
+                                <tr>
+                                    <td class="tb1" style="width:30%">City:</td>
+                                    <td class="tb1" style="width:60%">${project.address.city}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Total:</td>
@@ -157,19 +175,14 @@
                                     <td class="tb1" style="width:60%">${project.minInvestment}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tb1" style="width:30%">Changed:</td>
-                                    <td class="tb1" style="width:60%">${project.lastChange}</td>
+                                    <td class="tb1" style="width:30%">Industry:</td>
+                                    <td class="tb1" style="width:60%">${project.industry}</td>
                                 </tr>
-                                <tr>
-                                    <td class="tb2" style="width:50%"><a href="${pageContext.request.contextPath}/startup/${project.id}">Learn more</a>
-                                    </td>
-                                </tr>
+
                             </div>
                         </table>
                     </div>
                 </section>
-            </c:forEach>
-        </section>
     </article>
 
     <footer>Copyright &copy; javaEE group7</footer>

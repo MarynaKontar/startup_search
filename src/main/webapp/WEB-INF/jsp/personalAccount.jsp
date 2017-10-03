@@ -118,10 +118,12 @@
     </aside>
     <nav class="nav">
         <ul>
+            <li><a href="${pageContext.request.contextPath}/main/">Home</a></li>
+            <br>
             <c:if test="${isOwner || isAdmin}">
                 <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a></li>
                 </br>
-                <li><a href="${pageContext.request.contextPath}/main">Add interest</a></li>
+                <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
                 </br>
                 <li><a href="${pageContext.request.contextPath} /user/personalAccount/${user.username}/edit">Edit
                     profile</a></li>
@@ -132,6 +134,16 @@
                     profile</a></li>
                 <br>
             </c:if>
+
+            <c:if test="${!isOwner}">
+                <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
+                <br>
+                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${username}/">${username} account</a></li>
+                <br>
+
+            </c:if>
+
+
         </ul>
     </nav>
 
@@ -159,7 +171,7 @@
                     <li>selling shares in the business</li>
                 </ul>
                 <br>
-                <a href="${pageContext.request.contextPath}/main">Add new interest</a>
+                <a href="${pageContext.request.contextPath}/main/">Add new interest</a>
                 <br>
             </section>
         </c:if>
@@ -211,7 +223,7 @@
                                 </tr>
                                 <tr>
                                     <td class="tb2" style="width:50%"><a
-                                            href="${pageContext.request.contextPath}/project/${project.id}">Learn
+                                            href="${pageContext.request.contextPath}/startup/${project.id}">Learn
                                         more</a>
                                     </td>
                                 </tr>

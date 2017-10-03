@@ -27,6 +27,8 @@ public class InitDefaultEntities {
                                         ProjectService projectService, ExperienceService experienceService,
                                         EducationService educationService, PasswordEncoder passwordEncoder) {
 
+        String youtubeLink = "https://www.youtube.com/watch?v=3wBteulZaAs&index=1&list=PL6jg6AGdCNaWF-sUH2QDudBRXo54zuN1t";
+
         //user
         User user1 = new User();
         user1.setUsername("Maryna");
@@ -57,7 +59,7 @@ public class InitDefaultEntities {
 
         User userFromDb1 = usersService.findOne("Maryna");
         userFromDb1.setPersonalPageFotoLink("WEB-INF/jpeg/personalPageFoto/adminFoto.jpg");//TODO Как ссылку указывать?
-        userFromDb1.setYoutubeLink("https://www.youtube.com/watch?v=3wBteulZaAs&index=1&list=PL6jg6AGdCNaWF-sUH2QDudBRXo54zuN1t");
+        userFromDb1.setYoutubeLink(youtubeLink);
         userFromDb1.setAboutMe("I'm admin!");
         userFromDb1.setSkills("JavaCore, Spring, Hibernate");
         userFromDb1.addExperience(experience1);
@@ -110,6 +112,7 @@ public class InitDefaultEntities {
         userFromDb2.addExperience(experience3);
         userFromDb2.addExperience(experience4);
         userFromDb2.addEducation(education2);
+        userFromDb2.setYoutubeLink(youtubeLink);
 
         usersService.save(userFromDb2);
 
@@ -165,6 +168,7 @@ public class InitDefaultEntities {
         userFromDb3.addExperience(experience5);
         userFromDb3.addExperience(experience6);
         userFromDb3.addEducation(education3);
+        userFromDb3.setYoutubeLink(youtubeLink);
 
         usersService.save(userFromDb3);
 

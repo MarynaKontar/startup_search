@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ua.goit.dao.EducationDao;
+import ua.goit.dao.ExperienceDao;
 import ua.goit.dao.ProjectDao;
 import ua.goit.dao.UserDao;
 import ua.goit.entity.Education;
@@ -25,12 +27,16 @@ public class UserService {
 
     private final UserDao dao;
     private final ProjectDao projectDao;
+    private final EducationDao educationDao;
+    private final ExperienceDao experienceDao;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserDao dao, ProjectDao projectDao, PasswordEncoder passwordEncoder) {
+    public UserService(UserDao dao, ProjectDao projectDao, EducationDao educationDao, ExperienceDao experienceDao, PasswordEncoder passwordEncoder) {
         this.dao = dao;
         this.projectDao = projectDao;
+        this.educationDao = educationDao;
+        this.experienceDao = experienceDao;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -45,8 +51,17 @@ public class UserService {
     }
 
     @Transactional
-    public <S extends User> S update(S updatedUser, String username) {
+    public <S extends User> S update(S updatedUser, String username, String password) {
         User user = dao.findOne(username);
+
+        //TODO приходится так перезаписывать пароль, потому что если не делать так, то перезаписывается пароль с солью
+        if(password!= null && !password.isEmpty() && !user.getPassword().equals(password)){
+            updatedUser.setPassword(passwordEncoder.encode(password));
+        }
+        //TODO пока не делала функционал подгрузки фото профиля, надо, чтобы не "стиралась" ссылка на фото в бд
+        updatedUser.setPersonalPageFotoLink(user.getPersonalPageFotoLink());
+        updatedUser.setProfileFotoLink(user.getProfileFotoLink());
+
         updatedUser.setProjects(user.getProjects());
         updatedUser.setExperiences(user.getExperiences());
         updatedUser.setEducations(user.getEducations());
@@ -86,8 +101,16 @@ public class UserService {
         Collection<Education> educations = user.getEducations();
         Collection<Experience> experiences = user.getExperiences();
         Collection<Project> projects = user.getProjects();
+
+//        educations.forEach(educationDao::delete);
+        educationDao.delete(educations);
+        //TODO кидает java.util.ConcurrentModificationException
         educations.forEach(user::removeEducatione);
+
+//        experiences.forEach(experienceDao::delete);
+        experienceDao.delete(experiences);
         experiences.forEach(user::removeExperience);
+
         projectDao.delete(projects);
         projects.forEach(user::removeProject);
         dao.delete(username);

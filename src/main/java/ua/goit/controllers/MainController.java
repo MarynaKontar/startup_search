@@ -62,15 +62,15 @@ public class MainController {
      * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String},
      * and {@link java.util.List} of projects from database
      */
-    @GetMapping("main")
+    @GetMapping("main/")
     public ModelAndView main() {
         LOGGER.info("Building main page after login");
         return new ModelAndView("main-after-login", "projects", projectService.findAll());
     }
 
 //TODO запустить в первый раз для создания исходных юзеров
-    @PostConstruct
-    public void initDefaultUsers() {
-        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
-    }
+//    @PostConstruct
+//    public void initDefaultUsers() {
+//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
+//    }
 }
