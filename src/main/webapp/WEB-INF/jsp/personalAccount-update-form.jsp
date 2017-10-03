@@ -150,6 +150,13 @@
                         </td>
                     </tr>
 
+                    <tr align="center">
+                        <th>Skills</th>
+                        <td>
+                            <input type="text" name="skills" value="${user.skills}" placeholder="skills">
+                        </td>
+                    </tr>
+
                     <tr></tr>
                     <tr align="center">
                         <td>

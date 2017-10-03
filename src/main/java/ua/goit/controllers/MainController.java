@@ -68,21 +68,9 @@ public class MainController {
         return new ModelAndView("main-after-login", "projects", projectService.findAll());
     }
 
-
+//TODO запустить в первый раз для создания исходных юзеров
     @PostConstruct
     public void initDefaultUsers() {
         InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
     }
-//
-//@PostConstruct
-//    public void deleteUser(){
-//     userService.delete("user2");
-//}
-//    @PostConstruct
-//    @Transactional
-//    public void deleteProject(){
-//        Project project = projectService.getOne(105L);
-//        projectService.delete(project);
-//    }
-
 }

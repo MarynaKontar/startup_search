@@ -203,6 +203,7 @@ public class User implements Serializable{
     }
 
     public void addProject(Project project) {
+        Hibernate.initialize(projects);
         if (projects == null) {
             projects = new HashSet<>(0);
         }
@@ -211,6 +212,7 @@ public class User implements Serializable{
     }
 
     public void removeProject(Project project) {
+        Hibernate.initialize(projects);
         if (projects != null) {
             projects.remove(project);
             project.setUser(null);

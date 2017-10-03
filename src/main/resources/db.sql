@@ -1,15 +1,7 @@
--- -----------------------------------------------------
--- Schema STARTUP
--- -----------------------------------------------------
--- DROP SCHEMA IF EXISTS `STARTUP` ;
-
--- -----------------------------------------------------
--- Schema STARTUP
--- -----------------------------------------------------
 -- CREATE SCHEMA IF NOT EXISTS `STARTUP` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ; --
 USE `STARTUP` ;
 
-create table address
+create table IF NOT EXISTS address
 (
  id bigint auto_increment
   primary key,
@@ -21,7 +13,7 @@ create table address
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
-create table businessplan
+create table IF NOT EXISTS businessplan
 (
  id bigint auto_increment
   primary key,
@@ -34,7 +26,7 @@ create table businessplan
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
-create table education
+create table IF NOT EXISTS education
 (
  id bigint auto_increment
   primary key,
@@ -51,7 +43,7 @@ create table education
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
-create table experience
+create table IF NOT EXISTS experience
 (
  id bigint auto_increment
   primary key,
@@ -66,7 +58,7 @@ create table experience
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
-create table project
+create table IF NOT EXISTS project
 (
  id bigint auto_increment
   primary key,
@@ -84,7 +76,7 @@ create table project
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
-create table user
+create table IF NOT EXISTS user
 (
  username varchar(45) not null
   primary key,
@@ -103,7 +95,7 @@ create table user
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
-create table user_roles
+create table IF NOT EXISTS user_roles
 (
  user_username varchar(45) not null,
  role varchar(45) not null,
