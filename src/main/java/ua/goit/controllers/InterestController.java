@@ -106,8 +106,6 @@ public class InterestController {
 
     @PostMapping("/update/")
     public ModelAndView update(@ModelAttribute("command") Interest interest) throws IOException {
-//        Project project = projectService.findOne(id);
-//        Hibernate.initialize(project.getBusinessPlans());
         interestService.save(interest);
         return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getUsername());
     }

@@ -8,10 +8,7 @@ import ua.goit.dao.EducationDao;
 import ua.goit.dao.ExperienceDao;
 import ua.goit.dao.ProjectDao;
 import ua.goit.dao.UserDao;
-import ua.goit.entity.Education;
-import ua.goit.entity.Experience;
-import ua.goit.entity.Project;
-import ua.goit.entity.User;
+import ua.goit.entity.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -65,6 +62,7 @@ public class UserService {
         updatedUser.setProjects(user.getProjects());
         updatedUser.setExperiences(user.getExperiences());
         updatedUser.setEducations(user.getEducations());
+        updatedUser.setInterests(user.getInterests());
         updatedUser.setRoles(user.getRoles());
 
         return dao.save(updatedUser);
@@ -101,18 +99,20 @@ public class UserService {
         Collection<Education> educations = user.getEducations();
         Collection<Experience> experiences = user.getExperiences();
         Collection<Project> projects = user.getProjects();
+        Collection<Interest> interests = user.getInterests();
 
 //        educations.forEach(educationDao::delete);
-        educationDao.delete(educations);
+//        educationDao.delete(educations);
         //TODO кидает java.util.ConcurrentModificationException
         educations.forEach(user::removeEducatione);
 
 //        experiences.forEach(experienceDao::delete);
-        experienceDao.delete(experiences);
+//        experienceDao.delete(experiences);
         experiences.forEach(user::removeExperience);
 
-        projectDao.delete(projects);
+//        projectDao.delete(projects);
         projects.forEach(user::removeProject);
+       interests.forEach(user::removeInterest);
         dao.delete(username);
     }
 }

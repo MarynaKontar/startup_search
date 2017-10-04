@@ -109,7 +109,7 @@
             <c:if test="${isOwner || isAdmin}">
                     <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a></li>
                     <br>
-                    <li><a href="${pageContext.request.contextPath}/main/">Add interest</a></li>
+                    <li><a href="${pageContext.request.contextPath}/interest/create">Add interest</a></li>
                     <br>
                     <li><a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.username}/edit">Edit
                         profile</a></li>

@@ -113,7 +113,7 @@
         <table border="2" width="70%" cellpadding="2">
             <tr><th>Login</th><th>Name</th><th>Last name</th><th>Email</th><th>Phone number</th><th>City</th><th>Country</th>
                 <th>Profile photo link</th><th>Personal page photo link</th><th>youtube link</th><th>About</th>
-                <th>Experiences</th><th>Educations</th><th>Edit</th><th>Delete</th></tr>
+                <th>Edit</th><th>Delete</th></tr>
             <c:forEach var="user" items="${users}">
                 <tr>
                     <td>${user.username}</td>

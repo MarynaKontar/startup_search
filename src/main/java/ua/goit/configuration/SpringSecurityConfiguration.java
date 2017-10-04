@@ -28,12 +28,13 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*.css", "/*.jpg").permitAll()
                 .antMatchers("/", "/startup/","/*.css").permitAll()
                 .antMatchers("/registration", "/registration/**").not().authenticated()
+                .antMatchers("/registration", "/registration/**").authenticated()//чтобі админ мог добавить нового юзера (переделать отдельнім методом)
 
-                .antMatchers("/main/").hasRole("ADMIN")
+//                .antMatchers("/main/").hasRole("ADMIN")
                 .antMatchers("/user/users/").hasRole("ADMIN")
                 .antMatchers("/interest/**","/interest/*","/startup/**", "/user/**", "/user/*", "/startup/*").authenticated()
                 .antMatchers("/startup/**", "/user/**", "/user/*", "/startup/*").permitAll()
-                .antMatchers("/main/").authenticated()
+                .antMatchers("/main").authenticated()
 
                 .antMatchers("/index.jsp").hasRole("ADMIN")
 
@@ -41,7 +42,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and().formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error")
-                .defaultSuccessUrl("/main/")
+                .defaultSuccessUrl("/main")
                 .permitAll()
                 .and()
                 // разрешаем делать логаут всем

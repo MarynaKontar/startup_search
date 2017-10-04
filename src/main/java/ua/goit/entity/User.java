@@ -38,7 +38,7 @@ public class User implements Serializable{
     private String aboutMe;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection( LazyCollectionOption.FALSE )
+    @LazyCollection( LazyCollectionOption.FALSE)
     private Collection<Experience> experiences;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -171,6 +171,14 @@ public class User implements Serializable{
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Collection<Interest> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(Collection<Interest> interests) {
+        this.interests = interests;
     }
 
     public void addExperience(Experience experience) {

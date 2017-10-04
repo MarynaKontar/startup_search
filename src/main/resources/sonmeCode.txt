@@ -1,33 +1,39 @@
 
- <c:forEach items="${command.businessPlans}" var="businessPlan">
-                     <form:input path="businessPlans" type="number" name="${businessPlan.id}" value="${businessPlan.id}" hidden="true"/>
+ <c:forEach items="${command.businessPlan}" var="businessPlan">
+                     <form:input path="businessPlan" type="number" name="${businessPlan.id}" value="${businessPlan.id}" hidden="true"/>
                  </c:forEach>
 
 
 
 
- <c:forEach items="${command.businessPlans}" var="businessPlan">
+ <c:forEach items="${command.businessPlan}" var="businessPlan">
 
                         <tr align="center">
                             <th>Idea</th>
                             <td>
-                                <form:input path="businessPlans.idea" type="text" name="businessPlan.idea" value="${businessPlan.idea}"/>
+                                <form:input path="businessPlan.idea" type="text" name="businessPlan.idea" value="${businessPlan.idea}"/>
                             </td>
                         </tr>
 
                         <tr align="center">
                             <th>Current state</th>
                             <td>
-                                <form:input path="businessPlans.currentState" type="text" name="businessPlan.currentState" value="${businessPlan.currentState}"/>
+                                <form:input path="businessPlan.currentState" type="text" name="businessPlan.currentState" value="${businessPlan.currentState}"/>
                             </td>
                         </tr>
 
                         <tr align="center">
                             <th>Market</th>
                             <td>
-                                <form:input path="businessPlans.market" type="text" name="businessPlan.market" value="${businessPlan.market}"/>
+                                <form:input path="businessPlan.market" type="text" name="businessPlan.market" value="${businessPlan.market}"/>
                             </td>
                         </tr>
 
 
                     </c:forEach>
+
+
+Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags: [ua.goit.entity.User.roles, ua.goit.entity.User.experiences]
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mainController': Invocation of init method failed; nested exception is org.springframework.orm.jpa.JpaSystemException: A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance: ua.goit.entity.User.experiences; nested exception is org.hibernate.HibernateException: A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance: ua.goit.entity.User.experiences
+

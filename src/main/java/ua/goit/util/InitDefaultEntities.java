@@ -74,7 +74,7 @@ public class InitDefaultEntities {
                 Industry.AGRICULTURE, new Address("Kiev", null, Country.UKRAINE),
                 "description for project1", LocalDate.of(2017, 9, 1));
 
-        project1.addBusinessPlan(businessPlan1);
+        project1.setBusinessPlan(businessPlan1);
         userFromDb1.addProject(project1);
         projectService.save(project1);
 
@@ -121,7 +121,7 @@ public class InitDefaultEntities {
                 Industry.BANKING, new Address("Kiev", null, Country.UKRAINE),
                 "description for project2", LocalDate.of(2017, 8, 1));
 
-        project2.addBusinessPlan(businessPlan2);
+        project2.setBusinessPlan(businessPlan2);
         userFromDb2.addProject(project2);
         projectService.save(project2);
 
@@ -131,7 +131,7 @@ public class InitDefaultEntities {
                 Industry.FISHING, new Address("Paris", null, Country.FRANCE),
                 "description for project3", LocalDate.of(2017, 7, 1));
 
-        project3.addBusinessPlan(businessPlan3);
+        project3.setBusinessPlan(businessPlan3);
         userFromDb2.addProject(project3);
         projectService.save(project3);
 
@@ -174,13 +174,11 @@ public class InitDefaultEntities {
 
 
         BusinessPlan businessPlan4 = new BusinessPlan("idea4", "currentState4","market4");
-        BusinessPlan businessPlan5 = new BusinessPlan("idea5", "currentState5","market5");
         Project project4 = new Project("project4", BigDecimal.valueOf(100000),BigDecimal.valueOf(20000),
                 Industry.BANKING, new Address("Kiev", null, Country.UKRAINE),
                 "description for project2", LocalDate.of(2017, 8, 1));
 
-        project4.addBusinessPlan(businessPlan4);
-        project4.addBusinessPlan(businessPlan5);
+        project4.setBusinessPlan(businessPlan4);
         userFromDb3.addProject(project4);
         projectService.save(project4);
     }

@@ -1,15 +1,11 @@
 package ua.goit.entity;
 
-import org.hibernate.Hibernate;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import ua.goit.entity.enums.Industry;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -41,9 +37,8 @@ public class Project implements Serializable {
 
     private String description;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection( LazyCollectionOption.FALSE)
-    private Set<BusinessPlan> businessPlans;
+    @OneToOne
+    private BusinessPlan businessPlan;
 
     private LocalDate lastChange;
 
@@ -129,12 +124,12 @@ public class Project implements Serializable {
         this.description = description;
     }
 
-    public Set<BusinessPlan> getBusinessPlans() {
-        return businessPlans;
+    public BusinessPlan getBusinessPlan() {
+        return businessPlan;
     }
 
-    public void setBusinessPlans(Set<BusinessPlan> businessPlans) {
-        this.businessPlans = businessPlans;
+    public void setBusinessPlan(BusinessPlan businessPlan) {
+        this.businessPlan = businessPlan;
     }
 
     public LocalDate getLastChange() {
@@ -153,22 +148,7 @@ public class Project implements Serializable {
         isActive = active;
     }
 
-    public void addBusinessPlan(BusinessPlan businessPlan) {
-        Hibernate.initialize(businessPlans);
-        if (businessPlans == null) {
-            businessPlans = new HashSet<>(0);
-        }
-        businessPlans.add(businessPlan);
-        businessPlan.setProject(this);
-    }
 
-    public void removeBusinessPlan(BusinessPlan businessPlan) {
-        Hibernate.initialize(businessPlans);
-        if (businessPlans != null) {
-            businessPlans.remove(businessPlan);
-            businessPlan.setProject(null);
-        }
-    }
 
     @Override
     public String toString() {

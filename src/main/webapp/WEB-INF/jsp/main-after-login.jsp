@@ -9,7 +9,6 @@
 
     <!-- <link rel="stylesheet" href="../css/style.css" type="text/css"> -->
     <style>
-
         .flex-container {
             display: -webkit-flex;
             display: flex;
@@ -17,44 +16,35 @@
             flex-flow: row wrap;
             text-align: center;
         }
-
         .flex-container > * {
             padding: 15px;
             -webkit-flex: 1 100%;
             flex: 1 100%;
         }
-
         .article {
             text-align: left;
         }
-
         aside {
             text-align: right;
         }
-
         header {
             background: burlywood;
             color: white;
         }
-
         footer {
             background: #aaa;
             color: white;
         }
-
         .nav {
             background: #eee;
         }
-
         .nav ul {
             list-style-type: none;
             padding: 0;
         }
-
         .nav ul a {
             text-decoration: none;
         }
-
         @media all and (min-width: 768px) {
             .nav {
                 text-align: left;
@@ -63,14 +53,12 @@
                 -webkit-order: 1;
                 order: 1;
             }
-
             .article {
                 -webkit-flex: 5 0px;
                 flex: 5 0px;
                 -webkit-order: 2;
                 order: 2;
             }
-
             footer {
                 -webkit-order: 3;
                 order: 3;
@@ -108,7 +96,7 @@
         <ul>
             <li><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a><br></li><br>
             <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
+            <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li><br>
             <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
             <c:if test="${isAdmin}">
                 <li><a href="${pageContext.request.contextPath}/user/users">All users</a><br></li><br>

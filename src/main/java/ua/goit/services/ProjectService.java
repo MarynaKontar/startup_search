@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.dao.AddressDao;
+import ua.goit.dao.BusinessPlanDao;
 import ua.goit.dao.ProjectDao;
 import ua.goit.dao.UserDao;
 import ua.goit.entity.Address;
@@ -26,12 +27,14 @@ public class ProjectService {
 
     private final ProjectDao dao;
     private final AddressDao addressDao;
+    private final BusinessPlanDao businessPlanDao;
     private final UserDao userDao;
 
     @Autowired
-    public ProjectService(ProjectDao dao, AddressDao addressDao, UserDao userDao) {
+    public ProjectService(ProjectDao dao, AddressDao addressDao, BusinessPlanDao businessPlanDao, UserDao userDao) {
         this.dao = dao;
         this.addressDao = addressDao;
+        this.businessPlanDao = businessPlanDao;
         this.userDao = userDao;
     }
 
@@ -43,10 +46,9 @@ public class ProjectService {
                 || (address.getRegion() != null))) {
             addressDao.save(address);
         }
-        Hibernate.initialize(entity.getBusinessPlans());
-        Collection<BusinessPlan> businessPlans = entity.getBusinessPlans();
-        if(businessPlans != null){
-        businessPlans.forEach(entity::addBusinessPlan);}
+        BusinessPlan businessPlan = entity.getBusinessPlan();
+        if(businessPlan != null){
+        businessPlanDao.save(businessPlan);}
         return dao.save(entity);
     }
 

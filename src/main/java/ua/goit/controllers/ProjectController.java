@@ -1,6 +1,5 @@
 package ua.goit.controllers;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.entity.BusinessPlan;
 import ua.goit.entity.Project;
-import ua.goit.entity.User;
 import ua.goit.entity.enums.Country;
 import ua.goit.entity.enums.Industry;
-import ua.goit.entity.enums.Role;
 import ua.goit.services.AddressService;
 import ua.goit.services.BusinessPlanService;
 import ua.goit.services.ProjectService;
@@ -96,7 +93,7 @@ public class ProjectController {
     public ModelAndView delete(@PathVariable("username") String username, @PathVariable("id") Long id) {
         projectService.deleteProjectFromUser(id, username);
         LOGGER.info("Redirecting to personal account page after deleting startup with id='{}'", id);
-        //TODO ссылке выходит /user/personalAccount/{username}?{все industries и все countries} и страница пустая - оставляю только /user/personalAccount/{username} и все работает. Dblbvj cdzpfyj c @ModelAttribute
+        //TODO ссылке выходит /user/personalAccount/{username}?{все industries и все countries} . Видимо связано с @ModelAttribute
         return new ModelAndView("redirect:/user/personalAccount/" + username);
     }
 
@@ -114,19 +111,19 @@ public class ProjectController {
         Project project = projectService.findOne(id);
         Map<String,? super Object> modelMap = new HashMap<>();
         modelMap.put("command", project);
-        modelMap.put("businessPlans", project.getBusinessPlans());
+        modelMap.put("businessPlans", project.getBusinessPlan());
         ModelAndView modelAndView = new ModelAndView("startup-update-form", modelMap);
-//        modelAndView.addObject("businessplans", project.getBusinessPlans());
+//        modelAndView.addObject("businessplans", project.getBusinessPlan());
         modelAndView.addObject("countries", countries());
         modelAndView.addObject("industries", industries());
         return modelAndView;
     }
 
     @PostMapping("/update/")
-    public ModelAndView update(@ModelAttribute("command") Project project, @ModelAttribute("businessPlans")HashSet<BusinessPlan> businessPlans) throws IOException {
+    public ModelAndView update(@ModelAttribute("command") Project project, @ModelAttribute("businessPlan")BusinessPlan businessPlan) throws IOException {
 //        Project project = projectService.findOne(id);
-//        Hibernate.initialize(project.getBusinessPlans());
-        project.setBusinessPlans(businessPlans);
+//        Hibernate.initialize(project.getBusinessPlan());
+        project.setBusinessPlan(businessPlan);
         projectService.save(project);
         return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getUsername());
     }

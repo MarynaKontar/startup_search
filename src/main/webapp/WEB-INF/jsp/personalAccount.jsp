@@ -171,7 +171,7 @@
                     <li>selling shares in the business</li>
                 </ul>
                 <br>
-                <a href="${pageContext.request.contextPath}/main/">Add new interest</a>
+                <a href="${pageContext.request.contextPath}/interest/create">Add new interest</a>
                 <br>
             </section>
         </c:if>

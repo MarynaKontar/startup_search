@@ -1,5 +1,5 @@
 -- CREATE SCHEMA IF NOT EXISTS `STARTUP` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ; --
-USE `STARTUP` ;
+USE `startup2` ;
 
 create table IF NOT EXISTS address
 (
@@ -13,6 +13,7 @@ create table IF NOT EXISTS address
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
+
 create table IF NOT EXISTS businessplan
 (
  id bigint auto_increment
@@ -20,11 +21,12 @@ create table IF NOT EXISTS businessplan
  idea varchar(2000) null,
  currentState varchar(455) null,
  market varchar(455) null,
- project_id bigint null,
  constraint businessplan_id_uindex
  unique (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
+
+
 
 create table IF NOT EXISTS education
 (
@@ -67,6 +69,7 @@ create table IF NOT EXISTS project
  funds decimal(19,2) null,
  minInvestment decimal(19,2) null,
  industry varchar(455) null,
+ businessPlan_id bigint null,
  address_id bigint null,
  description varchar(2000) null,
  lastChange timestamp default '0000-00-00 00:00:00' not null,
@@ -76,7 +79,7 @@ create table IF NOT EXISTS project
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
-create table interest
+create table IF NOT EXISTS interest
 (
  id bigint auto_increment
   primary key,
