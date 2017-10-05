@@ -111,5 +111,23 @@ public class UserDetailsExt implements UserDetails {
         return user.getInterests();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserDetailsExt that = (UserDetailsExt) o;
+
+        if (!user.equals(that.user)) return false;
+        return grantedAuthorities.equals(that.grantedAuthorities);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user.hashCode();
+        result = 31 * result + grantedAuthorities.hashCode();
+        return result;
+    }
+
     //TODO 5 Добавлять геттеры для всех новых полей, которые появятся в {@link ua.goit.entity.User}
 }
