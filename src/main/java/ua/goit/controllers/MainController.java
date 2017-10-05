@@ -65,9 +65,9 @@ public class MainController {
         return new ModelAndView("main-after-login", "projects", projectService.findAll());
     }
 
-//TODO запустить в первый раз для создания исходных юзеров
-    @PostConstruct
-    public void initDefaultUsers() {
-        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
-    }
+////TODO запустить в первый раз для создания исходных юзеров
+//    @PostConstruct
+//    public void initDefaultUsers() {
+//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
+//    }
 }
