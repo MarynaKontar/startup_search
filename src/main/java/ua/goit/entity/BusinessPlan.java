@@ -64,5 +64,25 @@ public class BusinessPlan implements Serializable {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        BusinessPlan that = (BusinessPlan) o;
+
+        if (!id.equals(that.id)) return false;
+        if (!idea.equals(that.idea)) return false;
+        if (!currentState.equals(that.currentState)) return false;
+        return market.equals(that.market);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + idea.hashCode();
+        result = 31 * result + currentState.hashCode();
+        result = 31 * result + market.hashCode();
+        return result;
+    }
 }
