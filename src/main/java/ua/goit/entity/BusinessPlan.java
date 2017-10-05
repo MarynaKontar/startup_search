@@ -85,4 +85,14 @@ public class BusinessPlan implements Serializable {
         result = 31 * result + market.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "BusinessPlan{" +
+                "id=" + id +
+                ", idea='" + idea + '\'' +
+                ", currentState='" + currentState + '\'' +
+                ", market='" + market + '\'' +
+                '}';
+    }
 }

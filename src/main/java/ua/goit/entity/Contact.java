@@ -85,6 +85,11 @@ public class Contact implements Serializable {
 
     @Override
     public String toString() {
-        return "Contact{}";
+        return "Contact{" +
+                "email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", country=" + country +
+                '}';
     }
 }
