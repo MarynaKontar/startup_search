@@ -41,10 +41,14 @@ public class AddressTest {
     @Test
     public void hashCodeTest () {
         Address address1 = new Address("city1", "region1" , Country.AFGHANISTAN);
+        address1.setId(1L);
+
         Address address2 = new Address("city1", "region1" , Country.AFGHANISTAN);
+        address2.setId(1L);
+
         assertEquals(address1.hashCode(), address2.hashCode());
 
-    }
+        }
 
     @Test
     public void equalsTest () {
