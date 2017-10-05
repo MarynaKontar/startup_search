@@ -78,8 +78,8 @@
 </head>
 <body>
 
-<c:set var="username">
-    <sec:authentication property="principal.username"/>
+<c:set var="user_id">
+    <sec:authentication property="principal.id"/>
 </c:set>
 <div class="flex-container" align="center">
     <header>
@@ -88,7 +88,7 @@
     <article>
         <div align="center">
             <form method="post" action="${pageContext.request.contextPath}/startup/create/" >
-                <input type="text" name="user.username" value="${username}" hidden>
+                <input type="text" name="user.id" value="${user_id}" hidden>
                 <table align="center">
                     <tr align="center">
                         <th>Name of the project</th>
@@ -105,7 +105,7 @@
                     <tr align="center">
                         <th>Funds</th>
                         <td>
-                            <input type="number" name="funds" placeholder="necessary investments">
+                            <input type="number" name="funds" min="1000" max="1000000000" step="100" placeholder="necessary investments">
                         </td>
                     </tr>
                     <tr align="center">

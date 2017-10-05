@@ -98,25 +98,21 @@
                         <table>
                             <div class="second" style="height:80px">
 
+                                <h3 align="center">Startup ${project.name}</h3>
                                 <tr>
-                                    <td class="tb1" style="width:30%">Project Name:</td>
-                                    <td class="tb1" style="width:60%">${project.name}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${project.industry}</td>
+                                    <td class="tb1" style="width:60%">${project.lastChange}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Description:</td>
                                     <td class="tb1" style="width:60%">${project.description}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tb1" style="width:30%">City:</td>
-                                    <td class="tb1" style="width:60%">${project.address.city}</td>
-                                </tr>
-                                <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
                                     <td class="tb1" style="width:60%">${project.address.country}</td>
+                                </tr>
+                                <tr>
+                                    <td class="tb1" style="width:30%">City:</td>
+                                    <td class="tb1" style="width:60%">${project.address.city}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Total:</td>
@@ -127,8 +123,8 @@
                                     <td class="tb1" style="width:60%">${project.minInvestment}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tb1" style="width:30%">Changed:</td>
-                                    <td class="tb1" style="width:60%">${project.lastChange}</td>
+                                    <td class="tb1" style="width:30%">Industry:</td>
+                                    <td class="tb1" style="width:60%">${project.industry}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb2" style="width:50%"><a href="${pageContext.request.contextPath}/login">Learn more</a>

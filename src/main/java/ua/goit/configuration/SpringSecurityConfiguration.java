@@ -28,7 +28,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*.css", "/*.jpg").permitAll()
                 .antMatchers("/", "/startup/","/*.css").permitAll()
                 .antMatchers("/registration", "/registration/**").not().authenticated()
-                .antMatchers("/registration", "/registration/**").authenticated()//чтобі админ мог добавить нового юзера (переделать отдельнім методом)
+//                .antMatchers("/registration", "/registration/**").authenticated()//чтобі админ мог добавить нового юзера (переделать отдельнім методом)
 
 //                .antMatchers("/main/").hasRole("ADMIN")
                 .antMatchers("/user/users/").hasRole("ADMIN")

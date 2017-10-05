@@ -49,23 +49,23 @@ public class UserController {
         return Country.values();
     }
 
-    @GetMapping("/personalAccount/{username}")
-    public ModelAndView viewPersonalAccount(@PathVariable("username") String username) {
-        User user = userService.findOne(username);
+    @GetMapping("/personalAccount/{id}")
+    public ModelAndView viewPersonalAccount(@PathVariable("id") Long id) {
+        User user = userService.findOne(id);
         LOGGER.info("Personal account page for " + user);
         return new ModelAndView("personalAccount", "user", user);
     }
 
-    @GetMapping("/personalAccount/{username}/delete")
-    public ModelAndView delete(@PathVariable("username") String username) {
-        userService.deletePersonalAccount(username);
-        LOGGER.info("Redirecting to logout page after deleting personal account with username='{}'", username);
+    @GetMapping("/personalAccount/{id}/delete")
+    public ModelAndView delete(@PathVariable("id") Long id) {
+        userService.deletePersonalAccount(id);
+        LOGGER.info("Redirecting to logout page after deleting personal account with username='{}'", id);
         return new ModelAndView("redirect:/logout");
     }
 
-    @GetMapping("/personalAccount/{username}/edit")
-    public ModelAndView edit(@PathVariable("username") String username) {
-        User user = userService.findOne(username);
+    @GetMapping("/personalAccount/{id}/edit")
+    public ModelAndView edit(@PathVariable("id") Long id) {
+        User user = userService.findOne(id);
         Map<String,? super Object> map = new HashMap<>();
         map.put("user", user);
         map.put("countries", countries());
@@ -75,11 +75,11 @@ public class UserController {
         return modelAndView;
     }
 
-    @PostMapping("/personalAccount/{username}/update")
-    public ModelAndView update(@PathVariable("username") String username, @ModelAttribute("user") User user, @RequestParam(value = "password", required = false) String password) throws IOException {
-        userService.update(user, username,password);
+    @PostMapping("/personalAccount/{id}/update")
+    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("user") User user, @RequestParam(value = "password", required = false) String password) throws IOException {
+        userService.update(user, id, password);
         LOGGER.info("Redirecting to personal account page after updating personal account with username='{}'", user.getUsername());
-        return new ModelAndView("redirect:/user/personalAccount/"  + username);
+        return new ModelAndView("redirect:/user/personalAccount/"  + id);
     }
 
     @RequestMapping("/users")

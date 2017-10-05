@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.dao.InterestDao;
+import ua.goit.dao.UserDao;
 import ua.goit.entity.Interest;
+import ua.goit.entity.User;
 
 import java.util.List;
 
@@ -18,10 +20,12 @@ import java.util.List;
 public class InterestService {
 
     private final InterestDao dao;
+    private final UserDao userDao;
 
     @Autowired
-    public InterestService(InterestDao dao) {
+    public InterestService(InterestDao dao, UserDao userDao) {
         this.dao = dao;
+        this.userDao = userDao;
     }
 
     @Transactional(readOnly = true)
@@ -52,5 +56,12 @@ public class InterestService {
     @Transactional
     public void delete(Interest entity) {
         dao.delete(entity);
+    }
+
+    @Transactional
+    public void deleteInterestFromUser(Long id, Long user_id) {
+        User user = userDao.findOne(user_id);
+        Interest interest = dao.findOne(id);
+        user.removeInterest(interest);
     }
 }

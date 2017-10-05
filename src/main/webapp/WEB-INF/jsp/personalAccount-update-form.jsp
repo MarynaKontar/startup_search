@@ -82,10 +82,15 @@
     </header>
     <article>
         <div align="center">
-            <form method="post" action="/user/personalAccount/${user.username}/update/" >
+            <form method="post" action="/user/personalAccount/${user.id}/update/" >
                 <table align="center">
                     <tr align="center">
-
+                    <tr align="center">
+                        <th>Login</th>
+                        <td>
+                            <input autofocus type="text" name="username" value="${user.username}" placeholder="login">
+                        </td>
+                    </tr>
                     <tr align="center">
                         <th>Name</th>
                         <td>
@@ -108,7 +113,7 @@
                     <tr align="center">
                         <th>Email</th>
                         <td>
-                            <input type="text" name="contact.email"  value="${user.contact.email}" placeholder="Email" >
+                            <input type="email" name="contact.email"  value="${user.contact.email}" placeholder="Email" >
                         </td>
                     </tr>
 
@@ -121,7 +126,7 @@
 
                     <tr align="center">
                         <th>Country</th>
-                        <td><select name="address.country">
+                        <td><select name="contact.country">
                             <option value="${user.contact.country}">Country</option>
                             <c:forEach items="${countries}" var="country">
                                 <option value="${user.contact.country}">${country}</option>

@@ -69,8 +69,8 @@
 </head>
 
 <body>
-<c:set var="username">
-    <sec:authentication property="principal.username"/>
+<c:set var="user_id">
+    <sec:authentication property="principal.id"/>
 </c:set>
 
 <c:set var="isAdmin" value="false"/>
@@ -84,7 +84,7 @@
     <header>
         <h3>STARTUP</h3>
         <th>                           </th>
-        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a></th>
+        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a></th>
 
     </header>
     <aside>
@@ -94,7 +94,7 @@
     </aside>
     <nav class="nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a><br></li><br>
+            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li><br>
             <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li><br>
             <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li><br>
             <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
@@ -116,25 +116,31 @@
                         <table>
                             <div class="second" style="height:80px">
 
+                                <h3 align="center">Startup ${project.name}</h3>
+
+                                <c:if test="${!(isOwner)}">
+                                    <tr>
+                                        <td class="tb1" style="width:30%">
+                                            <a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.id}">
+                                                To startup's owner page</a>
+                                        </td>
+                                    </tr>
+                                </c:if>
+
                                 <tr>
-                                    <td class="tb1" style="width:30%">Project Name:</td>
-                                    <td class="tb1" style="width:60%">${project.name}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${project.industry}</td>
+                                    <td class="tb1" style="width:60%">${project.lastChange}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Description:</td>
                                     <td class="tb1" style="width:60%">${project.description}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tb1" style="width:30%">City:</td>
-                                    <td class="tb1" style="width:60%">${project.address.city}</td>
-                                </tr>
-                                <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
                                     <td class="tb1" style="width:60%">${project.address.country}</td>
+                                </tr>
+                                <tr>
+                                    <td class="tb1" style="width:30%">City:</td>
+                                    <td class="tb1" style="width:60%">${project.address.city}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Total:</td>
@@ -145,8 +151,8 @@
                                     <td class="tb1" style="width:60%">${project.minInvestment}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tb1" style="width:30%">Changed:</td>
-                                    <td class="tb1" style="width:60%">${project.lastChange}</td>
+                                    <td class="tb1" style="width:30%">Industry:</td>
+                                    <td class="tb1" style="width:60%">${project.industry}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb2" style="width:50%"><a href="${pageContext.request.contextPath}/startup/${project.id}">Learn more</a>

@@ -11,8 +11,8 @@
 </head>
 <body>
 
-<c:set var="username">
-    <sec:authentication property="principal.username"/>
+<c:set var="user_id">
+    <sec:authentication property="principal.id"/>
 </c:set>
 <div class="flex-container" align="center">
     <header>
@@ -21,8 +21,14 @@
     <article>
         <div align="center">
             <form:form method="post" action="/startup/update/">
-                <form:input path="user.username" type="text" name="user.username" value="${username}" hidden="true"/>
+                <form:input path="user.id" type="number" name="user.id" value="${user_id}" hidden="true"/>
+
+                <c:if test="${command.address.id!=0}">
                 <form:input path="address.id" type="number" name="command.address.id" value="${command.address.id}" hidden="true"/>
+                </c:if>
+                <c:if test="${command.businessPlan.id!=0}">
+                <form:input path="businessPlan.id" type="number" name="command.businessPlan.id" value="${command.businessPlan.id}" hidden="true"/>
+                </c:if>
                 <form:input path="id" type="number" name="command.id" value="${command.id}" hidden="true"/>
 
 
@@ -42,7 +48,7 @@
                     <tr align="center">
                         <th>Funds</th>
                         <td>
-                            <form:input path="funds" type="number" name="funds" value="${command.funds}"/>
+                            <form:input path="funds" type="number" name="funds" min="1000" max="1000000000" step="100" value="${command.funds}"/>
                         </td>
                     </tr>
                     <tr align="center">
@@ -69,13 +75,6 @@
                             <form:input path="address.city" type="text" name="address.city" value="${command.address.city}"/>
                         </td>
                     </tr>
-
-
-
-
-
-
-
 
                     <tr></tr>
                     <tr align="center">

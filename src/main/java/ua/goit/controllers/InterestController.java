@@ -35,22 +35,22 @@ public class InterestController {
         this.interestService = interestService;
         this.userService = userService;
     }
-
-    @ModelAttribute("industries")
-    public Industry[] industries() {
-        return Industry.values();
-    }
-
-    @ModelAttribute("countries")
-    public Country[] countries() {
-        return Country.values();
-    }
+//
+//    @ModelAttribute("industries")
+//    public Industry[] industries() {
+//        return Industry.values();
+//    }
+//
+//    @ModelAttribute("countries")
+//    public Country[] countries() {
+//        return Country.values();
+//    }
 
     @GetMapping("/create")
     public ModelAndView createInterest() {
         ModelAndView modelAndView = new ModelAndView("interest-create-form");
-        modelAndView.addObject("countries", countries());
-        modelAndView.addObject("industries", industries());
+        modelAndView.addObject("countries", Country.values());
+        modelAndView.addObject("industries", Industry.values());
         LOGGER.info("Building new interest form");
         return modelAndView;
     }
@@ -72,26 +72,26 @@ public class InterestController {
             throw new IOException("Exception during saving interest to database", e);
         }
         LOGGER.info("Interest " + interest + " saved to database. Redirecting to personal account page");
-        return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getUsername());
+        return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getId());
     }
 
     @GetMapping("/{id}")
     public ModelAndView info(@PathVariable("id") Long id) {
         ModelAndView projectInfo = new ModelAndView("interest-info");
         Interest interest = interestService.findOne(id);
-        projectInfo.addObject("project", interest);
+        projectInfo.addObject("interest", interest);
         LOGGER.info("Building info page for " +interest);
         return projectInfo;
     }
 
 //TODO
-    @GetMapping("{username}/{id}/delete")
-    public ModelAndView delete(@PathVariable("username") String username, @PathVariable("id") Long id) {
-//        interestService.deleteInterestFromUser(id, username);
+    @GetMapping("{user_id}/{id}/delete")
+    public ModelAndView delete(@PathVariable("user_id") Long user_id, @PathVariable("id") Long id) {
+        interestService.deleteInterestFromUser(id, user_id);
         LOGGER.info("Redirecting to personal account page after deleting interest with id='{}'", id);
-        //TODO ссылке выходит /user/personalAccount/{username}?{все industries и все countries} и страница пустая - оставляю только /user/personalAccount/{username} и все работает. Dblbvj cdzpfyj c @ModelAttribute
-        return new ModelAndView("redirect:/user/personalAccount/" + username);
+        return new ModelAndView("redirect:/user/personalAccount/" + user_id);
     }
+
 
     @GetMapping("/{id}/edit")
     public ModelAndView edit(@PathVariable("id") Long id) {
@@ -99,14 +99,14 @@ public class InterestController {
         Map<String,? super Object> modelMap = new HashMap<>();
         modelMap.put("command", interest);
         ModelAndView modelAndView = new ModelAndView("interest-update-form", "interest", interest);
-        modelAndView.addObject("countries", countries());
-        modelAndView.addObject("industries", industries());
+        modelAndView.addObject("countries", Country.values());
+        modelAndView.addObject("industries", Industry.values());
         return modelAndView;
     }
 
     @PostMapping("/update/")
     public ModelAndView update(@ModelAttribute("command") Interest interest) throws IOException {
         interestService.save(interest);
-        return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getUsername());
+        return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getId());
     }
 }

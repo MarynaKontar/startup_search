@@ -48,8 +48,8 @@ public class UserService {
     }
 
     @Transactional
-    public <S extends User> S update(S updatedUser, String username, String password) {
-        User user = dao.findOne(username);
+    public <S extends User> S update(S updatedUser, Long id, String password) {
+        User user = dao.findOne(id);
 
         //TODO приходится так перезаписывать пароль, потому что если не делать так, то перезаписывается пароль с солью
         if(password!= null && !password.isEmpty() && !user.getPassword().equals(password)){
@@ -69,22 +69,26 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User findOne(String s) {
+    public User findOne(Long s) {
         return dao.findOne(s);
     }
 
+    public User findUserByUsername(String username) {
+        return dao.findUserByUsername(username);
+    }
+
     @Transactional(readOnly = true)
-    public User getOne(String s) {
+    public User getOne(Long s) {
         return dao.getOne(s);
     }
 
     @Transactional(readOnly = true)
-    public boolean exists(String s) {
+    public boolean exists(Long s) {
         return dao.exists(s);
     }
 
     @Transactional
-    public void delete(String s) {
+    public void delete(Long s) {
         dao.delete(s);
     }
 
@@ -93,9 +97,10 @@ public class UserService {
         dao.delete(entity);
     }
 
+    //TODO
     @Transactional
-    public void deletePersonalAccount(String username) {
-        User user = dao.findOne(username);
+    public void deletePersonalAccount(Long id) {
+        User user = dao.findOne(id);
         Collection<Education> educations = user.getEducations();
         Collection<Experience> experiences = user.getExperiences();
         Collection<Project> projects = user.getProjects();
@@ -113,6 +118,6 @@ public class UserService {
 //        projectDao.delete(projects);
         projects.forEach(user::removeProject);
        interests.forEach(user::removeInterest);
-        dao.delete(username);
+        dao.delete(id);
     }
 }

@@ -98,7 +98,7 @@
                     <tr align="center">
                         <th>email</th>
                         <td>
-                            <input type="text" name="contact.email" placeholder="Email">
+                            <input type="email" name="contact.email" placeholder="Email">
                         </td>
                     </tr>
                     <tr></tr>

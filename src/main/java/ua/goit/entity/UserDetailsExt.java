@@ -59,6 +59,17 @@ public class UserDetailsExt implements UserDetails {
        return true;
    }
 
+    public Long getId() {
+        return user.getId();
+    }
+
+    public String getFirstName() {
+        return user.getFirstName();
+    }
+
+    public String getLastName() {
+        return user.getLastName();
+    }
 
     public Contact getContact() {
         return user.getContact();
@@ -96,8 +107,8 @@ public class UserDetailsExt implements UserDetails {
         return user.getProjects();
     }
 
-    public Collection<Role> getRoles() {
-        return user.getRoles();
+    public Collection<Interest> getInterests() {
+        return user.getInterests();
     }
 
     //TODO 5 Добавлять геттеры для всех новых полей, которые появятся в {@link ua.goit.entity.User}

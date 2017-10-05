@@ -79,8 +79,8 @@
 </head>
 <body>
 
-<c:set var="username">
-    <sec:authentication property="principal.username"/>
+<c:set var="user_id">
+    <sec:authentication property="principal.id"/>
 </c:set>
 <div class="flex-container" align="center">
     <header>
@@ -89,7 +89,7 @@
     <article>
         <div align="center">
             <form:form method="post" action="/startup/update/">
-                <form:input path="user.username" type="text" name="user.username" value="${username}" hidden="true"/>
+                <form:input path="user.username" type="text" name="user.username" value="${user_id}" hidden="true"/>
                 <form:input path="address.id" type="number" name="command.address.id" value="${startup.address.id}" hidden="true"/>
 
 

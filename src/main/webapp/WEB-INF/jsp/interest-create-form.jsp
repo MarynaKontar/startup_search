@@ -78,8 +78,8 @@
 </head>
 <body>
 
-<c:set var="username">
-    <sec:authentication property="principal.username"/>
+<c:set var="user_id">
+    <sec:authentication property="principal.id"/>
 </c:set>
 <div class="flex-container" align="center">
     <header>
@@ -88,7 +88,7 @@
     <article>
         <div align="center">
             <form method="post" action="${pageContext.request.contextPath}/interest/create/" >
-                <input type="text" name="user.username" value="${username}" hidden>
+                <input type="text" name="user.id" value="${user_id}" hidden>
                 <table align="center">
                     <tr align="center">
                         <th>Name of the interest</th>
@@ -105,7 +105,7 @@
                     <tr align="center">
                         <th>Funds</th>
                         <td>
-                            <input type="number" name="budget" placeholder="budget that you want to invest">
+                            <input type="number" name="budget" min="1000" max="1000000000" step="100" placeholder="budget that you want to invest">
                         </td>
                     </tr>
                     <tr align="center">
@@ -119,7 +119,7 @@
                     </tr>
                     <tr align="center">
                         <th>Country</th>
-                        <td><select name="address.country">
+                        <td><select name="country">
                             <option value="">Country</option>
                             <c:forEach items="${countries}" var="country">
                                 <option value="${country}">${country}</option>

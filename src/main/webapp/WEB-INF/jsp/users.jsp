@@ -81,8 +81,9 @@
 </head>
 
 <body>
-<c:set var="username">
-    <sec:authentication property="principal.username"/>
+
+<c:set var="user_id">
+    <sec:authentication property="principal.id"/>
 </c:set>
 
 <c:set var="isAdmin" value="false"/>
@@ -94,7 +95,7 @@
 
     <header>
         <h3>STARTUP</h3>
-        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a></th>
+        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a></th>
     </header>
 
     <aside>
@@ -104,7 +105,7 @@
     <nav class="nav">
         <ul>
             <li><a href="${pageContext.request.contextPath}/registration/"><h4>Add new user</h4></a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a><br></li><br>
+            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a><br></li><br>
             <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
         </ul>
     </nav>
@@ -133,8 +134,8 @@
                     </td>
 
                     <td>${user.aboutMe}</td>
-                    <td><a href="${pageContext.request.contextPath}/user/personalAccount/${user.username}/edit">edit</a></td>
-                    <td><a href="${pageContext.request.contextPath}/user/personalAccount/${user.username}/delete">delete</a></td>
+                    <td><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/edit">edit</a></td>
+                    <td><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/delete">delete</a></td>
 
                 </tr>
             </c:forEach>

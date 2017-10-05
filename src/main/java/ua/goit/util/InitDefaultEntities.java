@@ -57,7 +57,7 @@ public class InitDefaultEntities {
                 LocalDate.of(2002, 9, 1),
                 LocalDate.of(2007, 6, 30));
 
-        User userFromDb1 = usersService.findOne("Maryna");
+        User userFromDb1 = usersService.findUserByUsername("Maryna");
         userFromDb1.setPersonalPageFotoLink("WEB-INF/jpeg/personalPageFoto/adminFoto.jpg");//TODO Как ссылку указывать?
         userFromDb1.setYoutubeLink(youtubeLink);
         userFromDb1.setAboutMe("I'm admin!");
@@ -108,7 +108,7 @@ public class InitDefaultEntities {
                 ,LocalDate.of(2002, 9, 1),
                 LocalDate.of(2007, 6, 30));
 
-        User userFromDb2 = usersService.findOne("Guillaume");
+        User userFromDb2 = usersService.findUserByUsername("Guillaume");
         userFromDb2.addExperience(experience3);
         userFromDb2.addExperience(experience4);
         userFromDb2.addEducation(education2);
@@ -164,7 +164,7 @@ public class InitDefaultEntities {
                 ,LocalDate.of(2002, 9, 1),
                 LocalDate.of(2007, 6, 30));
 
-        User userFromDb3 = usersService.findOne("Vitalii");
+        User userFromDb3 = usersService.findUserByUsername("Vitalii");
         userFromDb3.addExperience(experience5);
         userFromDb3.addExperience(experience6);
         userFromDb3.addEducation(education3);

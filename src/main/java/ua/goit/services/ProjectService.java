@@ -49,6 +49,7 @@ public class ProjectService {
         BusinessPlan businessPlan = entity.getBusinessPlan();
         if(businessPlan != null){
         businessPlanDao.save(businessPlan);}
+        entity.setActive(true);
         return dao.save(entity);
     }
 
@@ -85,11 +86,16 @@ public class ProjectService {
 
 
     @Transactional
-    public void deleteProjectFromUser(Long id, String username){
-        User user = userDao.findOne(username);
+    public void deleteProjectFromUser(Long id, Long user_id){
+        User user = userDao.findOne(user_id);
         Project project = dao.findOne(id);
-        dao.delete(project);
+
+//        Address address = project.getAddress();
+//        if (address != null){ addressDao.delete(address);}
+//        BusinessPlan businessPlan = project.getBusinessPlan();
+//        if(businessPlan != null){businessPlanDao.delete(businessPlan);}
+
+//        dao.delete(project);
         user.removeProject(project);
-        addressDao.delete(project.getAddress());
     }
 }

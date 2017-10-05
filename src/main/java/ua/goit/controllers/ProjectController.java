@@ -40,21 +40,21 @@ public class ProjectController {
         this.userService = userService;
     }
 
-    @ModelAttribute("industries")
-    public Industry[] industries() {
-        return Industry.values();
-    }
-
-    @ModelAttribute("countries")
-    public Country[] countries() {
-        return Country.values();
-    }
+//    @ModelAttribute("industries")
+//    public Industry[] industries() {
+//        return Industry.values();
+//    }
+//
+//    @ModelAttribute("countries")
+//    public Country[] countries() {
+//        return Country.values();
+//    }
 
     @GetMapping("/create")
     public ModelAndView createStartup() {
         ModelAndView modelAndView = new ModelAndView("project-create-form");
-        modelAndView.addObject("countries", countries());
-        modelAndView.addObject("industries", industries());
+        modelAndView.addObject("countries", Country.values());
+        modelAndView.addObject("industries", Industry.values());
         modelAndView.addObject("address", addressService.findAll());
         LOGGER.info("Building new startup form");
         return modelAndView;
@@ -77,7 +77,7 @@ public class ProjectController {
             throw new IOException("Exception during saving project to database", e);
         }
         LOGGER.info("Project " + project + " saved to database. Redirecting to personal account page");
-        return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getUsername());
+        return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getId());
     }
 
     @GetMapping("/{id}")
@@ -89,12 +89,12 @@ public class ProjectController {
         return projectInfo;
     }
 
-    @GetMapping("{username}/{id}/delete")
-    public ModelAndView delete(@PathVariable("username") String username, @PathVariable("id") Long id) {
-        projectService.deleteProjectFromUser(id, username);
+    @GetMapping("{user_id}/{id}/delete")
+    public ModelAndView delete(@PathVariable("user_id") Long user_id, @PathVariable("id") Long id) {
+        projectService.deleteProjectFromUser(id, user_id);
         LOGGER.info("Redirecting to personal account page after deleting startup with id='{}'", id);
-        //TODO ссылке выходит /user/personalAccount/{username}?{все industries и все countries} . Видимо связано с @ModelAttribute
-        return new ModelAndView("redirect:/user/personalAccount/" + username);
+        //TODO ссылке выходит /user/personalAccount/{id}?{все industries и все countries} . Видимо связано с @ModelAttribute
+        return new ModelAndView("redirect:/user/personalAccount/" + user_id);
     }
 
 //    @GetMapping("/{id}/edit")
@@ -114,17 +114,15 @@ public class ProjectController {
         modelMap.put("businessPlans", project.getBusinessPlan());
         ModelAndView modelAndView = new ModelAndView("startup-update-form", modelMap);
 //        modelAndView.addObject("businessplans", project.getBusinessPlan());
-        modelAndView.addObject("countries", countries());
-        modelAndView.addObject("industries", industries());
+        modelAndView.addObject("countries", Country.values());
+        modelAndView.addObject("industries", Industry.values());
         return modelAndView;
     }
 
     @PostMapping("/update/")
     public ModelAndView update(@ModelAttribute("command") Project project, @ModelAttribute("businessPlan")BusinessPlan businessPlan) throws IOException {
-//        Project project = projectService.findOne(id);
-//        Hibernate.initialize(project.getBusinessPlan());
-        project.setBusinessPlan(businessPlan);
+//        project.setBusinessPlan(businessPlan);//Пока не внесла поля бизнес плана в jsp
         projectService.save(project);
-        return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getUsername());
+        return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getId());
     }
 }

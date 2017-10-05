@@ -81,12 +81,12 @@
 </head>
 
 <body>
-<c:set var="username">
-    <sec:authentication property="principal.username"/>
+<c:set var="user_id">
+    <sec:authentication property="principal.id"/>
 </c:set>
 
 <c:set var="isAdmin" value="false"/>
-<c:set var="isOwner" value="${project.user.username == username}"/>
+<c:set var="isOwner" value="${project.user.id == user_id}"/>
 <sec:authorize access="hasRole('ADMIN')">
     <c:set var="isAdmin" value="true"/>
 </sec:authorize>
@@ -96,7 +96,7 @@
     <header>
         <h3>STARTUP</h3>
         <th>                           </th>
-        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${username}">Account ${username}</a></th>
+        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a></th>
 
     </header>
 
@@ -111,17 +111,17 @@
                     <br>
                     <li><a href="${pageContext.request.contextPath}/interest/create">Add interest</a></li>
                     <br>
-                    <li><a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.username}/edit">Edit
+                    <li><a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.id}/edit">Edit
                         profile</a></li>
                     <br>
                     <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
                     <br>
-                    <li><a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.username}/delete">Delete
+                    <li><a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.id}/delete">Delete
                         profile</a></li>
                     <br>
                 </c:if>
             <c:if test="${!(isOwner || isAdmin)}">
-                <li><a href="${pageContext.request.contextPath}/main/">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/main">Home</a></li>
                 <br>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
                 <br>
@@ -145,7 +145,7 @@
                                 <c:if test="${!(isOwner)}">
                                 <tr>
                                     <td class="tb1" style="width:30%">
-                                        <a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.username}">
+                                        <a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.id}">
                                             To startup's owner page</a>
                                     </td>
                                 </tr>

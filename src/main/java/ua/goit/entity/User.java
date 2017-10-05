@@ -18,14 +18,11 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "user")
-public class User implements Serializable{
-
-//для случая, если захотим хранить и id и NaturalId
-//    @Id
-//    Long id;
-//    @NaturalId
+public class User implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String password;
     private String firstName;
@@ -36,23 +33,22 @@ public class User implements Serializable{
     private String personalPageFotoLink;
     private String youtubeLink;
     private String aboutMe;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection( LazyCollectionOption.FALSE)
-    private Collection<Experience> experiences;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection( LazyCollectionOption.FALSE)
-    private Collection<Education> educations;
-
     private String skills;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection( LazyCollectionOption.FALSE )
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Collection<Experience> experiences;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Collection<Education> educations;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Project> projects;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection( LazyCollectionOption.FALSE)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Collection<Interest> interests;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -60,6 +56,14 @@ public class User implements Serializable{
     @CollectionTable(name = "user_roles")
     @Column(name = "role")
     private Collection<Role> roles;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
