@@ -99,30 +99,37 @@ public class Experience implements Serializable {
 
         Experience that = (Experience) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-//        if (user != null ? !user.equals(that.user) : that.user != null) return false;
-        if (company != null ? !company.equals(that.company) : that.company != null) return false;
-        if (position != null ? !position.equals(that.position) : that.position != null) return false;
-        if (responsibility != null ? !responsibility.equals(that.responsibility) : that.responsibility != null)
-            return false;
-        if (fromDate != null ? !fromDate.equals(that.fromDate) : that.fromDate != null) return false;
-        return untilDate != null ? untilDate.equals(that.untilDate) : that.untilDate == null;
+        if (!id.equals(that.id)) return false;
+        if (!user.equals(that.user)) return false;
+        if (!company.equals(that.company)) return false;
+        if (!position.equals(that.position)) return false;
+        if (!responsibility.equals(that.responsibility)) return false;
+        if (!fromDate.equals(that.fromDate)) return false;
+        return untilDate.equals(that.untilDate);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-//        result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (company != null ? company.hashCode() : 0);
-        result = 31 * result + (position != null ? position.hashCode() : 0);
-        result = 31 * result + (responsibility != null ? responsibility.hashCode() : 0);
-        result = 31 * result + (fromDate != null ? fromDate.hashCode() : 0);
-        result = 31 * result + (untilDate != null ? untilDate.hashCode() : 0);
+        int result = id.hashCode();
+        result = 31 * result + user.hashCode();
+        result = 31 * result + company.hashCode();
+        result = 31 * result + position.hashCode();
+        result = 31 * result + responsibility.hashCode();
+        result = 31 * result + fromDate.hashCode();
+        result = 31 * result + untilDate.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return "Experience{}";
+        return "Experience{" +
+                "id=" + id +
+                ", user=" + user +
+                ", company='" + company + '\'' +
+                ", position='" + position + '\'' +
+                ", responsibility='" + responsibility + '\'' +
+                ", fromDate=" + fromDate +
+                ", untilDate=" + untilDate +
+                '}';
     }
 }
