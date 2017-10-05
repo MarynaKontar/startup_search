@@ -125,36 +125,43 @@ public class Education implements Serializable {
 
         Education education = (Education) o;
 
-        if (id != null ? !id.equals(education.id) : education.id != null) return false;
-//        if (user != null ? !user.equals(education.user) : education.user != null) return false;
-        if (educationalInstitution != null ? !educationalInstitution.equals(education.educationalInstitution) : education.educationalInstitution != null)
-            return false;
-        if (educationalStage != null ? !educationalStage.equals(education.educationalStage) : education.educationalStage != null)
-            return false;
-        if (faculty != null ? !faculty.equals(education.faculty) : education.faculty != null) return false;
-        if (fieldOfStudy != null ? !fieldOfStudy.equals(education.fieldOfStudy) : education.fieldOfStudy != null)
-            return false;
+        if (!id.equals(education.id)) return false;
+        if (!user.equals(education.user)) return false;
+        if (!educationalInstitution.equals(education.educationalInstitution)) return false;
+        if (!educationalStage.equals(education.educationalStage)) return false;
+        if (!faculty.equals(education.faculty)) return false;
+        if (!fieldOfStudy.equals(education.fieldOfStudy)) return false;
         if (modeOfStudy != education.modeOfStudy) return false;
-        if (fromDate != null ? !fromDate.equals(education.fromDate) : education.fromDate != null) return false;
-        return untilDate != null ? untilDate.equals(education.untilDate) : education.untilDate == null;
+        if (!fromDate.equals(education.fromDate)) return false;
+        return untilDate.equals(education.untilDate);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-//        result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (educationalInstitution != null ? educationalInstitution.hashCode() : 0);
-        result = 31 * result + (educationalStage != null ? educationalStage.hashCode() : 0);
-        result = 31 * result + (faculty != null ? faculty.hashCode() : 0);
-        result = 31 * result + (fieldOfStudy != null ? fieldOfStudy.hashCode() : 0);
-        result = 31 * result + (modeOfStudy != null ? modeOfStudy.hashCode() : 0);
-        result = 31 * result + (fromDate != null ? fromDate.hashCode() : 0);
-        result = 31 * result + (untilDate != null ? untilDate.hashCode() : 0);
+        int result = id.hashCode();
+        result = 31 * result + user.hashCode();
+        result = 31 * result + educationalInstitution.hashCode();
+        result = 31 * result + educationalStage.hashCode();
+        result = 31 * result + faculty.hashCode();
+        result = 31 * result + fieldOfStudy.hashCode();
+        result = 31 * result + modeOfStudy.hashCode();
+        result = 31 * result + fromDate.hashCode();
+        result = 31 * result + untilDate.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return "Education{}";
+        return "Education{" +
+                "id=" + id +
+                ", user=" + user +
+                ", educationalInstitution='" + educationalInstitution + '\'' +
+                ", educationalStage='" + educationalStage + '\'' +
+                ", faculty='" + faculty + '\'' +
+                ", fieldOfStudy='" + fieldOfStudy + '\'' +
+                ", modeOfStudy=" + modeOfStudy +
+                ", fromDate=" + fromDate +
+                ", untilDate=" + untilDate +
+                '}';
     }
 }
