@@ -111,7 +111,7 @@ public class Experience implements Serializable {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + user.hashCode();
+//        result = 31 * result + user.hashCode();
         result = 31 * result + company.hashCode();
         result = 31 * result + position.hashCode();
         result = 31 * result + responsibility.hashCode();
