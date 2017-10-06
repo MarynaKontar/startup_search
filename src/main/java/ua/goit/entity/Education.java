@@ -126,7 +126,7 @@ public class Education implements Serializable {
         Education education = (Education) o;
 
         if (!id.equals(education.id)) return false;
-        if (!user.equals(education.user)) return false;
+//        if (!user.equals(education.user)) return false;
         if (!educationalInstitution.equals(education.educationalInstitution)) return false;
         if (!educationalStage.equals(education.educationalStage)) return false;
         if (!faculty.equals(education.faculty)) return false;
@@ -139,7 +139,6 @@ public class Education implements Serializable {
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + user.hashCode();
         result = 31 * result + educationalInstitution.hashCode();
         result = 31 * result + educationalStage.hashCode();
         result = 31 * result + faculty.hashCode();
@@ -154,7 +153,6 @@ public class Education implements Serializable {
     public String toString() {
         return "Education{" +
                 "id=" + id +
-                ", user=" + user +
                 ", educationalInstitution='" + educationalInstitution + '\'' +
                 ", educationalStage='" + educationalStage + '\'' +
                 ", faculty='" + faculty + '\'' +
