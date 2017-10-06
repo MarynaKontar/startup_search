@@ -22,12 +22,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userService = userService;
     }
 
-
+    /**
+     * Implementation of {@link UserDetailsService} method
+     *
+     * @param username identifying the user whose data is required
+     * @return a {@link UserDetailsExt} if such {@link User} exists
+     * @throws UsernameNotFoundException if user is not found
+     */
     @Override
-    public UserDetails loadUserByUsername(String userLogin) throws UsernameNotFoundException {
-        User user = userService.findUserByUsername(userLogin);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userService.findUserByUsername(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User " + userLogin + "is not found");
+            throw new UsernameNotFoundException("User " + username + "is not found");
         }
         return new UserDetailsExt(user);
     }

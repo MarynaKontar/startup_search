@@ -90,12 +90,11 @@ public class ProjectService {
         User user = userDao.findOne(user_id);
         Project project = dao.findOne(id);
 
-//        Address address = project.getAddress();
-//        if (address != null){ addressDao.delete(address);}
-//        BusinessPlan businessPlan = project.getBusinessPlan();
-//        if(businessPlan != null){businessPlanDao.delete(businessPlan);}
-
-//        dao.delete(project);
+        Address address = project.getAddress();
+        if (address != null){ addressDao.delete(address);}
+        BusinessPlan businessPlan = project.getBusinessPlan();
+        if(businessPlan != null){businessPlanDao.delete(businessPlan);}
+        
         user.removeProject(project);
     }
 }

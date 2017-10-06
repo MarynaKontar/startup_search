@@ -6,8 +6,7 @@
 <html>
 <head>
     <title>Update Project form</title>
-     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles.css">
-    <%----%>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
 </head>
 <body>
 
@@ -20,13 +19,13 @@
     </header>
     <article>
         <div align="center">
-            <form:form method="post" action="/startup/update/">
-                <form:input path="user.id" type="number" name="user.id" value="${user_id}" hidden="true"/>
+            <form:form method="post" action="${pageContext.request.contextPath}/startup/${command.id}/update/">
+                <form:input path="user.id" type="number" name="user.id" value="${command.user.id}" hidden="true"/>
 
-                <c:if test="${command.address.id!=0}">
+                <c:if test="${command.address.id!=0 || command.address.id!=null}">
                 <form:input path="address.id" type="number" name="command.address.id" value="${command.address.id}" hidden="true"/>
                 </c:if>
-                <c:if test="${command.businessPlan.id!=0}">
+                <c:if test="${command.businessPlan.id!=0 || command.businessPlan.id!=null}">
                 <form:input path="businessPlan.id" type="number" name="command.businessPlan.id" value="${command.businessPlan.id}" hidden="true"/>
                 </c:if>
                 <form:input path="id" type="number" name="command.id" value="${command.id}" hidden="true"/>
@@ -48,7 +47,15 @@
                     <tr align="center">
                         <th>Funds</th>
                         <td>
-                            <form:input path="funds" type="number" name="funds" min="1000" max="1000000000" step="100" value="${command.funds}"/>
+                            <form:input path="funds" type="number" name="funds" min="1000" max="1000000000" step="100"
+                                        value="${command.funds}"/>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <th>Minimal investment</th>
+                        <td>
+                            <form:input path="minInvestment" type="number" name="funds" min="1000" max="1000000000" step="100"
+                                        value="${command.minInvestment}"/>
                         </td>
                     </tr>
                     <tr align="center">
@@ -75,7 +82,30 @@
                             <form:input path="address.city" type="text" name="address.city" value="${command.address.city}"/>
                         </td>
                     </tr>
-
+                    <tr align="center">
+                        <th>Region</th>
+                        <td>
+                            <form:input path="address.region" type="text" name="address.region" value="${command.address.region}"/>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <th>Idea</th>
+                        <td>
+                            <form:input path="businessPlan.idea" type="text" name="businessPlan.idea" value="${command.businessPlan.idea}"/>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <th>Current State</th>
+                        <td>
+                            <form:input path="businessPlan.currentState" type="text" name="businessPlan.currentState" value="${command.businessPlan.currentState}"/>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <th>Market</th>
+                        <td>
+                            <form:input path="businessPlan.market" type="text" name="businessPlan.market" value="${command.businessPlan.market}"/>
+                        </td>
+                    </tr>
                     <tr></tr>
                     <tr align="center">
                         <td>

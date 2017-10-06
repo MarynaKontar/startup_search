@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Update Project form</title>
+    <title>Update Interest form</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
 </head>
 <body>
@@ -15,36 +15,30 @@
 </c:set>
 <div class="flex-container" align="center">
     <header>
-        <h3 align="center">Edit a project</h3>
+        <h3 align="center">Edit an interest</h3>
     </header>
     <article>
         <div align="center">
-            <form:form method="post" action="${pageContext.request.contextPath}/startup/${startup.id}/update/">
-                <form:input path="user.username" type="text" name="user.username" value="${user_id}" hidden="true"/>
-                <form:input path="address.id" type="number" name="command.address.id" value="${startup.address.id}" hidden="true"/>
-
-
-
-                <form:input path="id" type="number" name="startup.id" value="${startup.id}" hidden="true"/>
-
-
+            <form:form method="post" action="${pageContext.request.contextPath}/interest/${command.id}/update/">
+                <form:input path="user.id" type="number" name="user.id" value="${command.user.id}" hidden="true"/>
                 <table align="center">
                     <tr align="center">
-                        <th>Name of the project</th>
+                        <th>Name of the interest</th>
                         <td>
-                            <form:input path="name" type="text" name="name" value="${startup.name}"/>
+                            <form:input path="name" type="text" name="name" value="${command.name}"/>
                         </td>
                     </tr>
                     <tr align="center">
                         <th>The announcement (brief description)</th>
                         <td>
-                            <form:input path="description" type="text" name="description" value="${startup.description}"/>
+                            <form:input path="description" type="text" name="description" value="${command.description}"/>
                         </td>
                     </tr>
                     <tr align="center">
-                        <th>Funds</th>
+                        <th>Budget</th>
                         <td>
-                            <form:input path="funds" type="number" name="funds" value="${startup.funds}"/>
+                            <form:input path="budget" type="number" name="budget" min="1000" max="1000000000" step="100"
+                                        value="${command.budget}"/>
                         </td>
                     </tr>
                     <tr align="center">
@@ -58,27 +52,13 @@
                     </tr>
                     <tr align="center">
                         <th>Country</th>
-                        <td><form:select path="address.country" name="country">
+                        <td><form:select path="country" name="country">
                             <form:option value="">Country</form:option>
                             <c:forEach items="${countries}" var="country">
                                 <form:option value="${country}">${country}</form:option>
                             </c:forEach>
                         </form:select></td>
                     </tr>
-                    <tr align="center">
-                        <th>City</th>
-                        <td>
-                            <form:input path="address.city" type="text" name="address.city" value="${startup.address.city}"/>
-                        </td>
-                    </tr>
-
-
-
-
-
-
-
-
                     <tr></tr>
                     <tr align="center">
                         <td>
