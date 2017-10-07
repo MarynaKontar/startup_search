@@ -72,9 +72,9 @@ public class MainController {
     }
 
 //TODO запустить в первый раз для создания исходных юзеров
-//    @PostConstruct
-//    public void initDefaultUsers() {
-//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService,
-//                educationService, passwordEncoder);
-//    }
+    @PostConstruct
+    public void initDefaultUsers() {
+        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService,
+                educationService, passwordEncoder);
+    }
 }
