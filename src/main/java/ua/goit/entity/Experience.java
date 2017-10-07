@@ -100,7 +100,7 @@ public class Experience implements Serializable {
         Experience that = (Experience) o;
 
         if (!id.equals(that.id)) return false;
-//        if (!user.equals(that.user)) return false;
+        if (!user.equals(that.user)) return false;
 //        if (!company.equals(that.company)) return false;
         if (!position.equals(that.position)) return false;
         if (!responsibility.equals(that.responsibility)) return false;
