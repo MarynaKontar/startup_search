@@ -6,7 +6,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by Guillaume Gingembre on 14/09/2017.
+ *
+ * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 
 @Entity

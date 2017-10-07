@@ -135,7 +135,7 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${project.address.country}</td>
+                                    <td class="tb1" style="width:60%">${project.address.country.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">City:</td>
@@ -151,7 +151,7 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${project.industry}</td>
+                                    <td class="tb1" style="width:60%">${project.industry.label}</td>
                                 </tr>
                                 <br>
                                 <tr>
@@ -180,14 +180,14 @@
         <br>
         <br>
         <section>
-            <h3>Interests</h3>
+            <h4>Interests</h4>
             <c:forEach var="interest" items="${user.interests}">
                 <section>
                     <div class="first"
                          style="float: left; width:27%; margin:0.5%; box-shadow: 10px 10px 5px grey; background-color: #f1f1f1">
                         <table>
                             <div class="second" style="height:80px">
-                                <h2 align="center">Interest ${interest.name}</h2>
+                                <h3 align="center">Interest ${interest.name}</h3>
                                 <tr>
                                     <td class="tb1" style="width:60%">${interest.lastChange}</td>
                                 </tr>
@@ -197,11 +197,11 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${interest.country}</td>
+                                    <td class="tb1" style="width:60%">${interest.country.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${interest.industry}</td>
+                                    <td class="tb1" style="width:60%">${interest.industry.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Budget:</td>

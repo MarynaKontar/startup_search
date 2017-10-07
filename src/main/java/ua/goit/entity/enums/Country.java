@@ -2,7 +2,10 @@ package ua.goit.entity.enums;
 
 /**
  * List of countries
+ *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 public enum Country {
     AFGHANISTAN,
@@ -201,5 +204,9 @@ public enum Country {
     VIETNAM,
     YEMEN,
     ZAMBIA,
-    ZIMBABWE
+    ZIMBABWE;
+
+    public String getLabel(){
+        return name().substring(0,1) + name().substring(1).toLowerCase();
+    }
 }

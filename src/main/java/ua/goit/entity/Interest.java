@@ -9,6 +9,8 @@ import java.time.LocalDate;
 /**
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Entity
 @Table(name = "interest")
@@ -115,8 +117,10 @@ public class Interest {
     public String toString() {
         return "Interest{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", budget=" + budget +
+                ", user=" + user +
                 ", country=" + country +
                 ", industry=" + industry +
                 ", lastChange=" + lastChange +

@@ -5,6 +5,9 @@ import java.io.Serializable;
 
 /**
  *
+ * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 
 
@@ -63,6 +66,13 @@ public class BusinessPlan implements Serializable {
         this.market = market;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "BusinessPlan{" +
+                "id=" + id +
+                ", idea='" + idea + '\'' +
+                ", currentState='" + currentState + '\'' +
+                ", market='" + market + '\'' +
+                '}';
+    }
 }

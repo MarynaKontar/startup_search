@@ -15,7 +15,7 @@
 </c:set>
 
 <c:set var="isAdmin" value="false"/>
-<c:set var="isOwner" value="${project.user.id == user_id}"/>
+<%--<c:set var="isOwner" value="${user.id == user_id}"/>--%>
 <sec:authorize access="hasRole('ADMIN')">
     <c:set var="isAdmin" value="true"/>
 </sec:authorize>
@@ -24,23 +24,39 @@
 
     <header>
         <h3>STARTUP</h3>
-        <th>                           </th>
+        <th></th>
         <th><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a></th>
 
     </header>
     <aside>
 
 
-
     </aside>
     <nav class="nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li><br>
-            <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
+            <%--<li>--%>
+                <%--<form action="${pageContext.request.contextPath}/search/projectsByIndustry/" method="get">--%>
+                    <%--<select path="industry" name="industry">--%>
+                        <%--<option value="">Industry</option>--%>
+                        <%--<c:forEach items="${industries}" var="industry">--%>
+                            <%--<option value="${industry}">${industry.label}</option>--%>
+                        <%--</c:forEach>--%>
+                    <%--</select>--%>
+                    <%--<br><button type="submit">Search projects by industry</button>--%>
+                <%--</form>--%>
+                <%--<br></li>--%>
+            <br>
+            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li>
+            <br>
+            <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li>
+            <br>
+            <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
+            <br>
+            <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
+            <br>
             <c:if test="${isAdmin}">
-                <li><a href="${pageContext.request.contextPath}/user/users">All users</a><br></li><br>
+                <li><a href="${pageContext.request.contextPath}/user/users">All users</a><br></li>
+                <br>
             </c:if>
         </ul>
     </nav>
@@ -59,7 +75,7 @@
 
                                 <h3 align="center">Startup ${project.name}</h3>
 
-                                <c:if test="${!(isOwner)}">
+                                <c:if test="${!(project.user.id == user_id)}">
                                     <tr>
                                         <td class="tb1" style="width:30%">
                                             <a href="${pageContext.request.contextPath}/user/personalAccount/${project.user.id}">
@@ -77,7 +93,7 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${project.address.country}</td>
+                                    <td class="tb1" style="width:60%">${project.address.country.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">City:</td>
@@ -93,10 +109,12 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${project.industry}</td>
+                                    <td class="tb1" style="width:60%">${project.industry.label}</td>
                                 </tr>
                                 <tr>
-                                    <td class="tb2" style="width:50%"><a href="${pageContext.request.contextPath}/startup/${project.id}">Learn more</a>
+                                    <td class="tb2" style="width:50%"><a
+                                            href="${pageContext.request.contextPath}/startup/${project.id}">Learn
+                                        more</a>
                                     </td>
                                 </tr>
                             </div>
@@ -117,7 +135,7 @@
                         <table>
                             <div class="second" style="height:80px">
                                 <h3 align="center">Interest ${interest.name}</h3>
-                                <c:if test="${!(isOwner)}">
+                                <c:if test="${!(interest.user.id == user_id)}">
                                     <tr>
                                         <td class="tb1" style="width:30%">
                                             <a href="${pageContext.request.contextPath}/user/personalAccount/${interest.user.id}">
@@ -134,11 +152,11 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${interest.country}</td>
+                                    <td class="tb1" style="width:60%">${interest.country.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${interest.industry}</td>
+                                    <td class="tb1" style="width:60%">${interest.industry.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Budget:</td>

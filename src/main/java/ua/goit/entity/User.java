@@ -12,9 +12,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by Maryna Kontar on 23.08.2017.
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Entity
 @Table(name = "user")
@@ -186,7 +187,7 @@ public class User implements Serializable {
     }
 
     public void addExperience(Experience experience) {
-        Hibernate.initialize(experiences);
+//        Hibernate.initialize(experiences);
         if (experiences == null) {
             experiences = new HashSet<>(0);
         }
@@ -195,7 +196,7 @@ public class User implements Serializable {
     }
 
     public void removeExperience(Experience experience) {
-        Hibernate.initialize(experiences);
+//        Hibernate.initialize(experiences);
         if (experiences != null) {
             experiences.remove(experience);
             experience.setUser(null);
@@ -203,7 +204,7 @@ public class User implements Serializable {
     }
 
     public void addEducation(Education education) {
-        Hibernate.initialize(educations);
+//        Hibernate.initialize(educations);
         if (educations == null) {
             educations = new HashSet<>(0);
         }
@@ -212,7 +213,7 @@ public class User implements Serializable {
     }
 
     public void removeEducatione(Education education) {
-        Hibernate.initialize(educations);
+//        Hibernate.initialize(educations);
         if (educations != null) {
             educations.remove(education);
             education.setUser(null);
@@ -220,7 +221,7 @@ public class User implements Serializable {
     }
 
     public void addProject(Project project) {
-        Hibernate.initialize(projects);
+//        Hibernate.initialize(projects);
         if (projects == null) {
             projects = new HashSet<>(0);
         }
@@ -229,7 +230,7 @@ public class User implements Serializable {
     }
 
     public void removeProject(Project project) {
-        Hibernate.initialize(projects);
+//        Hibernate.initialize(projects);
         if (projects != null) {
             projects.remove(project);
             project.setUser(null);
@@ -237,7 +238,7 @@ public class User implements Serializable {
     }
 
     public void addInterest(Interest interest) {
-        Hibernate.initialize(interests);
+//        Hibernate.initialize(interests);
         if (interests == null) {
             interests = new HashSet<>(0);
         }
@@ -246,15 +247,29 @@ public class User implements Serializable {
     }
 
     public void removeInterest(Interest interest) {
-        Hibernate.initialize(interests);
+//        Hibernate.initialize(interests);
         if (interests != null) {
             interests.remove(interest);
             interest.setUser(null);
         }
     }
 
+    //don't add collections (because of Stack Overflow)
     @Override
     public String toString() {
-        return "User{} I don't override toString with all fields ";
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", contact=" + contact +
+                ", profileFotoLink='" + profileFotoLink + '\'' +
+                ", personalPageFotoLink='" + personalPageFotoLink + '\'' +
+                ", youtubeLink='" + youtubeLink + '\'' +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", skills='" + skills + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

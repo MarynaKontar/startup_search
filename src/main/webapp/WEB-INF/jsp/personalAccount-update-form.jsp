@@ -64,7 +64,7 @@
                         <td><select name="contact.country">
                             <option value="${user.contact.country}">Country</option>
                             <c:forEach items="${countries}" var="country">
-                                <option value="${user.contact.country}">${country}</option>
+                                <option value="${user.contact.country}">${country.label}</option>
                             </c:forEach>
                         </select></td>
                     </tr>

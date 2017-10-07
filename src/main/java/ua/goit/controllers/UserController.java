@@ -23,6 +23,8 @@ import java.util.stream.Collectors;
  * Controller for {@link ua.goit.entity.User}
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Controller
 @RequestMapping(value = "/user")
@@ -39,16 +41,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @ModelAttribute("industries")
-    public Industry[] industries() {
-        return Industry.values();
-    }
-
-    @ModelAttribute("countries")
-    public Country[] countries() {
-        return Country.values();
-    }
-
     @GetMapping("/personalAccount/{id}")
     public ModelAndView viewPersonalAccount(@PathVariable("id") Long id) {
         User user = userService.findOne(id);
@@ -61,6 +53,7 @@ public class UserController {
         userService.deletePersonalAccount(id);
         LOGGER.info("Redirecting to logout page after deleting personal account with username='{}'", id);
         return new ModelAndView("redirect:/logout");
+    //TODO если у админа есть возможность удалить юзера, то надо подумать как организовать после єтого redirect
     }
 
     @GetMapping("/personalAccount/{id}/edit")
@@ -68,8 +61,8 @@ public class UserController {
         User user = userService.findOne(id);
         Map<String,? super Object> map = new HashMap<>();
         map.put("user", user);
-        map.put("countries", countries());
-        map.put("industries", industries());
+        map.put("countries", Country.values());
+        map.put("industries", Industry.values());
         ModelAndView modelAndView = new ModelAndView("personalAccount-update-form", map);
         LOGGER.info("Edit personal account page for " + user);
         return modelAndView;
@@ -82,7 +75,7 @@ public class UserController {
         return new ModelAndView("redirect:/user/personalAccount/"  + id);
     }
 
-    @RequestMapping("/users")
+    @GetMapping("/users")
     public ModelAndView viewUsers() {
         List<User> users = userService.findAll();
         return new ModelAndView("users", "users", users);

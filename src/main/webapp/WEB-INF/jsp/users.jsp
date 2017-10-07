@@ -34,7 +34,7 @@
 
     <nav class="nav">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/registration/"><h4>Add new user</h4></a><br></li><br>
+            <%--<li><a href="${pageContext.request.contextPath}/registration/"><h4>Add new user</h4></a><br></li><br>--%>
             <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a><br></li><br>
             <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
         </ul>
@@ -54,7 +54,7 @@
                     <td>${user.contact.email}</td>
                     <td>${user.contact.phoneNumber}</td>
                     <td>${user.contact.city}</td>
-                    <td>${user.contact.country}</td>
+                    <td>${user.contact.country.label}</td>
                     <td><img src="${user.profileFotoLink}" alt=" ${user.username} profile photo" style="width: 76px;height: 82px;"></td>
                     <td><img src="${user.personalPageFotoLink}" alt=" ${user.username} personal page photo" style="width: 76px;height: 82px;"></td>
                     <td>

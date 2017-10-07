@@ -19,13 +19,13 @@
                     <tr>
                         <th>Login</th>
                         <td>
-                            <input autofocus type="text" name="username" placeholder="Login">
+                            <input autofocus type="text" name="username" placeholder="Login" required>
                         </td>
                     </tr>
                     <tr>
                         <th>Password</th>
                         <td>
-                            <input type="password" name="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password" required>
                         </td>
                     </tr>
                     <tr>

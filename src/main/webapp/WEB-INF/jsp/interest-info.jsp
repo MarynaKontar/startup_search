@@ -87,11 +87,11 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${interest.country}</td>
+                                    <td class="tb1" style="width:60%">${interest.country.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${interest.industry}</td>
+                                    <td class="tb1" style="width:60%">${interest.industry.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Funds:</td>

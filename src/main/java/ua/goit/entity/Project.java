@@ -10,6 +10,9 @@ import java.util.Set;
 
 /**
  *
+ * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 
 @Entity
@@ -148,10 +151,20 @@ public class Project implements Serializable {
         isActive = active;
     }
 
-
-
     @Override
     public String toString() {
-        return "";
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", user=" + user +
+                ", funds=" + funds +
+                ", minInvestment=" + minInvestment +
+                ", industry=" + industry +
+                ", address=" + address +
+                ", description='" + description + '\'' +
+                ", businessPlan=" + businessPlan +
+                ", lastChange=" + lastChange +
+                ", isActive=" + isActive +
+                '}';
     }
 }
