@@ -148,7 +148,7 @@ public class Interest {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", budget=" + budget +
-//                ", user=" + user +
+                ", user=" + user +
                 ", country=" + country +
                 ", industry=" + industry +
                 ", lastChange=" + lastChange +
