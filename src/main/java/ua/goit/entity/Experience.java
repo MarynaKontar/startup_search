@@ -101,7 +101,7 @@ public class Experience implements Serializable {
 
         if (!id.equals(that.id)) return false;
 //        if (!user.equals(that.user)) return false;
-        if (!company.equals(that.company)) return false;
+//        if (!company.equals(that.company)) return false;
         if (!position.equals(that.position)) return false;
         if (!responsibility.equals(that.responsibility)) return false;
         if (!fromDate.equals(that.fromDate)) return false;
@@ -112,7 +112,7 @@ public class Experience implements Serializable {
     public int hashCode() {
         int result = id.hashCode();
 //        result = 31 * result + user.hashCode();
-        result = 31 * result + company.hashCode();
+//        result = 31 * result + company.hashCode();
         result = 31 * result + position.hashCode();
         result = 31 * result + responsibility.hashCode();
         result = 31 * result + fromDate.hashCode();
