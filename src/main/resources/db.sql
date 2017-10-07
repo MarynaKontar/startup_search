@@ -38,8 +38,8 @@ create table IF NOT EXISTS education
  educationalStage varchar(455) null,
  fieldOfStudy varchar(455) null,
  modeOfStudy enum('FULL_TIME', 'REMOTE', 'EVENING', 'EXTRAMURAL') null,
- untilDate timestamp default '0000-00-00 00:00:00' not null,
- fromDate timestamp default '0000-00-00 00:00:00' not null,
+ untilDate timestamp  not null default current_timestamp,
+ fromDate timestamp  not null default current_timestamp,
  constraint education_id_uindex
  unique (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -53,8 +53,8 @@ create table IF NOT EXISTS experience
  company varchar(455) null,
  position varchar(455) null,
  responsibility varchar(455) null,
- untilDate timestamp default '0000-00-00 00:00:00' not null,
- fromDate timestamp default '0000-00-00 00:00:00' not null,
+ untilDate timestamp  not null default current_timestamp,
+ fromDate timestamp  not null default current_timestamp,
  constraint experience_id_uindex
  unique (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
@@ -72,7 +72,7 @@ create table IF NOT EXISTS project
  businessPlan_id bigint null,
  address_id bigint null,
  description varchar(2000) null,
- lastChange timestamp not null DEFAULT CURRENT_TIMESTAMP,
+ lastChange timestamp not null default CURRENT_TIMESTAMP,
  isActive tinyint(1) default '1' null,
  constraint project_id_uindex
  unique (id)
@@ -89,7 +89,7 @@ create table IF NOT EXISTS interest
  user_id bigint not null,
  country varchar(45) null,
  industry varchar(45) null,
- lastChange timestamp not null DEFAULT CURRENT_TIMESTAMP,
+ lastChange timestamp not null default CURRENT_TIMESTAMP,
  constraint interest_id_uindex
  unique (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
