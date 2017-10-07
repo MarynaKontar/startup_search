@@ -37,7 +37,7 @@ public class InitDefaultEntities {
         user1.setLastName("Kontar");
         Collection<Role> roles = Arrays.asList(Role.ADMIN);
         user1.setRoles(roles);
-        Contact contact = new Contact("email", "0503357740",
+        Contact contact = new Contact("maryna@gmail.com", "0503357740",
                 "Kyiv", Country.UKRAINE);
         user1.setContact(contact);
 
@@ -58,7 +58,7 @@ public class InitDefaultEntities {
                 LocalDate.of(2007, 6, 30));
 
         User userFromDb1 = usersService.findUserByUsername("Maryna");
-        userFromDb1.setPersonalPageFotoLink("WEB-INF/jpeg/personalPageFoto/adminFoto.jpg");//TODO Как ссылку указывать?
+        userFromDb1.setPersonalPageFotoLink("logo.jpg");//TODO Как ссылку указывать?
         userFromDb1.setYoutubeLink(youtubeLink);
         userFromDb1.setAboutMe("I'm admin!");
         userFromDb1.setSkills("JavaCore, Spring, Hibernate");
@@ -88,7 +88,7 @@ public class InitDefaultEntities {
         user2.setPassword(passwordEncoder.encode("Guillaume"));
         Collection<Role> roles1 = Arrays.asList(Role.ADMIN);
         user2.setRoles(roles1);
-        Contact contact1 = new Contact("emailuser", "+380971713778", "Paris", Country.FRANCE);
+        Contact contact1 = new Contact("guilaume@gmail.com", "+380971713778", "Paris", Country.FRANCE);
         user2.setContact(contact1);
 
         usersService.save(user2);
@@ -145,7 +145,7 @@ public class InitDefaultEntities {
         user3.setPassword(passwordEncoder.encode("Vitalii"));
         Collection<Role> roles2 = Arrays.asList(Role.USER);
         user3.setRoles(roles2);
-        Contact contact2 = new Contact("emailuser1", "+380965067381", "London", Country.UNITED_KINGDOM);
+        Contact contact2 = new Contact("vilalii@gmail.com", "+380965067381", "London", Country.UNITED_KINGDOM);
         user3.setContact(contact2);
 
         usersService.save(user3);

@@ -8,10 +8,10 @@
                 <div class="brand">Startup</div>
             </a>
         </div>
-        <div class="menu">
-            <a  href="${pageContext.request.contextPath}/login" role="button">Login</a>
-            <a  href="${pageContext.request.contextPath}/registration" role="button">Registration</a>
-            <%--<li class="nav-item"><a href="${pageContext.request.contextPath}/startups">Show all startups</a></li>--%>
-        </div>
+        <%--<div class="menu">--%>
+            <%--<a  href="${pageContext.request.contextPath}/login" role="button">Login</a>--%>
+            <%--<a  href="${pageContext.request.contextPath}/registration" role="button">Registration</a>--%>
+            <%--&lt;%&ndash;<li class="nav-item"><a href="${pageContext.request.contextPath}/startups">Show all startups</a></li>&ndash;%&gt;--%>
+        <%--</div>--%>
     </div>
 </header>

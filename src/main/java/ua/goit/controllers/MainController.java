@@ -8,13 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ua.goit.services.EducationService;
-import ua.goit.services.ExperienceService;
-import ua.goit.services.ProjectService;
-import ua.goit.services.UserService;
+import ua.goit.services.*;
 import ua.goit.util.InitDefaultEntities;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by User on 29.09.2017.
@@ -25,7 +24,8 @@ public class MainController {
 
     private final UserService userService;
     private final ProjectService projectService;
-    private final ExperienceService experienceService;
+    private final InterestService interestService;
+    private final  ExperienceService experienceService;
     private final EducationService educationService;
     private final PasswordEncoder passwordEncoder;
 
@@ -33,10 +33,11 @@ public class MainController {
 
     @Autowired
     public MainController(UserService userService, ProjectService projectService,
-                          ExperienceService experienceService, EducationService educationService,
-                          PasswordEncoder passwordEncoder) {
+                          InterestService interestService, ExperienceService experienceService,
+                          EducationService educationService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.projectService = projectService;
+        this.interestService = interestService;
         this.experienceService = experienceService;
         this.educationService = educationService;
         this.passwordEncoder = passwordEncoder;
@@ -50,9 +51,11 @@ public class MainController {
     @GetMapping
     public ModelAndView index() {
         LOGGER.info("Building start page");
-        return new ModelAndView("/index", "projects", projectService.findAll());
+        Map<String,? super Object> map = new HashMap<>();
+        map.put("projects", projectService.findAll());
+        map.put("interests", interestService.findAll());
+        return new ModelAndView("/index",map);
     }
-
 
     /**
      * Mapping for url ":/"
@@ -62,12 +65,16 @@ public class MainController {
     @GetMapping("main")
     public ModelAndView main() {
         LOGGER.info("Building main page after login");
-        return new ModelAndView("main-after-login", "projects", projectService.findAll());
+        Map<String,? super Object> map = new HashMap<>();
+        map.put("projects", projectService.findAll());
+        map.put("interests", interestService.findAll());
+        return new ModelAndView("main-after-login", map);
     }
 
-////TODO запустить в первый раз для создания исходных юзеров
+//TODO запустить в первый раз для создания исходных юзеров
 //    @PostConstruct
 //    public void initDefaultUsers() {
-//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService, educationService, passwordEncoder);
+//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService,
+//                educationService, passwordEncoder);
 //    }
 }

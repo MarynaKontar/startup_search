@@ -58,7 +58,6 @@ public class RegistrationController {
      * @throws IOException if {@link ua.goit.entity.User} was not saved in the database
      */
     @PostMapping("registration/")
-//    @RequestMapping(value = "registration/", method = RequestMethod.POST)
     public ModelAndView save(@ModelAttribute("user") User user) throws IOException {
         //TODO При пустых полях формы переходит на /save, а не на "redirect:/registration_form". Исправить
         //сюда приходит пустой user, а не null, т.е. проверку или на странице делать или здесь все поля проверять. Наверное лучше прямо на странице - разобраться как
@@ -69,7 +68,7 @@ public class RegistrationController {
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList(Role.ADMIN));//TODO !!!!изменить роль на USER
+        user.setRoles(Arrays.asList(Role.USER));
         try {
             userService.save(user);
         } catch (Exception e) {

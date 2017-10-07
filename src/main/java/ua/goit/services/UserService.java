@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.dao.EducationDao;
-import ua.goit.dao.ExperienceDao;
-import ua.goit.dao.ProjectDao;
-import ua.goit.dao.UserDao;
+import ua.goit.dao.*;
 import ua.goit.entity.*;
 
 import java.util.Collection;
@@ -24,16 +21,25 @@ public class UserService {
 
     private final UserDao dao;
     private final ProjectDao projectDao;
+    private final InterestDao interestDao;
     private final EducationDao educationDao;
     private final ExperienceDao experienceDao;
+    private final AddressDao addressDao;
+    private final BusinessPlanDao businessPlanDao;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserDao dao, ProjectDao projectDao, EducationDao educationDao, ExperienceDao experienceDao, PasswordEncoder passwordEncoder) {
+    public UserService(UserDao dao, ProjectDao projectDao, InterestDao interestDao,
+                       EducationDao educationDao, ExperienceDao experienceDao,
+                       AddressDao addressDao, BusinessPlanDao businessPlanDao,
+                       PasswordEncoder passwordEncoder) {
         this.dao = dao;
         this.projectDao = projectDao;
+        this.interestDao = interestDao;
         this.educationDao = educationDao;
         this.experienceDao = experienceDao;
+        this.addressDao = addressDao;
+        this.businessPlanDao = businessPlanDao;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -52,7 +58,7 @@ public class UserService {
         User user = dao.findOne(id);
 
         //TODO приходится так перезаписывать пароль, потому что если не делать так, то перезаписывается пароль с солью
-        if(password!= null && !password.isEmpty() && !user.getPassword().equals(password)){
+        if (password != null && !password.isEmpty() && !user.getPassword().equals(password)) {
             updatedUser.setPassword(passwordEncoder.encode(password));
         }
         //TODO пока не делала функционал подгрузки фото профиля, надо, чтобы не "стиралась" ссылка на фото в бд
@@ -100,24 +106,43 @@ public class UserService {
     //TODO
     @Transactional
     public void deletePersonalAccount(Long id) {
-        User user = dao.findOne(id);
-        Collection<Education> educations = user.getEducations();
-        Collection<Experience> experiences = user.getExperiences();
-        Collection<Project> projects = user.getProjects();
-        Collection<Interest> interests = user.getInterests();
+        if (id != null) {
+            User user = dao.findOne(id);
+            if (user != null) {
 
-//        educations.forEach(educationDao::delete);
-//        educationDao.delete(educations);
-        //TODO кидает java.util.ConcurrentModificationException
-        educations.forEach(user::removeEducatione);
+                Collection<Education> educations = user.getEducations();
+                if (educations != null) {
+                    //        educations.forEach(educationDao::delete);
+                    educationDao.delete(educations);
+                    //TODO кидает java.util.ConcurrentModificationException
+//               educations.forEach(user::removeEducatione);
+                }
 
-//        experiences.forEach(experienceDao::delete);
-//        experienceDao.delete(experiences);
-        experiences.forEach(user::removeExperience);
+                Collection<Experience> experiences = user.getExperiences();
+                if (experiences != null) {
+                    //        experiences.forEach(experienceDao::delete);
+                    experienceDao.delete(experiences);
+//                   experiences.forEach(user::removeExperience);
+                }
+                Collection<Project> projects = user.getProjects();
+                if (projects != null) {
+                    projects.forEach(project->{
+                        Address address = project.getAddress();
+                        if (address != null){ addressDao.delete(address);}
+                        BusinessPlan businessPlan = project.getBusinessPlan();
+                        if(businessPlan != null){businessPlanDao.delete(businessPlan);}
+                    } );
+                    projects.forEach(user::removeProject);
+                    projectDao.delete(projects);
 
-//        projectDao.delete(projects);
-        projects.forEach(user::removeProject);
-       interests.forEach(user::removeInterest);
-        dao.delete(id);
+                }
+                Collection<Interest> interests = user.getInterests();
+                if (interests != null) {
+                    interests.forEach(user::removeInterest);
+                    interestDao.delete(interests);
+                }
+            }
+            dao.delete(id);
+        }
     }
 }

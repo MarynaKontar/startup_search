@@ -55,7 +55,7 @@ public class ProjectController {
         ModelAndView modelAndView = new ModelAndView("project-create-form");
         modelAndView.addObject("countries", Country.values());
         modelAndView.addObject("industries", Industry.values());
-        modelAndView.addObject("address", addressService.findAll());
+//        modelAndView.addObject("address", addressService.findAll());
         LOGGER.info("Building new startup form");
         return modelAndView;
     }
@@ -93,7 +93,6 @@ public class ProjectController {
     public ModelAndView delete(@PathVariable("user_id") Long user_id, @PathVariable("id") Long id) {
         projectService.deleteProjectFromUser(id, user_id);
         LOGGER.info("Redirecting to personal account page after deleting startup with id='{}'", id);
-        //TODO ссылке выходит /user/personalAccount/{id}?{все industries и все countries} . Видимо связано с @ModelAttribute
         return new ModelAndView("redirect:/user/personalAccount/" + user_id);
     }
 
@@ -109,19 +108,14 @@ public class ProjectController {
     @GetMapping("/{id}/edit")
     public ModelAndView edit(@PathVariable("id") Long id) {
         Project project = projectService.findOne(id);
-        Map<String,? super Object> modelMap = new HashMap<>();
-        modelMap.put("command", project);
-        modelMap.put("businessPlans", project.getBusinessPlan());
-        ModelAndView modelAndView = new ModelAndView("startup-update-form", modelMap);
-//        modelAndView.addObject("businessplans", project.getBusinessPlan());
+        ModelAndView modelAndView = new ModelAndView("startup-update-form", "command",project);
         modelAndView.addObject("countries", Country.values());
         modelAndView.addObject("industries", Industry.values());
         return modelAndView;
     }
 
-    @PostMapping("/update/")
-    public ModelAndView update(@ModelAttribute("command") Project project, @ModelAttribute("businessPlan")BusinessPlan businessPlan) throws IOException {
-//        project.setBusinessPlan(businessPlan);//Пока не внесла поля бизнес плана в jsp
+    @PostMapping("/{id}/update/")
+    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("command") Project project, @ModelAttribute("businessPlan")BusinessPlan businessPlan) throws IOException {
         projectService.save(project);
         return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getId());
     }

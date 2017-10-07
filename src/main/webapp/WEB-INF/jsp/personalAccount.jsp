@@ -5,75 +5,8 @@
 
 <html>
 <head>
-    <!-- <link rel="stylesheet" href="/WEB-INF/css/style.css"> -->
-    <style>
-        .flex-container {
-            display: -webkit-flex;
-            display: flex;
-            -webkit-flex-flow: row wrap;
-            flex-flow: row wrap;
-            text-align: center;
-        }
-
-        .flex-container > * {
-            padding: 15px;
-            -webkit-flex: 1 100%;
-            flex: 1 100%;
-        }
-
-        .article {
-            text-align: left;
-        }
-
-        aside {
-            text-align: right;
-        }
-
-        header {
-            background: burlywood;
-            color: white;
-        }
-
-        footer {
-            background: #aaa;
-            color: white;
-        }
-
-        .nav {
-            background: #eee;
-        }
-
-        .nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .nav ul a {
-            text-decoration: none;
-        }
-
-        @media all and (min-width: 768px) {
-            .nav {
-                text-align: left;
-                -webkit-flex: 1 auto;
-                flex: 1 auto;
-                -webkit-order: 1;
-                order: 1;
-            }
-
-            .article {
-                -webkit-flex: 5 0px;
-                flex: 5 0px;
-                -webkit-order: 2;
-                order: 2;
-            }
-
-            footer {
-                -webkit-order: 3;
-                order: 3;
-            }
-        }
-    </style>
+    <title>personal account</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
 </head>
 <body>
 
@@ -91,27 +24,34 @@
 
 <div class="flex-container">
     <header>
-        <h3>Personal account</h3>
+        <c:if test="${!isOwner}">
+            <h3>Startup</h3>
+        </c:if>
+
         <c:if test="${isOwner || isAdmin}">
+            <h3>Personal account</h3>
             <a href=" /user/personalAccount/${user.id}/edit">Edit profile</a>
         </c:if>
     </header>
 
     <aside>
         <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
-
-        <p><c:choose>
+        <%--<iframe width="420" height="315"--%>
+                <%--src="${user.youtubeLink}">--%>
+        <%--</iframe>--%>
+        <p>
+            <c:choose>
             <c:when test="${empty(user.lastName) || empty(user.firstName)}">
-                <h2>${user.firstName} ${user.lastName}</h2>
-            </c:when>
-            <c:otherwise>
-                <h2>${user.username}</h2>
-            </c:otherwise>
-            </c:choose>
+        <h2>${user.firstName} ${user.lastName}</h2>
+        </c:when>
+        <c:otherwise>
+            <h2>${user.username}</h2>
+        </c:otherwise>
+        </c:choose>
         </p>
 
         <adress>
-            <p>${user.contact.country}  ${user.contact.city}</p>
+            <p>${user.contact.country} ${user.contact.city}</p>
             <p>${user.contact.phoneNumber}</p>
             <p>${user.contact.email}</p>
         </adress>
@@ -135,7 +75,7 @@
                 <br>
             </c:if>
 
-            <c:if test="${!isOwner || !isAdmin}">
+            <c:if test="${!isOwner && !isAdmin}">
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
                 <br>
                 <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}/">Account</a></li>
@@ -148,7 +88,7 @@
     </nav>
 
     <article class="article">
-        <c:if test="${isOwner || isAdmin}">
+        <c:if test="${isOwner}">
             <section>
                 <h1>Add project</h1>
                 <p>Place your project on the Startup.Network or operational business in order to:</p>
@@ -223,11 +163,11 @@
                                 <br>
                                 <tr>
                                     <td>
-                                    <c:if test="${isOwner || isAdmin}">
-                                        <a href="${pageContext.request.contextPath}/startup/${project.id}/edit">Edit</a><br>
-                                        <br>
-                                        <a href="${pageContext.request.contextPath}/startup/${user.id}/${project.id}/delete">Delete</a>
-                                    </c:if>
+                                        <c:if test="${isOwner || isAdmin}">
+                                            <a href="${pageContext.request.contextPath}/startup/${project.id}/edit">Edit</a>
+                                            <br>
+                                            <a href="${pageContext.request.contextPath}/startup/${user.id}/${project.id}/delete">Delete</a>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </div>
@@ -240,7 +180,7 @@
         <br>
         <br>
         <section>
-            <h4>Interests</h4>
+            <h3>Interests</h3>
             <c:forEach var="interest" items="${user.interests}">
                 <section>
                     <div class="first"
@@ -277,11 +217,11 @@
                                 <br>
                                 <tr>
                                     <td>
-                                    <c:if test="${isOwner || isAdmin}">
-                                        <a href="${pageContext.request.contextPath}/interest/${interest.id}/edit">Edit</a><br>
-                                        <br>
-                                        <a href="${pageContext.request.contextPath}/interest/${user.id}/${interest.id}/delete">Delete</a>
-                                    </c:if>
+                                        <c:if test="${isOwner || isAdmin}">
+                                            <a href="${pageContext.request.contextPath}/interest/${interest.id}/edit">Edit</a><br>
+                                            <br>
+                                            <a href="${pageContext.request.contextPath}/interest/${user.id}/${interest.id}/delete">Delete</a>
+                                        </c:if>
                                     </td>
                                 </tr>
                             </div>

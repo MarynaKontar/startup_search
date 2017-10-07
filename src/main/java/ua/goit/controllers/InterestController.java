@@ -84,7 +84,6 @@ public class InterestController {
         return projectInfo;
     }
 
-//TODO
     @GetMapping("{user_id}/{id}/delete")
     public ModelAndView delete(@PathVariable("user_id") Long user_id, @PathVariable("id") Long id) {
         interestService.deleteInterestFromUser(id, user_id);
@@ -96,16 +95,14 @@ public class InterestController {
     @GetMapping("/{id}/edit")
     public ModelAndView edit(@PathVariable("id") Long id) {
         Interest interest = interestService.findOne(id);
-        Map<String,? super Object> modelMap = new HashMap<>();
-        modelMap.put("command", interest);
-        ModelAndView modelAndView = new ModelAndView("interest-update-form", "interest", interest);
+        ModelAndView modelAndView = new ModelAndView("interest-update-form", "command", interest);
         modelAndView.addObject("countries", Country.values());
         modelAndView.addObject("industries", Industry.values());
         return modelAndView;
     }
 
-    @PostMapping("/update/")
-    public ModelAndView update(@ModelAttribute("command") Interest interest) throws IOException {
+    @PostMapping("/{id}/update/")
+    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("command") Interest interest) throws IOException {
         interestService.save(interest);
         return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getId());
     }
