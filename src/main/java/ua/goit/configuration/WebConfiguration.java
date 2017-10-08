@@ -22,7 +22,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     //прописала, как маппить странички браузера с *.jpeg, *.css, *.html на ресурсы в файловой системе
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/*.jpeg").addResourceLocations("/WEB-INF/jpeg/");
+        registry.addResourceHandler("/*.jpg").addResourceLocations("/WEB-INF/jpg/");
         registry.addResourceHandler("/*.css").addResourceLocations("/WEB-INF/css/");
 //        registry.addResourceHandler("/*.html").addResourceLocations("/WEB_INF/html/");
 

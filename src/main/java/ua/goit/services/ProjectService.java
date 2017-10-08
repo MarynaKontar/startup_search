@@ -21,6 +21,8 @@ import java.util.List;
  * {@link ua.goit.dao.ProjectDao} as data access object
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Service
 public class ProjectService {
@@ -94,7 +96,7 @@ public class ProjectService {
         if (address != null){ addressDao.delete(address);}
         BusinessPlan businessPlan = project.getBusinessPlan();
         if(businessPlan != null){businessPlanDao.delete(businessPlan);}
-        
+
         user.removeProject(project);
     }
 }

@@ -5,7 +5,10 @@ import ua.goit.entity.Interest;
 
 /**
  * Data access object for {@link ua.goit.entity.Interest}
+ *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 public interface InterestDao  extends JpaRepository<Interest, Long> {
 }

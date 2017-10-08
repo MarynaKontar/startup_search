@@ -6,8 +6,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Created by Maryna Kontar on 13.09.2017.
+ *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Embeddable
 public class Contact implements Serializable {

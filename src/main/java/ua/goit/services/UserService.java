@@ -15,6 +15,8 @@ import java.util.List;
  * {@link ua.goit.dao.UserDao} as data access object
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Service
 public class UserService {
@@ -112,17 +114,12 @@ public class UserService {
 
                 Collection<Education> educations = user.getEducations();
                 if (educations != null) {
-                    //        educations.forEach(educationDao::delete);
                     educationDao.delete(educations);
-                    //TODO кидает java.util.ConcurrentModificationException
-//               educations.forEach(user::removeEducatione);
                 }
 
                 Collection<Experience> experiences = user.getExperiences();
                 if (experiences != null) {
-                    //        experiences.forEach(experienceDao::delete);
                     experienceDao.delete(experiences);
-//                   experiences.forEach(user::removeExperience);
                 }
                 Collection<Project> projects = user.getProjects();
                 if (projects != null) {
@@ -132,13 +129,11 @@ public class UserService {
                         BusinessPlan businessPlan = project.getBusinessPlan();
                         if(businessPlan != null){businessPlanDao.delete(businessPlan);}
                     } );
-                    projects.forEach(user::removeProject);
                     projectDao.delete(projects);
 
                 }
                 Collection<Interest> interests = user.getInterests();
                 if (interests != null) {
-                    interests.forEach(user::removeInterest);
                     interestDao.delete(interests);
                 }
             }

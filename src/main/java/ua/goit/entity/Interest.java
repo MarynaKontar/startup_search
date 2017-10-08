@@ -9,6 +9,8 @@ import java.time.LocalDate;
 /**
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Entity
 @Table(name = "interest")

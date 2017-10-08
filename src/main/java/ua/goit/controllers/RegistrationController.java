@@ -17,6 +17,8 @@ import ua.goit.services.UserService;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Controller for {@link ua.goit.entity.User}
@@ -39,16 +41,6 @@ public class RegistrationController {
         this.projectService = projectService;
     }
 
-    @ModelAttribute("roles")
-    public Role[] roles() {
-        return Role.values();
-    }
-
-    @ModelAttribute("countries")
-    public Country[] countries() {
-        return Country.values();
-    }
-
     /**
      * Mapping for url ":/registration/"
      * Saves {@link User} to database
@@ -59,11 +51,17 @@ public class RegistrationController {
      */
     @PostMapping("registration/")
     public ModelAndView save(@ModelAttribute("user") User user) throws IOException {
-        //TODO При пустых полях формы переходит на /save, а не на "redirect:/registration_form". Исправить
+        //TODO При пустых полях формы переходит на /save, а не на "redirect:/registration". Исправить
         //сюда приходит пустой user, а не null, т.е. проверку или на странице делать или здесь все поля проверять. Наверное лучше прямо на странице - разобраться как
         if (user.getUsername() == null || user.getPassword() == null || user.getContact().getEmail() == null) {
             LOGGER.info("User " + user + " didn't save to database. Some fields from the form are empty.");
             //TODO redirect:/error
+            return new ModelAndView("redirect:/registration/");
+        }
+
+        List<String> usernames = userService.findAll().stream().map(User::getUsername).collect(Collectors.toList());
+        if (usernames.contains(user.getUsername())) {
+            LOGGER.info("Login " + user.getUsername() + " already exists");
             return new ModelAndView("redirect:/registration/");
         }
 

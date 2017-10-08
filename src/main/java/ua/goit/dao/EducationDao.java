@@ -5,7 +5,10 @@ import ua.goit.entity.Education;
 
 /**
  * Data access object for {@link ua.goit.entity.Education}
+ *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 public interface EducationDao extends JpaRepository<Education, Long> {
 }

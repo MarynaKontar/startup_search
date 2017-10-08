@@ -10,6 +10,9 @@ import java.util.Set;
 
 /**
  *
+ * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 
 @Entity
@@ -149,56 +152,9 @@ public class Project implements Serializable {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Project project = (Project) o;
-
-        if (isActive != project.isActive) return false;
-        if (!id.equals(project.id)) return false;
-        if (!name.equals(project.name)) return false;
-        if (!user.equals(project.user)) return false;
-        if (!funds.equals(project.funds)) return false;
-        if (!minInvestment.equals(project.minInvestment)) return false;
-        if (industry != project.industry) return false;
-        if (!address.equals(project.address)) return false;
-        if (!description.equals(project.description)) return false;
-        if (!businessPlan.equals(project.businessPlan)) return false;
-        return lastChange.equals(project.lastChange);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + user.hashCode();
-        result = 31 * result + funds.hashCode();
-        result = 31 * result + minInvestment.hashCode();
-        result = 31 * result + industry.hashCode();
-        result = 31 * result + address.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + businessPlan.hashCode();
-        result = 31 * result + lastChange.hashCode();
-        result = 31 * result + (isActive ? 1 : 0);
-        return result;
-    }
 
     @Override
     public String toString() {
-        return "Project{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", user=" + user +
-                ", funds=" + funds +
-                ", minInvestment=" + minInvestment +
-                ", industry=" + industry +
-                ", address=" + address +
-                ", description='" + description + '\'' +
-                ", businessPlan=" + businessPlan +
-                ", lastChange=" + lastChange +
-                ", isActive=" + isActive +
-                '}';
+        return "";
     }
 }
