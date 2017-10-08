@@ -67,3 +67,5 @@ buildNumber.properties
 
 /startupGroup7.iml
 /.idea/
+/src/main/resources/database.properties
+/src/main/resources/db.sql
