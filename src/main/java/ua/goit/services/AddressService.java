@@ -14,6 +14,8 @@ import java.util.List;
  * {@link ua.goit.dao.AddressDao} as data access object
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Service
 public class AddressService {

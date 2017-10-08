@@ -11,6 +11,8 @@ import ua.goit.entity.Education;
  * {@link ua.goit.dao.EducationDao} as data access object
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Service
 public class EducationService {

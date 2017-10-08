@@ -52,7 +52,7 @@
                         <td><form:select path="industry" name="industry">
                             <form:option value="">Industry</form:option>
                             <c:forEach items="${industries}" var="industry">
-                                <form:option value="${industry}">${industry}</form:option>
+                                <form:option value="${industry}">${industry.label}</form:option>
                             </c:forEach>
                         </form:select></td>
                     </tr>
@@ -61,7 +61,7 @@
                         <td><form:select path="address.country" name="country">
                             <form:option value="">Country</form:option>
                             <c:forEach items="${countries}" var="country">
-                                <form:option value="${country}">${country}</form:option>
+                                <form:option value="${country}">${country.label}</form:option>
                             </c:forEach>
                         </form:select></td>
                     </tr>

@@ -5,9 +5,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * Created by Maryna Kontar on 23.08.2017.
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Entity
 @Table(name = "experience")
@@ -123,6 +124,14 @@ public class Experience implements Serializable {
 
     @Override
     public String toString() {
-        return "Experience{}";
+        return "Experience{" +
+                "id=" + id +
+                ", user=" + user +
+                ", company='" + company + '\'' +
+                ", position='" + position + '\'' +
+                ", responsibility='" + responsibility + '\'' +
+                ", fromDate=" + fromDate +
+                ", untilDate=" + untilDate +
+                '}';
     }
 }

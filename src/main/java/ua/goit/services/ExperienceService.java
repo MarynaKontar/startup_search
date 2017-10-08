@@ -11,6 +11,8 @@ import ua.goit.entity.Experience;
  * {@link ua.goit.dao.ExperienceDao} as data access object
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 @Service
 public class ExperienceService {

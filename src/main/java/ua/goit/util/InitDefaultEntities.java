@@ -20,6 +20,8 @@ import java.util.Collection;
  * Util class for creating default entities for test
  *
  * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
  */
 public class InitDefaultEntities {
 

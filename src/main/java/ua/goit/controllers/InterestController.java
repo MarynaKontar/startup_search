@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- * Created by User on 30.09.2017.
+ * * Controller for {@link ua.goit.entity.Interest}
  */
 @Controller
 @RequestMapping("/interest")

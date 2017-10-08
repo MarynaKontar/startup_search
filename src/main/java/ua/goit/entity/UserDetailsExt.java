@@ -13,6 +13,10 @@ import java.util.Collection;
 
 /**
 * Class for hold information about {@link ua.goit.entity.User}
+ *
+ * @KontarMaryna
+ * @GuillaumeGingembre
+ * @VitaliiProskura
 */
 
 public class UserDetailsExt implements UserDetails {

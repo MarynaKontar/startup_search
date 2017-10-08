@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Created by User on 30.09.2017.
+ * Controller for {@link ua.goit.entity.Project}
  */
 @Controller
 @RequestMapping("/startup")

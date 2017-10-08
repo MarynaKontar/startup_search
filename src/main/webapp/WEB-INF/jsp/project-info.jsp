@@ -90,7 +90,7 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${project.address.country}</td>
+                                    <td class="tb1" style="width:60%">${project.address.country.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Region:</td>
@@ -110,7 +110,7 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${project.industry}</td>
+                                    <td class="tb1" style="width:60%">${project.industry.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Idea:</td>
