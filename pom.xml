@@ -6,7 +6,7 @@
 
     <groupId>ua.goit</groupId>
     <artifactId>startup_search</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>start</version>
     <packaging>war</packaging>
 
     <build>
