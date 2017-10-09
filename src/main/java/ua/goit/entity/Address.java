@@ -84,7 +84,8 @@ public class Address implements Serializable {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+//        String.valueOf(id).hashCode()
+        int result = id != null ? Long.hashCode(id) : 0;
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (region != null ? region.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);

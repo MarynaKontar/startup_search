@@ -114,6 +114,36 @@ public class Interest {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Interest interest = (Interest) o;
+
+        if (budget != interest.budget) return false;
+        if (!id.equals(interest.id)) return false;
+        if (!name.equals(interest.name)) return false;
+        if (!description.equals(interest.description)) return false;
+        if (!user.equals(interest.user)) return false;
+        if (country != interest.country) return false;
+        if (industry != interest.industry) return false;
+        return lastChange.equals(interest.lastChange);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + description.hashCode();
+        result = 31 * result + budget;
+        result = 31 * result + user.hashCode();
+        result = 31 * result + country.hashCode();
+        result = 31 * result + industry.hashCode();
+        result = 31 * result + lastChange.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Interest{" +
                 "id=" + id +
