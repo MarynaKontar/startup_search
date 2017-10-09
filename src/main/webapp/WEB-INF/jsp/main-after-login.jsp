@@ -6,32 +6,17 @@
 <html>
 <head>
     <title>Main page for startup application after login</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
 
-<c:set var="isAdmin" value="false"/>
-<%--<c:set var="isOwner" value="${user.id == user_id}"/>--%>
-<sec:authorize access="hasRole('ADMIN')">
-    <c:set var="isAdmin" value="true"/>
-</sec:authorize>
 <div class="flex-container">
+    <%@include file="navbar.jsp" %>
 
-
-    <header>
-        <h3>STARTUP</h3>
-        <th></th>
-        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a></th>
-
-    </header>
     <aside>
-
-
     </aside>
+
     <nav class="nav">
         <ul>
             <%--<li>--%>
@@ -46,6 +31,8 @@
                 <%--</form>--%>
                 <%--<br></li>--%>
             <br>
+            <li><a href="${pageContext.request.contextPath}/">Home</a><br></li>
+                <br>
             <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li>
             <br>
             <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li>
@@ -165,7 +152,7 @@
                                 <br>
                                 <tr>
                                     <td class="tb2" style="width:50%"><a
-                                            href="${pageContext.request.contextPath}/login">Learn
+                                            href="${pageContext.request.contextPath}/${interest.id}">Learn
                                         more</a>
                                     </td>
                                 </tr>

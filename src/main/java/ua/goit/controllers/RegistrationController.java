@@ -31,14 +31,23 @@ public class RegistrationController {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
-    private final ProjectService projectService;
+
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder, ProjectService projectService) {
+    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
-        this.projectService = projectService;
+    }
+
+    //TODO знаю, что проверку на наличие вводимого логина надо делать на стороне view,
+    // но у меня пока не вышло использовать "usernames" в <script function, поэтому сделала "костыль" в виде
+    // переадресации на страницу регистрации с выводом предупреждения в случаи совпадения логинов
+    @GetMapping("registration/")
+    public ModelAndView registrationForm() {
+        LOGGER.info("Registration form");
+        return new ModelAndView("registration-form", "usernames",
+                userService.findAll().stream().map(User::getUsername).collect(Collectors.toList()));
     }
 
     /**
@@ -51,8 +60,7 @@ public class RegistrationController {
      */
     @PostMapping("registration/")
     public ModelAndView save(@ModelAttribute("user") User user) throws IOException {
-        //TODO При пустых полях формы переходит на /save, а не на "redirect:/registration". Исправить
-        //сюда приходит пустой user, а не null, т.е. проверку или на странице делать или здесь все поля проверять. Наверное лучше прямо на странице - разобраться как
+        //TODO сделала проверку прямо на view. Надо ли оставлять проверку здесь? Вдруг будет меняться view и это не учтут, а с моей стороны должен быть контроллер, который учитывает все
         if (user.getUsername() == null || user.getPassword() == null || user.getContact().getEmail() == null) {
             LOGGER.info("User " + user + " didn't save to database. Some fields from the form are empty.");
             //TODO redirect:/error
@@ -62,7 +70,7 @@ public class RegistrationController {
         List<String> usernames = userService.findAll().stream().map(User::getUsername).collect(Collectors.toList());
         if (usernames.contains(user.getUsername())) {
             LOGGER.info("Login " + user.getUsername() + " already exists");
-            return new ModelAndView("redirect:/registration/");
+            return new ModelAndView("redirect:/registrationAfterMissingLogin/");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -77,7 +85,16 @@ public class RegistrationController {
         return new ModelAndView("redirect:/main");
     }
 
-    //TODO в чем разница между этими двумя способами? Какой лучше?
+    //TODO знаю, что проверку на наличие вводимого логина надо делать на стороне view,
+    // но у меня пока не вышло использовать "usernames" в <script function, поэтому сделала "костыль" в виде
+    // переадресации на страницу регистрации с выводом предупреждения в случаи совпадения логинов
+    @GetMapping("registrationAfterMissingLogin/")
+    public ModelAndView registrationAfterMissingLogin() {
+        LOGGER.info("Registration form after missing login");
+        return new ModelAndView("registration-form-missing-login");
+    }
+
+    //TODO в чем разница между двумя способами для @PostMapping("registration/") - через @ModelAttribute и @RequestParam? Какой лучше?
 //    /**
 //     * Mapping for url ":/registration/"
 //     * Saves {@link User} to database

@@ -6,28 +6,12 @@
 <html>
 <head>
     <title>Table of all users for admn</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
-
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
-
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
-
-<c:set var="isAdmin" value="false"/>
-
-<sec:authorize access="hasRole('ADMIN')">
-    <c:set var="isAdmin" value="true"/>
-</sec:authorize>
 <div class="flex-container">
-
-    <header>
-        <h3>STARTUP</h3>
-        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a></th>
-    </header>
-
+    <%@include file="navbar.jsp" %>
     <aside>
 
     </aside>
@@ -55,8 +39,8 @@
                     <td>${user.contact.phoneNumber}</td>
                     <td>${user.contact.city}</td>
                     <td>${user.contact.country.label}</td>
-                    <td><img src="${user.profileFotoLink}" alt=" ${user.username} profile photo" style="width: 76px;height: 82px;"></td>
-                    <td><img src="${user.personalPageFotoLink}" alt=" ${user.username} personal page photo" style="width: 76px;height: 82px;"></td>
+                    <td><img src="${pageContext.request.contextPath}/${user.profileFotoLink}" alt=" ${user.username} profile photo" style="width: 76px;height: 82px;"></td>
+                    <td><img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}" alt=" ${user.username} personal page photo" style="width: 76px;height: 82px;"></td>
                     <td>
                         <a href="${user.youtubeLink}" target="_blank">Video</a>
                         <!-- <iframe width="420" height="315"

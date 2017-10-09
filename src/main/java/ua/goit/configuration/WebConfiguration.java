@@ -33,7 +33,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         // View -> RedirectView
         registry.addViewController("/login").setViewName("login-form");
-        registry.addViewController("/registration").setViewName("registration-form");
+//        registry.addViewController("/registration").setViewName("registration-form");
 //        registry.addRedirectViewController("/login", "/user/show");
     }
 

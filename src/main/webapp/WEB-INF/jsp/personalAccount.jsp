@@ -6,33 +6,18 @@
 <html>
 <head>
     <title>personal account</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 <body>
 
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
+
 
 <c:set var="isOwner" value="${user.id == user_id}"/>
 
-<c:set var="isAdmin" value="false"/>
 
-<sec:authorize access="hasRole('ADMIN')">
-    <c:set var="isAdmin" value="true"/>
-</sec:authorize>
 
 <div class="flex-container">
-    <header>
-        <c:if test="${!isOwner}">
-            <h3>Startup</h3>
-        </c:if>
-
-        <c:if test="${isOwner || isAdmin}">
-            <h3>Personal account</h3>
-            <a href=" /user/personalAccount/${user.id}/edit">Edit profile</a>
-        </c:if>
-    </header>
+    <%@include file="navbar.jsp" %>
 
     <aside>
         <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
@@ -41,7 +26,7 @@
         <%--</iframe>--%>
         <p>
             <c:choose>
-            <c:when test="${empty(user.lastName) || empty(user.firstName)}">
+            <c:when test="${!empty(user.lastName) || !empty(user.firstName)}">
         <h2>${user.firstName} ${user.lastName}</h2>
         </c:when>
         <c:otherwise>
@@ -51,7 +36,7 @@
         </p>
 
         <adress>
-            <p>${user.contact.country} ${user.contact.city}</p>
+            <p>${user.contact.country.label} ${user.contact.city}</p>
             <p>${user.contact.phoneNumber}</p>
             <p>${user.contact.email}</p>
         </adress>
@@ -65,7 +50,7 @@
                 </br>
                 <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
                 </br>
-                <li><a href="${pageContext.request.contextPath} /user/personalAccount/${user.id}/edit">Edit
+                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/edit">Edit
                     profile</a></li>
                 <br>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>

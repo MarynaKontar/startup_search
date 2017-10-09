@@ -6,18 +6,14 @@
 <html>
 <head>
     <title>Update Project form</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 <body>
-
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
 <div class="flex-container" align="center">
-    <header>
-        <h3 align="center">Edit a project</h3>
-    </header>
+    <%@include file="navbar.jsp" %>
+
     <article>
+        <h3 align="center">Edit a project</h3>
         <div align="center">
             <form:form method="post" action="${pageContext.request.contextPath}/startup/${command.id}/update/">
                 <form:input path="user.id" type="number" name="user.id" value="${command.user.id}" hidden="true"/>

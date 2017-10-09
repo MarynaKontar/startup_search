@@ -5,18 +5,14 @@
 <html>
 <head>
     <title>Project form</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 <body>
 
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
 <div class="flex-container" align="center">
-    <header>
-        <h3 align="center">Adding a project</h3>
-    </header>
+    <%@include file="navbar.jsp" %>
     <article>
+        <h3 align="center">Adding a project</h3>
         <div align="center">
             <form method="post" action="${pageContext.request.contextPath}/startup/create/" >
                 <input type="text" name="user.id" value="${user_id}" hidden>

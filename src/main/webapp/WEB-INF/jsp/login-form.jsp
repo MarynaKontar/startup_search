@@ -4,15 +4,14 @@
 <html>
 <head>
     <title>Login form</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
 <div class="flex-container" align="center">
-    <header>
-        <h3 align="center">Login form</h3>
-    </header>
+    <%@include file="navbar.jsp" %>
     <article>
+        <h3 align="center">Login form</h3>
         <div align="center">
             <form action="login" method="post">
                 <table align="center">

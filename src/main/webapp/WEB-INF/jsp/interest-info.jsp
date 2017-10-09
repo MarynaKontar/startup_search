@@ -6,33 +6,20 @@
 <html>
 <head>
     <title>Interest info page</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
 
-<c:set var="isAdmin" value="false"/>
+
+
 <c:set var="isOwner" value="${interest.user.id == user_id}"/>
-<sec:authorize access="hasRole('ADMIN')">
-    <c:set var="isAdmin" value="true"/>
-</sec:authorize>
+
 
 <div class="flex-container">
-
-    <header>
-        <h3>STARTUP</h3>
-        <th>                           </th>
-        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a></th>
-
-    </header>
-
+    <%@include file="navbar.jsp" %>
     <aside>
-
     </aside>
-
     <nav class="nav">
         <ul>
             <c:if test="${isOwner || isAdmin}">
@@ -59,10 +46,7 @@
     </nav>
 
     <article class="article">
-        <section>
-
-        </section>
-
+        <h3>STARTUP</h3>
                 <section>
                     <div class="first"
                          style="float: left; width:27%; margin:0.5%; box-shadow: 10px 10px 5px grey; background-color: #f1f1f1">

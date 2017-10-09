@@ -60,7 +60,7 @@ public class InitDefaultEntities {
                 LocalDate.of(2007, 6, 30));
 
         User userFromDb1 = usersService.findUserByUsername("Maryna");
-        userFromDb1.setPersonalPageFotoLink("logo.jpg");//TODO Как ссылку указывать?
+        userFromDb1.setPersonalPageFotoLink("logotype.jpg");//TODO Как ссылку указывать?
         userFromDb1.setYoutubeLink(youtubeLink);
         userFromDb1.setAboutMe("I'm admin!");
         userFromDb1.setSkills("JavaCore, Spring, Hibernate");
