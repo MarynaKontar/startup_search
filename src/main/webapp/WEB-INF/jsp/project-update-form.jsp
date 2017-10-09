@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Update Project form</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 <body>
 

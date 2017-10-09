@@ -37,3 +37,53 @@ Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously
 
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mainController': Invocation of init method failed; nested exception is org.springframework.orm.jpa.JpaSystemException: A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance: ua.goit.entity.User.experiences; nested exception is org.hibernate.HibernateException: A collection with cascade="all-delete-orphan" was no longer referenced by the owning entity instance: ua.goit.entity.User.experiences
 
+
+
+
+
+
+
+<script>
+                function showError(container, errorMessage) {
+                    container.className = 'error';
+                    var msgElem = document.createElement('span');
+                    msgElem.className = "error-message";
+                    msgElem.innerHTML = errorMessage;
+                    container.appendChild(msgElem);
+                }
+
+                function resetError(container) {
+                    container.className = '';
+                    if (container.lastChild.className == "error-message") {
+                        container.removeChild(container.lastChild);
+                    }
+                }
+
+                function validate(form) {
+                    var elems = form.elements;
+                    <%--var usernames = ${usernames};--%>
+
+                    resetError(elems.username.parentNode);
+                    if (!elems.username.value) {
+                        showError(elems.username.parentNode, ' Enter login.');
+                    }
+//                    resetError(elems.username.parentNode);
+//                    if (usernames.contains(elems.username.value)) {
+//                        showError(elems.username.parentNode, ' This login already exists.');
+//                    }
+                    resetError(elems.password.parentNode);
+                    if (!elems.password.value) {
+                        showError(elems.password.parentNode, ' Enter password.');
+                    } else if (elems.password.value != elems.password2.value) {
+                        showError(elems.password.parentNode, ' Passwords are not equals.');
+                    }
+                    resetError(elems.password2.parentNode);
+                    if (!elems.password2.value) {
+                        showError(elems.password2.parentNode, ' Repeat password.');
+                    }
+                    resetError(elems.email.parentNode);
+                    if (!elems.email.value) {
+                        showError(elems.email.parentNode, ' Enter email.');
+                    }
+                }
+            </script>

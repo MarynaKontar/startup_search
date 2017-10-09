@@ -2,6 +2,8 @@ package ua.goit.services;
 
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.dao.AddressDao;
@@ -58,6 +60,11 @@ public class ProjectService {
     @Transactional(readOnly = true)
     public List<Project> findAll() {
         return dao.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Project> findAll(Pageable pageable) {
+        return dao.findAll(pageable);
     }
 
     @Transactional(readOnly = true)
