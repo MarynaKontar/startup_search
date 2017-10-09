@@ -10,14 +10,9 @@
 </head>
 
 <body>
-
-
-
-<c:set var="isOwner" value="${interest.user.id == user_id}"/>
-
-
 <div class="flex-container">
     <%@include file="navbar.jsp" %>
+    <c:set var="isOwner" value="${interest.user.id == user_id}"/>
     <aside>
     </aside>
     <nav class="nav">

@@ -39,7 +39,7 @@
         <br>
         <br>
         <div align="center">
-            <form action="${pageContext.request.contextPath}/registration" method="get">
+            <form action="${pageContext.request.contextPath}/registration/" method="get">
                 <input type="submit" value="Registration">
             </form>
         </div>

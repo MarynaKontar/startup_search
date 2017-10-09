@@ -4,26 +4,19 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-    <title>personal account</title>
+    <title>Personal account</title>
     <%@include file="head.jsp" %>
 </head>
 <body>
-
-
-
-<c:set var="isOwner" value="${user.id == user_id}"/>
-
-
-
 <div class="flex-container">
     <%@include file="navbar.jsp" %>
-
+    <c:set var="isOwner" value="${user.id == user_id}"/>
+    <h3 align="center">Personal account</h3>
     <aside>
-        <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
-        <%--<iframe width="420" height="315"--%>
-                <%--src="${user.youtubeLink}">--%>
-        <%--</iframe>--%>
+        <img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}" alt=" ${user.username} personal page photo" class="image" style="max-width:100%;height:auto;">
+        <br>
         <p>
             <c:choose>
             <c:when test="${!empty(user.lastName) || !empty(user.firstName)}">
@@ -40,7 +33,12 @@
             <p>${user.contact.phoneNumber}</p>
             <p>${user.contact.email}</p>
         </adress>
+        <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
+        <%--<iframe width="420" height="315"--%>
+        <%--src="${user.youtubeLink}">--%>
+        <%--</iframe>--%>
     </aside>
+
     <nav class="nav">
         <ul>
             <li><a href="${pageContext.request.contextPath}/main">Home</a></li>

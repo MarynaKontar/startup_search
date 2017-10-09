@@ -31,7 +31,7 @@
                 <%--</form>--%>
                 <%--<br></li>--%>
             <br>
-            <li><a href="${pageContext.request.contextPath}/">Home</a><br></li>
+            <li><a href="${pageContext.request.contextPath}/main">Home</a><br></li>
                 <br>
             <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li>
             <br>
@@ -152,7 +152,7 @@
                                 <br>
                                 <tr>
                                     <td class="tb2" style="width:50%"><a
-                                            href="${pageContext.request.contextPath}/${interest.id}">Learn
+                                            href="${pageContext.request.contextPath}/interest/${interest.id}">Learn
                                         more</a>
                                     </td>
                                 </tr>

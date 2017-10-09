@@ -40,7 +40,8 @@
                     <td>${user.contact.city}</td>
                     <td>${user.contact.country.label}</td>
                     <td><img src="${pageContext.request.contextPath}/${user.profileFotoLink}" alt=" ${user.username} profile photo" style="width: 76px;height: 82px;"></td>
-                    <td><img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}" alt=" ${user.username} personal page photo" style="width: 76px;height: 82px;"></td>
+                    <td><img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}" alt=" ${user.username} personal page photo" class="image" style="max-width:100%;height:auto;">
+                    </td>
                     <td>
                         <a href="${user.youtubeLink}" target="_blank">Video</a>
                         <!-- <iframe width="420" height="315"

@@ -10,9 +10,6 @@
         </div>
         <div class="menu">
 
-            <c:set var="isAdmin" value="false"/>
-            <c:set var="isOwner" value="false"/>
-
             <sec:authorize access="hasRole('ADMIN')">
                 <c:set var="isAdmin" value="true"/>
             </sec:authorize>

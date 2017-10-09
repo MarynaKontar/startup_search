@@ -8,13 +8,10 @@
     <title>Main page for startup application after login</title>
     <%@include file="head.jsp" %>
 </head>
-
 <body>
-
-<c:set var="isOwner" value="${projectsByIndustry.user.id == user_id}"/>
-
 <div class="flex-container">
     <%@include file="navbar.jsp" %>
+    <c:set var="isOwner" value="${projectsByIndustry.user.id == user_id}"/>
     <aside>
     </aside>
 
