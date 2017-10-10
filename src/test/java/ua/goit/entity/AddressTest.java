@@ -21,9 +21,8 @@ public class AddressTest {
 
     @Test
     public void creationTest() {
-        Address address = null;
 
-        address = new Address();
+        Address address = new Address();
 
         address.setId(1l);
         assertEquals(1L, (long)address.getId());
