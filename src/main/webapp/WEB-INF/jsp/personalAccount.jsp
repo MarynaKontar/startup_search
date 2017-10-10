@@ -15,8 +15,8 @@
     <c:set var="isOwner" value="${user.id == user_id}"/>
     <h3 align="center">Personal account</h3>
     <aside>
-        <img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}" alt=" ${user.username} personal page photo" class="image" style="max-width:100%;height:auto;">
-        <br>
+        <img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}"
+             alt=" ${user.username} personal page photo" class="image" style="width: auto;height:84px;">
         <p>
             <c:choose>
             <c:when test="${!empty(user.lastName) || !empty(user.firstName)}">
@@ -27,7 +27,6 @@
         </c:otherwise>
         </c:choose>
         </p>
-
         <adress>
             <p>${user.contact.country.label} ${user.contact.city}</p>
             <p>${user.contact.phoneNumber}</p>
@@ -63,10 +62,7 @@
                 <br>
                 <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}/">Account</a></li>
                 <br>
-
             </c:if>
-
-
         </ul>
     </nav>
 
@@ -103,60 +99,7 @@
         <section>
             <h4>Startups</h4>
             <c:forEach var="project" items="${user.projects}">
-                <section>
-                    <div class="first"
-                         style="float: left; width:27%; margin:0.5%; box-shadow: 10px 10px 5px grey; background-color: #f1f1f1">
-                        <table>
-                            <div class="second" style="height:80px">
-                                <h3 align="center">Startup ${project.name}</h3>
-                                <tr>
-                                    <td class="tb1" style="width:60%">${project.lastChange}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Description:</td>
-                                    <td class="tb1" style="width:60%">${project.description}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${project.address.country.label}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">City:</td>
-                                    <td class="tb1" style="width:60%">${project.address.city}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Total:</td>
-                                    <td class="tb1" style="width:60%">${project.funds}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Minimum Investment:</td>
-                                    <td class="tb1" style="width:60%">${project.minInvestment}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${project.industry.label}</td>
-                                </tr>
-                                <br>
-                                <tr>
-                                    <td class="tb2" style="width:50%"><a
-                                            href="${pageContext.request.contextPath}/startup/${project.id}">Learn
-                                        more</a>
-                                    </td>
-                                </tr>
-                                <br>
-                                <tr>
-                                    <td>
-                                        <c:if test="${isOwner || isAdmin}">
-                                            <a href="${pageContext.request.contextPath}/startup/${project.id}/edit">Edit</a>
-                                            <br>
-                                            <a href="${pageContext.request.contextPath}/startup/${user.id}/${project.id}/delete">Delete</a>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                            </div>
-                        </table>
-                    </div>
-                </section>
+                <%@include file="short-project-info.jsp" %>
             </c:forEach>
         </section>
         <br>
@@ -165,52 +108,7 @@
         <section>
             <h4>Interests</h4>
             <c:forEach var="interest" items="${user.interests}">
-                <section>
-                    <div class="first"
-                         style="float: left; width:27%; margin:0.5%; box-shadow: 10px 10px 5px grey; background-color: #f1f1f1">
-                        <table>
-                            <div class="second" style="height:80px">
-                                <h3 align="center">Interest ${interest.name}</h3>
-                                <tr>
-                                    <td class="tb1" style="width:60%">${interest.lastChange}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Description:</td>
-                                    <td class="tb1" style="width:60%">${interest.description}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${interest.country.label}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${interest.industry.label}</td>
-                                </tr>
-                                <tr>
-                                    <td class="tb1" style="width:30%">Budget:</td>
-                                    <td class="tb1" style="width:60%">${interest.budget}</td>
-                                </tr>
-                                <br>
-                                <tr>
-                                    <td class="tb2" style="width:50%"><a
-                                            href="${pageContext.request.contextPath}/interest/${interest.id}">Learn
-                                        more</a>
-                                    </td>
-                                </tr>
-                                <br>
-                                <tr>
-                                    <td>
-                                        <c:if test="${isOwner || isAdmin}">
-                                            <a href="${pageContext.request.contextPath}/interest/${interest.id}/edit">Edit</a><br>
-                                            <br>
-                                            <a href="${pageContext.request.contextPath}/interest/${user.id}/${interest.id}/delete">Delete</a>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                            </div>
-                        </table>
-                    </div>
-                </section>
+                <%@include file="short-interest-info.jsp" %>
             </c:forEach>
         </section>
     </article>

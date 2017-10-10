@@ -15,8 +15,12 @@ import ua.goit.configuration.WebConfiguration;
 import ua.goit.configuration.SpringSecurityConfiguration;
 import ua.goit.entity.Interest;
 import ua.goit.entity.Project;
+import ua.goit.entity.User;
 import ua.goit.services.InterestService;
 import ua.goit.services.ProjectService;
+import ua.goit.services.UserService;
+
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
@@ -42,6 +46,8 @@ public class MainControllerTest {
     private ProjectService projectService;
     @Autowired
     private InterestService interestService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private WebApplicationContext context;
@@ -82,13 +88,15 @@ public class MainControllerTest {
     @Test
     public void guestRegistrationFormTest() throws Exception {
         mvc.perform(get("/registration").with(anonymous()))
+                .andExpect(model().attribute("usernames",
+                        equalTo( userService.findAll().stream().map(User::getUsername).collect(Collectors.toList()))))
                 .andExpect(view().name("registration-form"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void guestRegistrationTest() throws Exception {
-        mvc.perform(post("/register").with(anonymous())
+        mvc.perform(post("/registration").with(anonymous())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .param("login", "login")
                 .param("password", "password"))
