@@ -2,12 +2,12 @@ package ua.goit.entity;
 
 import org.junit.Before;
 import org.junit.Test;
-//import org.unitils.reflectionassert.ReflectionAssert;
 import ua.goit.entity.enums.Country;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
-import static org.unitils.reflectionassert.ReflectionAssert.*;
+//import org.unitils.reflectionassert.ReflectionAssert;
 
 
 /**
@@ -25,18 +25,19 @@ public class AddressTest {
 
         address = new Address();
 
-
         address.setId(1l);
         assertEquals(1L, (long)address.getId());
 
-        address.setCity("city1");
-        assertEquals("city1", address.getCity());
+        address.setCity("city");
+        assertEquals("city", address.getCity());
 
-        address.setRegion("a");
-        assertEquals("a", address.getRegion());
+        address.setRegion("region");
+        assertEquals("region", address.getRegion());
 
         address.setCountry(Country.AFGHANISTAN);
         assertEquals(Country.AFGHANISTAN, address.getCountry());
+
+
 
     }
 
