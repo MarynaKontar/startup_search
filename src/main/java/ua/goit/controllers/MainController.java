@@ -56,7 +56,7 @@ public class MainController {
         Map<String,? super Object> map = new HashMap<>();
         map.put("projects", projectService.findAll());
         map.put("interests", interestService.findAll());
-        return new ModelAndView("/index",map);
+        return new ModelAndView("index",map);
     }
 
     /**
