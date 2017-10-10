@@ -61,5 +61,3 @@ target/
 
 /src/main/resources/database.properties
 /src/main/resources/db.sql
-
-/startup_search.iml
