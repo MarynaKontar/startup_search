@@ -26,17 +26,12 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/*.css", "/*.jpg").permitAll()
-                .antMatchers("/", "/startup/").permitAll()
-                .antMatchers("/registration", "/registration/**").not().authenticated()
-//                .antMatchers("/registration", "/registration/**").authenticated()//чтобі админ мог добавить нового юзера (переделать отдельнім методом)
-
-//                .antMatchers("/main/").hasRole("ADMIN")
+                .antMatchers("/","/registration", "/registration/*", "/registration/**",
+                        "/registrationAfterMissingLogin/").not().authenticated()
                 .antMatchers("/user/users/").hasRole("ADMIN")
-                .antMatchers("/interest/**","/interest/*","/startup/**", "/user/**", "/user/*", "/startup/*","/search/*","/search/**").authenticated()
-                .antMatchers("/startup/**", "/user/**", "/user/*", "/startup/*").permitAll()
-                .antMatchers("/main").authenticated()
-
-                .antMatchers("/index.jsp").hasRole("ADMIN")
+                .antMatchers("/main","/startup/*", "/startup/**", "/interest/*", "/interest/**",
+                        "/user/*", "/user/**", "/search/*","/search/**").authenticated()
+//                .antMatchers( "/startup/**", "/user/**", "/user/*", "/startup/*").permitAll()
 
                 .anyRequest().denyAll()
                 .and().formLogin()

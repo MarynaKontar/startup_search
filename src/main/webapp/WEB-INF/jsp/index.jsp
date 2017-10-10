@@ -6,27 +6,20 @@
 <html>
 <head>
     <title>Start page for startup application</title>
-    <%--<%@include file="header.jsp" %>--%>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
 
 <div class="flex-container">
-    <header>
-        <%--<%@include file="navbar.jsp" %>--%>
-        <h3>Startup</h3>
-        <a href="${pageContext.request.contextPath}/login">Login</a>
-    </header>
+    <%@include file="navbar.jsp" %>
 
     <aside>
-
-
     </aside>
     <nav class="nav">
         <ul>
             <li><a href="${pageContext.request.contextPath}/login">Login</a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/registration">Registration</a><br></li><br>
+            <li><a href="${pageContext.request.contextPath}/registration/">Registration</a><br></li><br>
             <li></li>
         </ul>
     </nav>
@@ -99,11 +92,11 @@
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Country:</td>
-                                    <td class="tb1" style="width:60%">${interest.country}</td>
+                                    <td class="tb1" style="width:60%">${interest.country.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Industry:</td>
-                                    <td class="tb1" style="width:60%">${interest.industry}</td>
+                                    <td class="tb1" style="width:60%">${interest.industry.label}</td>
                                 </tr>
                                 <tr>
                                     <td class="tb1" style="width:30%">Budget:</td>

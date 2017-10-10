@@ -40,16 +40,6 @@ public class ProjectController {
         this.userService = userService;
     }
 
-//    @ModelAttribute("industries")
-//    public Industry[] industries() {
-//        return Industry.values();
-//    }
-//
-//    @ModelAttribute("countries")
-//    public Country[] countries() {
-//        return Country.values();
-//    }
-
     @GetMapping("/create")
     public ModelAndView createStartup() {
         ModelAndView modelAndView = new ModelAndView("project-create-form");

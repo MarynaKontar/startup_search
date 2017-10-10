@@ -6,34 +6,15 @@
 <html>
 <head>
     <title>Startup info page</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
-
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
-
-<c:set var="isAdmin" value="false"/>
-<c:set var="isOwner" value="${project.user.id == user_id}"/>
-<sec:authorize access="hasRole('ADMIN')">
-    <c:set var="isAdmin" value="true"/>
-</sec:authorize>
-
 <div class="flex-container">
-
-    <header>
-        <h3>STARTUP</h3>
-        <th>                           </th>
-        <th><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a></th>
-
-    </header>
-
+    <%@include file="navbar.jsp" %>
+    <c:set var="isOwner" value="${project.user.id == user_id}"/>
     <aside>
-
     </aside>
-
     <nav class="nav">
         <ul>
             <c:if test="${isOwner || isAdmin}">

@@ -5,16 +5,15 @@
 <html>
 <head>
     <title>Registration form</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 <body>
 <div class="flex-container" align="center">
-    <header>
-        <h3 align="center">Edit account</h3>
-    </header>
+    <%@include file="navbar.jsp" %>
     <article>
+        <h3 align="center">Edit account</h3>
         <div align="center">
-            <form method="post" action="/user/personalAccount/${user.id}/update/" >
+            <form method="post" action="${pageContext.request.contextPath}/user/personalAccount/${user.id}/update/" >
 
                 <table align="center">
                     <tr align="center">

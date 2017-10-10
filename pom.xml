@@ -6,7 +6,7 @@
 
     <groupId>ua.goit</groupId>
     <artifactId>startup_search</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>start</version>
     <packaging>war</packaging>
 
     <build>
@@ -122,6 +122,19 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.test.version}</version>
+        </dependency>
+
+
+        <!--LOGGING-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
         </dependency>
 
     </dependencies>

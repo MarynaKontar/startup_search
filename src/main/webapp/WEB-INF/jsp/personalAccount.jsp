@@ -4,44 +4,22 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-    <title>personal account</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <title>Personal account</title>
+    <%@include file="head.jsp" %>
 </head>
 <body>
-
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
-
-<c:set var="isOwner" value="${user.id == user_id}"/>
-
-<c:set var="isAdmin" value="false"/>
-
-<sec:authorize access="hasRole('ADMIN')">
-    <c:set var="isAdmin" value="true"/>
-</sec:authorize>
-
 <div class="flex-container">
-    <header>
-        <c:if test="${!isOwner}">
-            <h3>Startup</h3>
-        </c:if>
-
-        <c:if test="${isOwner || isAdmin}">
-            <h3>Personal account</h3>
-            <a href=" /user/personalAccount/${user.id}/edit">Edit profile</a>
-        </c:if>
-    </header>
-
+    <%@include file="navbar.jsp" %>
+    <c:set var="isOwner" value="${user.id == user_id}"/>
+    <h3 align="center">Personal account</h3>
     <aside>
-        <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
-        <%--<iframe width="420" height="315"--%>
-                <%--src="${user.youtubeLink}">--%>
-        <%--</iframe>--%>
+        <img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}" alt=" ${user.username} personal page photo" class="image" style="max-width:100%;height:auto;">
+        <br>
         <p>
             <c:choose>
-            <c:when test="${empty(user.lastName) || empty(user.firstName)}">
+            <c:when test="${!empty(user.lastName) || !empty(user.firstName)}">
         <h2>${user.firstName} ${user.lastName}</h2>
         </c:when>
         <c:otherwise>
@@ -51,11 +29,16 @@
         </p>
 
         <adress>
-            <p>${user.contact.country} ${user.contact.city}</p>
+            <p>${user.contact.country.label} ${user.contact.city}</p>
             <p>${user.contact.phoneNumber}</p>
             <p>${user.contact.email}</p>
         </adress>
+        <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
+        <%--<iframe width="420" height="315"--%>
+        <%--src="${user.youtubeLink}">--%>
+        <%--</iframe>--%>
     </aside>
+
     <nav class="nav">
         <ul>
             <li><a href="${pageContext.request.contextPath}/main">Home</a></li>
@@ -65,7 +48,7 @@
                 </br>
                 <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
                 </br>
-                <li><a href="${pageContext.request.contextPath} /user/personalAccount/${user.id}/edit">Edit
+                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/edit">Edit
                     profile</a></li>
                 <br>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>

@@ -52,7 +52,7 @@ public class MainController {
      */
     @GetMapping
     public ModelAndView index() {
-        LOGGER.info("Building start page");
+        LOGGER.info("Building main page");
         Map<String,? super Object> map = new HashMap<>();
         map.put("projects", projectService.findAll());
         map.put("interests", interestService.findAll());
