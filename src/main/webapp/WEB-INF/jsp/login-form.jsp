@@ -13,7 +13,7 @@
     <article>
         <h3 align="center">Login form</h3>
         <div align="center">
-            <form action="login" method="post">
+            <form action="${pageContext.request.contextPath}/login" method="post">
                 <table align="center">
                     <tr>
                         <th>Login</th>
