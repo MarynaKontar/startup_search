@@ -72,7 +72,19 @@ public class InterestControllerTest {
 
     @Test
     public void saveTest() throws Exception {
-        //.andExpect(model().attribute("signupForm", any(SignupForm.class)));
+        Interest interest = Mockito.mock(Interest.class);
+        Mockito.when(interest.getId()).thenReturn(1L);
+
+        User user = Mockito.mock(User.class);
+        Mockito.when(user.getId()).thenReturn(1L);
+
+        Mockito.when(interest.getUser()).thenReturn(user);
+
+        mvc.perform(post("/interest/create/").with(user("user").roles("ADMIN", "USER"))
+        .flashAttr("interest", interest))
+                .andExpect(model().attribute("interest", interest))
+                .andExpect(redirectedUrl("/user/personalAccount/" + interest.getUser().getId()))
+                .andExpect(status().is3xxRedirection());
     }
 
     @Test
@@ -111,17 +123,21 @@ public class InterestControllerTest {
     public void updateTest() throws Exception {
         Interest interest = Mockito.mock(Interest.class);
         Mockito.when(interest.getId()).thenReturn(1L);
+
         User user = Mockito.mock(User.class);
         Mockito.when(user.getId()).thenReturn(1L);
-       interest.setUser(user);
-        Mockito.when(interestService.save(interest)).thenReturn(interest);
+
+        Mockito.when(interest.getUser()).thenReturn(user);
 
 
-        mvc.perform(post("/interest/1/update/").with(user("user")
-                        .roles("ADMIN", "USER")).requestAttr("command", interest))
+        mvc.perform(post("/interest/{id}/update/", 1L)
+                .with(user("user")
+                .roles("ADMIN", "USER"))
+                .flashAttr("command", interest))
+        .andExpect(model().attribute("command", interest))
+        .andExpect(redirectedUrl("/user/personalAccount/" + interest.getUser().getId()))
+        .andExpect(status().is3xxRedirection());
 
-                .andExpect(request().attribute("command", interest))
-                .andExpect(redirectedUrl("/user/personalAccount/1"));
 
 
     }

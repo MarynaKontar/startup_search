@@ -90,7 +90,7 @@ public class InterestController {
 
     @PostMapping("/{id}/update/")
     public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("command") Interest interest) throws IOException {
-        interest = interestService.save(interest);
+        interestService.save(interest);
         return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getId());
     }
 }
