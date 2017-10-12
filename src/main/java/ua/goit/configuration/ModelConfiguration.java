@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.init.DataSourceInitializer;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -69,15 +67,15 @@ public class ModelConfiguration {
         return new JpaTransactionManager(entityManagerFactory);
     }
 
-    @Bean
-    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource){
-        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(scriptResource);
-
-        DataSourceInitializer initializer = new DataSourceInitializer();
-        initializer.setDataSource(dataSource);
-        initializer.setDatabasePopulator(populator);
-        return initializer;
-    }
+//    @Bean
+//    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource){
+//        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+//        populator.addScript(scriptResource);
+//
+//        DataSourceInitializer initializer = new DataSourceInitializer();
+//        initializer.setDataSource(dataSource);
+//        initializer.setDatabasePopulator(populator);
+//        return initializer;
+//    }
 
 }

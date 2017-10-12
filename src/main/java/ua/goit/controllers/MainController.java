@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.entity.enums.Industry;
 import ua.goit.services.*;
-import ua.goit.util.InitDefaultEntities;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,9 +73,9 @@ public class MainController {
     }
 
 //TODO запустить в первый раз для создания исходных юзеров
-    @PostConstruct
-    public void initDefaultUsers() {
-        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService,
-                educationService, passwordEncoder);
-    }
+//    @PostConstruct
+//    public void initDefaultUsers() {
+//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService,
+//                educationService, passwordEncoder);
+//    }
 }
