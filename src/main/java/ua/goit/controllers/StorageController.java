@@ -75,4 +75,28 @@ public class StorageController {
         }
         return "redirect:/user/personalAccount/{id}/edit";
     }
+
+    @PostMapping("/{id}/saveProjectPhoto")
+    public String saveProjectPhoto(@RequestParam("file") MultipartFile file,
+                                        RedirectAttributes redirectAttributes, @PathVariable("id") Long id) {
+        String realPathtoUploads = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("");
+        System.out.println(realPathtoUploads);
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+            return "redirect:/startup/{id}/edit";
+        }
+        try {
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(realPathtoUploads + "/WEB-INF/jpg/" + "projectPhoto" + id + ".jpg");
+            Files.write(path, bytes);
+
+            redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/startup/{id}/edit";
+    }
+
+
 }

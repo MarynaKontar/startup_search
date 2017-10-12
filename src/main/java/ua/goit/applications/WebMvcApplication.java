@@ -1,15 +1,11 @@
 package ua.goit.applications;
 
-import org.springframework.web.context.support.GenericWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import ua.goit.configuration.ModelConfiguration;
 import ua.goit.configuration.SpringSecurityConfiguration;
 import ua.goit.configuration.WebConfiguration;
 
 import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import java.io.File;
 

@@ -18,7 +18,7 @@
     <div class=class="flex-container">
         <div class="item-img ">
             <div class="item-img-content in-cover">
-                <img src="${pageContext.request.contextPath}/${project.user.profileFotoLink}"
+                <img src="${pageContext.request.contextPath}/${project.photo}"
                      style="width:512px;height:auto;">
             </div>
         </div>

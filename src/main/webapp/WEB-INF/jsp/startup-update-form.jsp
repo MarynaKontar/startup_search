@@ -14,6 +14,24 @@
 
     <article>
         <h3 align="center">Edit a project</h3>
+
+        <form method="post" enctype="multipart/form-data"
+              action="${pageContext.request.contextPath}/storage/${command.id}/saveProjectPhoto">
+            <table align="center">
+                <tr>
+                    <td>Project photo:</td>
+                    <td><input type="file" id="file_upload" name="file" accept="image/*,image/jpeg" size="128"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" onClick="return validate()" value="Load a project photo"/></td>
+                </tr>
+            </table>
+        </form>
+        <br>
+
+        <%@include file="validatePhotoSize.jsp" %>
+
         <div align="center">
             <form:form method="post" action="${pageContext.request.contextPath}/startup/${command.id}/update/">
                 <form:input path="user.id" type="number" name="user.id" value="${command.user.id}" hidden="true"/>

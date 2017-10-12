@@ -125,6 +125,13 @@ public class Experience implements Serializable {
 
     @Override
     public String toString() {
-        return "Experience{}";
+        return "Experience{" +
+                "id=" + id +
+                ", company='" + company + '\'' +
+                ", position='" + position + '\'' +
+                ", responsibility='" + responsibility + '\'' +
+                ", fromDate=" + fromDate +
+                ", untilDate=" + untilDate +
+                '}';
     }
 }

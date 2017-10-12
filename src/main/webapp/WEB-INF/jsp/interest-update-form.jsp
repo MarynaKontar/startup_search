@@ -20,20 +20,20 @@
                     <tr align="center">
                         <th>Name of the interest</th>
                         <td>
-                            <form:input path="name" type="text" name="name" value="${command.name}"/>
+                            <form:input path="name" type="text" name="name" required="required" value="${command.name}" />
                         </td>
                     </tr>
                     <tr align="center">
                         <th>The announcement (brief description)</th>
                         <td>
-                            <form:input path="description" type="text" name="description" value="${command.description}"/>
+                            <form:input path="description" type="text" name="description"  required="required" value="${command.description}" />
                         </td>
                     </tr>
                     <tr align="center">
                         <th>Budget</th>
                         <td>
                             <form:input path="budget" type="number" name="budget" min="1000" max="1000000000" step="100"
-                                        value="${command.budget}"/>
+                                        value="${command.budget}" required="required"/>
                         </td>
                     </tr>
                     <tr align="center">
