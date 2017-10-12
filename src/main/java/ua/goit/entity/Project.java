@@ -40,7 +40,7 @@ public class Project implements Serializable {
 
     private String description;
 
-//    private String foto;
+    private String photo;
 
     @OneToOne
     private BusinessPlan businessPlan;
@@ -129,13 +129,13 @@ public class Project implements Serializable {
         this.description = description;
     }
 
-//    public String getFoto() {
-//        return foto;
-//    }
-//
-//    public void setFoto(String foto) {
-//        this.foto = foto;
-//    }
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public BusinessPlan getBusinessPlan() {
         return businessPlan;
@@ -161,10 +161,61 @@ public class Project implements Serializable {
         isActive = active;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Project project = (Project) o;
+
+        if (isActive != project.isActive) return false;
+        if (id != null ? !id.equals(project.id) : project.id != null) return false;
+        if (name != null ? !name.equals(project.name) : project.name != null) return false;
+        if (user != null ? !user.equals(project.user) : project.user != null) return false;
+        if (funds != null ? !funds.equals(project.funds) : project.funds != null) return false;
+        if (minInvestment != null ? !minInvestment.equals(project.minInvestment) : project.minInvestment != null)
+            return false;
+        if (industry != project.industry) return false;
+        if (address != null ? !address.equals(project.address) : project.address != null) return false;
+        if (description != null ? !description.equals(project.description) : project.description != null) return false;
+        if (photo != null ? !photo.equals(project.photo) : project.photo != null) return false;
+        if (businessPlan != null ? !businessPlan.equals(project.businessPlan) : project.businessPlan != null)
+            return false;
+        return lastChange != null ? lastChange.equals(project.lastChange) : project.lastChange == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (funds != null ? funds.hashCode() : 0);
+        result = 31 * result + (minInvestment != null ? minInvestment.hashCode() : 0);
+        result = 31 * result + (industry != null ? industry.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (photo != null ? photo.hashCode() : 0);
+        result = 31 * result + (businessPlan != null ? businessPlan.hashCode() : 0);
+        result = 31 * result + (lastChange != null ? lastChange.hashCode() : 0);
+        result = 31 * result + (isActive ? 1 : 0);
+        return result;
+    }
 
     @Override
     public String toString() {
-        return "";
+        return "Project{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", user=" + user +
+                ", funds=" + funds +
+                ", minInvestment=" + minInvestment +
+                ", industry=" + industry +
+                ", address=" + address +
+                ", description='" + description + '\'' +
+                ", photo='" + photo + '\'' +
+                ", businessPlan=" + businessPlan +
+                ", lastChange=" + lastChange +
+                ", isActive=" + isActive +
+                '}';
     }
 }

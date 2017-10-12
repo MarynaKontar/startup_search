@@ -19,7 +19,7 @@
                     <tr align="center">
                         <th>Name of the interest</th>
                         <td>
-                            <input autofocus type="text" name="name" placeholder="your name of interest" required>
+                            <input autofocus type="text" name="name" placeholder="your name of interest" required="required">
                         </td>
                     </tr>
                     <tr align="center">

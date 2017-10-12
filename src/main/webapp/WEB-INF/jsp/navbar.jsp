@@ -28,7 +28,7 @@
 
             <sec:authorize access="isAuthenticated()">
             <a href="${pageContext.request.contextPath}/main"> Home | </a>
-            <a href="${pageContext.request.contextPath}/user/personalAccount//${user_id}"> Account | </a>
+            <a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}"> Account | </a>
             <a href="${pageContext.request.contextPath}/logout"> Logout </a>
             </sec:authorize>
 

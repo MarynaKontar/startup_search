@@ -8,6 +8,36 @@
 <head>
     <title>Personal account</title>
     <%@include file="head.jsp" %>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="flex-container">
@@ -15,27 +45,36 @@
     <c:set var="isOwner" value="${user.id == user_id}"/>
     <h3 align="center">Personal account</h3>
     <aside>
-        <img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}"
-             alt=" ${user.username} personal page photo" class="image" style="width: auto;height:84px;">
-        <p>
-            <c:choose>
-            <c:when test="${!empty(user.lastName) || !empty(user.firstName)}">
-        <h2>${user.firstName} ${user.lastName}</h2>
-        </c:when>
-        <c:otherwise>
-            <h2>${user.username}</h2>
-        </c:otherwise>
-        </c:choose>
-        </p>
-        <adress>
-            <p>${user.contact.country.label} ${user.contact.city}</p>
-            <p>${user.contact.phoneNumber}</p>
-            <p>${user.contact.email}</p>
-        </adress>
-        <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
-        <%--<iframe width="420" height="315"--%>
-        <%--src="${user.youtubeLink}">--%>
-        <%--</iframe>--%>
+        <div class="row">
+            <div class="column">
+                <img src="${pageContext.request.contextPath}/${user.profileFotoLink}"
+                     style="width:512px;height:auto;">
+            </div>
+            <div class="column" align="right">
+                <img src="${pageContext.request.contextPath}/${user.personalPageFotoLink}"
+                     alt=" ${user.username} personal page photo" class="image" style="width: auto;height:84px;">
+                <p>
+                    <c:choose>
+                    <c:when test="${!empty(user.lastName) || !empty(user.firstName)}">
+                <h2>${user.firstName} ${user.lastName}</h2>
+                </c:when>
+                <c:otherwise>
+                    <h2>${user.username}</h2>
+                </c:otherwise>
+                </c:choose>
+                </p>
+                <adress>
+                    <p>${user.contact.country.label} ${user.contact.city}</p>
+                    <p>${user.contact.phoneNumber}</p>
+                    <p>${user.contact.email}</p>
+                </adress>
+                <a href="${user.youtubeLink}" target="_blank" style="">link to youtube</a>
+                <%--<iframe width="420" height="315"--%>
+                <%--src="${user.youtubeLink}">--%>
+                <%--</iframe>--%>
+
+            </div>
+        </div>
     </aside>
 
     <nav class="nav">
