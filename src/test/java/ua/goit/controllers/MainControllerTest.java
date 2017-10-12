@@ -6,15 +6,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ua.goit.configuration.WebConfiguration;
 import ua.goit.configuration.SpringSecurityConfiguration;
-import ua.goit.entity.Interest;
-import ua.goit.entity.Project;
+import ua.goit.configuration.WebConfiguration;
 import ua.goit.entity.User;
 import ua.goit.services.InterestService;
 import ua.goit.services.ProjectService;
@@ -30,14 +28,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+
 /**
  * Tests for main controller
  *
  * @MarynaKontar
  */
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {WebConfiguration.class, SpringSecurityConfiguration.class})
+@ContextConfiguration(classes = {WebConfiguration.class
+        , SpringSecurityConfiguration.class})
 public class MainControllerTest {
 
     private MockMvc mvc;

@@ -6,17 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ua.goit.entity.BusinessPlan;
 import ua.goit.entity.Interest;
 import ua.goit.entity.Project;
 import ua.goit.entity.enums.Country;
 import ua.goit.entity.enums.Industry;
-import ua.goit.services.*;
+import ua.goit.services.InterestService;
+import ua.goit.services.UserService;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 
 /**
  * * Controller for {@link ua.goit.entity.Interest}
@@ -35,16 +32,6 @@ public class InterestController {
         this.interestService = interestService;
         this.userService = userService;
     }
-//
-//    @ModelAttribute("industries")
-//    public Industry[] industries() {
-//        return Industry.values();
-//    }
-//
-//    @ModelAttribute("countries")
-//    public Country[] countries() {
-//        return Country.values();
-//    }
 
     @GetMapping("/create")
     public ModelAndView createInterest() {
@@ -103,7 +90,7 @@ public class InterestController {
 
     @PostMapping("/{id}/update/")
     public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("command") Interest interest) throws IOException {
-        interestService.save(interest);
+        interest = interestService.save(interest);
         return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getId());
     }
 }
