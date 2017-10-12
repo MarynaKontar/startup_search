@@ -63,10 +63,6 @@ public class UserService {
         if (password != null && !password.isEmpty() && !user.getPassword().equals(password)) {
             updatedUser.setPassword(passwordEncoder.encode(password));
         }
-        //TODO пока не делала функционал подгрузки фото профиля, надо, чтобы не "стиралась" ссылка на фото в бд
-        updatedUser.setPersonalPageFotoLink(user.getPersonalPageFotoLink());
-        updatedUser.setProfileFotoLink(user.getProfileFotoLink());
-
         updatedUser.setProjects(user.getProjects());
         updatedUser.setExperiences(user.getExperiences());
         updatedUser.setEducations(user.getEducations());

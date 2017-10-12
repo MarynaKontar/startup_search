@@ -40,6 +40,8 @@ public class Project implements Serializable {
 
     private String description;
 
+//    private String foto;
+
     @OneToOne
     private BusinessPlan businessPlan;
 
@@ -126,6 +128,14 @@ public class Project implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+//    public String getFoto() {
+//        return foto;
+//    }
+//
+//    public void setFoto(String foto) {
+//        this.foto = foto;
+//    }
 
     public BusinessPlan getBusinessPlan() {
         return businessPlan;

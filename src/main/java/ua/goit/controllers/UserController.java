@@ -3,7 +3,6 @@ package ua.goit.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +12,8 @@ import ua.goit.entity.enums.Country;
 import ua.goit.entity.enums.Industry;
 import ua.goit.services.UserService;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 /**
@@ -36,7 +33,7 @@ public class UserController {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService,  PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -70,6 +67,8 @@ public class UserController {
 
     @PostMapping("/personalAccount/{id}/update")
     public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("user") User user, @RequestParam(value = "password", required = false) String password) throws IOException {
+        user.setProfileFotoLink( "profilePhoto"+user.getId()+".jpg");
+        user.setPersonalPageFotoLink( "personalPagePhoto" + user.getId() + ".jpg");
         userService.update(user, id, password);
         LOGGER.info("Redirecting to personal account page after updating personal account with username='{}'", user.getUsername());
         return new ModelAndView("redirect:/user/personalAccount/"  + id);
