@@ -30,7 +30,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/registrationAfterMissingLogin/").not().authenticated()
                 .antMatchers("/user/users/").hasRole("ADMIN")
                 .antMatchers("/main","/startup/*", "/startup/**", "/interest/*", "/interest/**",
-                        "/user/*", "/user/**", "/search/*","/search/**").authenticated()
+                        "/user/*", "/user/**", "/search/*","/search/**", "/storage/*","/storage/**").authenticated()
 //                .antMatchers( "/startup/**", "/user/**", "/user/*", "/startup/*").permitAll()
 
                 .anyRequest().denyAll()
