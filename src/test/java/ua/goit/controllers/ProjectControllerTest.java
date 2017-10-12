@@ -100,7 +100,7 @@ public class ProjectControllerTest {
 
     @Test
     public void deleteTest() throws Exception {
-        mvc.perform(get("/startup/{userId/startupId}/delete","1/1")
+        mvc.perform(get("/startup/1/1/delete")
                 .with(user("user")
                         .roles("ADMIN", "USER")))
                 .andExpect(status().is3xxRedirection())
