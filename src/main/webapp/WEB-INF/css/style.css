@@ -21,7 +21,7 @@ aside {
 }
 
 header {
-    background: burlywood;
+    background: #000136;
     color: white;
 }
 
@@ -63,4 +63,10 @@ footer {
         -webkit-order: 3;
         order: 3;
     }
+
+}
+.block{width:75%;}
+.block img{
+    max-width:100%;
+    height:auto;
 }

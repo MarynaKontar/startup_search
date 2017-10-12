@@ -3,6 +3,8 @@ package ua.goit.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -33,7 +35,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         // View -> RedirectView
         registry.addViewController("/login").setViewName("login-form");
-        registry.addViewController("/registration").setViewName("registration-form");
+//        registry.addViewController("/registration").setViewName("registration-form");
 //        registry.addRedirectViewController("/login", "/user/show");
     }
 
@@ -48,5 +50,9 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
-
+    // Bean name must be "multipartResolver", by default Spring uses method name as bean name.
+    @Bean
+    public MultipartResolver multipartResolver() {
+        return new StandardServletMultipartResolver();
+    }
 }

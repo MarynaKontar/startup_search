@@ -60,7 +60,8 @@ public class InitDefaultEntities {
                 LocalDate.of(2007, 6, 30));
 
         User userFromDb1 = usersService.findUserByUsername("Maryna");
-        userFromDb1.setPersonalPageFotoLink("logo.jpg");//TODO Как ссылку указывать?
+        userFromDb1.setPersonalPageFotoLink("personalPagePhoto50.jpg");
+        userFromDb1.setProfileFotoLink("profilePhoto50.jpg");
         userFromDb1.setYoutubeLink(youtubeLink);
         userFromDb1.setAboutMe("I'm admin!");
         userFromDb1.setSkills("JavaCore, Spring, Hibernate");
@@ -71,10 +72,21 @@ public class InitDefaultEntities {
         usersService.save(userFromDb1);
 
 
-        BusinessPlan businessPlan1 = new BusinessPlan("idea1", "currentState","market1");
-        Project project1 = new Project("project1", BigDecimal.valueOf(100000),BigDecimal.valueOf(10000),
-                Industry.AGRICULTURE, new Address("Kiev", null, Country.UKRAINE),
-                "description for project1", LocalDate.of(2017, 9, 1));
+        BusinessPlan businessPlan1 = new BusinessPlan("We offer the client a worthy alternative to fast food " +
+                "and heavy, harmful food.",
+                "At the moment, we have made a menu and prepared relations with suppliers, we are ready " +
+                        "to issue a lease for the premises, but so far we are in the freezing stage, due to the lack of funds.",
+                "The general market of fast food establishments is quite wide and varied, " +
+                        "the cost of which exceeded billions of dollars, but we could find a loophole that " +
+                        "will help us to gain a foothold in this market. The fast food market with the theme " +
+                        "of healthy eating is only beginning, an example of which is salathy, but the industry " +
+                        "itself is still emerging.");
+        Project project1 = new Project("Network of yogurt bars", BigDecimal.valueOf(100000),BigDecimal.valueOf(10000),
+                Industry.SERVICES, new Address("Kiev", null, Country.UKRAINE),
+                "We offer a product that the client has not yet seen in the world of restaurant business in Kiev.\n" +
+                        "We provide an opportunity for the client to form the composition of his yogurt himself, thanks to which, we are flexible towards the client.\n" +
+                        "We offer the client a worthy alternative to fast food and heavy, harmful food.",
+                LocalDate.of(2017, 9, 1));
 
         project1.setBusinessPlan(businessPlan1);
         userFromDb1.addProject(project1);
@@ -88,7 +100,7 @@ public class InitDefaultEntities {
         user2.setFirstName("Guillaume");
         user2.setLastName("Gingembre");
         user2.setPassword(passwordEncoder.encode("Guillaume"));
-        Collection<Role> roles1 = Arrays.asList(Role.ADMIN);
+        Collection<Role> roles1 = Arrays.asList(Role.USER);
         user2.setRoles(roles1);
         Contact contact1 = new Contact("guilaume@gmail.com", "+380971713778", "Paris", Country.FRANCE);
         user2.setContact(contact1);
@@ -111,6 +123,8 @@ public class InitDefaultEntities {
                 LocalDate.of(2007, 6, 30));
 
         User userFromDb2 = usersService.findUserByUsername("Guillaume");
+        userFromDb2.setPersonalPageFotoLink("personalPagePhoto53.jpg");
+        userFromDb2.setProfileFotoLink("profilePhoto53.jpg");
         userFromDb2.addExperience(experience3);
         userFromDb2.addExperience(experience4);
         userFromDb2.addEducation(education2);
@@ -118,24 +132,19 @@ public class InitDefaultEntities {
 
         usersService.save(userFromDb2);
 
-        BusinessPlan businessPlan2 = new BusinessPlan("idea2", "currentState2","market2");
-        Project project2 = new Project("project2", BigDecimal.valueOf(100000), BigDecimal.valueOf(20000),
-                Industry.BANKING, new Address("Kiev", null, Country.UKRAINE),
-                "description for project2", LocalDate.of(2017, 8, 1));
+        BusinessPlan businessPlan2 = new BusinessPlan("Ready to produce the most delicious donates in the world!",
+                "At the moment, we have made a menu and prepared relations with suppliers, we are ready " +
+                        "to issue a lease for the premises, but so far we are in the freezing stage, due to the lack of funds.",
+                "market");
+        Project project2 = new Project("Donates", BigDecimal.valueOf(100000), BigDecimal.valueOf(20000),
+                Industry.SERVICES, new Address("Kiev", null, Country.UKRAINE),
+                "Ready to produce the most delicious donates in the world!", LocalDate.of(2017, 8, 1));
 
         project2.setBusinessPlan(businessPlan2);
         userFromDb2.addProject(project2);
         projectService.save(project2);
 
 
-        BusinessPlan businessPlan3 = new BusinessPlan("idea3", "currentState3","market3");
-        Project project3 = new Project("project3", BigDecimal.valueOf(200000),BigDecimal.valueOf(50000),
-                Industry.FISHING, new Address("Paris", null, Country.FRANCE),
-                "description for project3", LocalDate.of(2017, 7, 1));
-
-        project3.setBusinessPlan(businessPlan3);
-        userFromDb2.addProject(project3);
-        projectService.save(project3);
 
 
 
@@ -167,6 +176,8 @@ public class InitDefaultEntities {
                 LocalDate.of(2007, 6, 30));
 
         User userFromDb3 = usersService.findUserByUsername("Vitalii");
+        userFromDb3.setPersonalPageFotoLink("personalPagePhoto52.jpg");
+        userFromDb3.setProfileFotoLink("profilePhoto52.jpg");
         userFromDb3.addExperience(experience5);
         userFromDb3.addExperience(experience6);
         userFromDb3.addEducation(education3);
@@ -176,9 +187,9 @@ public class InitDefaultEntities {
 
 
         BusinessPlan businessPlan4 = new BusinessPlan("idea4", "currentState4","market4");
-        Project project4 = new Project("project4", BigDecimal.valueOf(100000),BigDecimal.valueOf(20000),
-                Industry.BANKING, new Address("Kiev", null, Country.UKRAINE),
-                "description for project2", LocalDate.of(2017, 8, 1));
+        Project project4 = new Project("Scooter rental", BigDecimal.valueOf(100000),BigDecimal.valueOf(20000),
+                Industry.SERVICES, new Address("Kiev", null, Country.UKRAINE),
+                "Scooter rental and maintenance", LocalDate.of(2017, 8, 1));
 
         project4.setBusinessPlan(businessPlan4);
         userFromDb3.addProject(project4);

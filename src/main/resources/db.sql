@@ -72,6 +72,7 @@ create table IF NOT EXISTS project
  businessPlan_id bigint null,
  address_id bigint null,
  description varchar(2000) null,
+ photo varchar(455) null,
  lastChange timestamp not null default CURRENT_TIMESTAMP,
  isActive tinyint(1) default '1' null,
  constraint project_id_uindex

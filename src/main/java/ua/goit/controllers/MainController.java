@@ -56,7 +56,7 @@ public class MainController {
         Map<String,? super Object> map = new HashMap<>();
         map.put("projects", projectService.findAll());
         map.put("interests", interestService.findAll());
-        return new ModelAndView("/index",map);
+        return new ModelAndView("index",map);
     }
 
     /**
@@ -75,9 +75,9 @@ public class MainController {
     }
 
 //TODO запустить в первый раз для создания исходных юзеров
-//    @PostConstruct
-//    public void initDefaultUsers() {
-//        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService,
-//                educationService, passwordEncoder);
-//    }
+    @PostConstruct
+    public void initDefaultUsers() {
+        InitDefaultEntities.initDefaultUsers(userService, projectService, experienceService,
+                educationService, passwordEncoder);
+    }
 }

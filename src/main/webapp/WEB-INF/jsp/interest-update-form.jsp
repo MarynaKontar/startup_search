@@ -6,18 +6,13 @@
 <html>
 <head>
     <title>Update Interest form</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 <body>
-
-<c:set var="user_id">
-    <sec:authentication property="principal.id"/>
-</c:set>
 <div class="flex-container" align="center">
-    <header>
-        <h3 align="center">Edit an interest</h3>
-    </header>
+    <%@include file="navbar.jsp" %>
     <article>
+        <h3 align="center">Edit an interest</h3>
         <div align="center">
             <form:form method="post" action="${pageContext.request.contextPath}/interest/${command.id}/update/">
                 <form:input path="user.id" type="number" name="user.id" value="${command.user.id}" hidden="true"/>

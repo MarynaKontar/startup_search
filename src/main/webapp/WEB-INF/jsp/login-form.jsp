@@ -4,17 +4,16 @@
 <html>
 <head>
     <title>Login form</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 
 <body>
 <div class="flex-container" align="center">
-    <header>
-        <h3 align="center">Login form</h3>
-    </header>
+    <%@include file="navbar.jsp" %>
     <article>
+        <h3 align="center">Login form</h3>
         <div align="center">
-            <form action="login" method="post">
+            <form action="${pageContext.request.contextPath}/login" method="post">
                 <table align="center">
                     <tr>
                         <th>Login</th>
@@ -40,7 +39,7 @@
         <br>
         <br>
         <div align="center">
-            <form action="${pageContext.request.contextPath}/registration" method="get">
+            <form action="${pageContext.request.contextPath}/registration/" method="get">
                 <input type="submit" value="Registration">
             </form>
         </div>

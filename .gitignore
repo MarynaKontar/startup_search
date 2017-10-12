@@ -67,6 +67,9 @@ buildNumber.properties
 
 /startupGroup7.iml
 /.idea/
+*.iml
+
+
 /src/main/resources/database.properties
 /src/main/resources/db.sql
-*.iml
+/startup_search.iml
