@@ -157,6 +157,15 @@ public class Education implements Serializable {
 
     @Override
     public String toString() {
-        return "Education{}";
+        return "Education{" +
+                "id=" + id +
+                ", educationalInstitution='" + educationalInstitution + '\'' +
+                ", educationalStage='" + educationalStage + '\'' +
+                ", faculty='" + faculty + '\'' +
+                ", fieldOfStudy='" + fieldOfStudy + '\'' +
+                ", modeOfStudy=" + modeOfStudy +
+                ", fromDate=" + fromDate +
+                ", untilDate=" + untilDate +
+                '}';
     }
 }

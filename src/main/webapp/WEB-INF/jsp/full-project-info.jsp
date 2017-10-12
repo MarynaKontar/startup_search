@@ -3,7 +3,7 @@
         <c:if test="${!(isOwner)}">
             <div class="img">
                 <div class="avatar">
-                    <img src="${pageContext.request.contextPath}/${interest.user.personalPageFotoLink}"
+                    <img src="${pageContext.request.contextPath}/${project.user.personalPageFotoLink}"
                          style="width:auto;height:42px;">
                 </div>
             </div>
@@ -30,7 +30,7 @@
     <div class=class="flex-container">
         <div class="item-img ">
             <div class="item-img-content in-cover">
-                <img src="${pageContext.request.contextPath}/${project.user.profileFotoLink}"
+                <img src="${pageContext.request.contextPath}/${project.photo}"
                      style="width:512px;height:auto;">
             </div>
         </div>

@@ -17,11 +17,11 @@
             <table align="center">
                 <tr>
                     <td>Profile photo:</td>
-                    <td><input type="file" name="file" accept="image/*,image/jpeg"/></td>
+                    <td><input type="file" id="file_upload" name="file" accept="image/*,image/jpeg"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Load a profile photo"/></td>
+                    <td><input type="submit" onClick="return validate()" value="Load a profile photo"/></td>
                 </tr>
             </table>
         </form>
@@ -31,16 +31,19 @@
             <table align="center">
                 <tr>
                     <td>Personal page photo:</td>
-                    <td><input type="file" name="file" accept="image/*,image/jpeg"/></td>
+                    <td><input type="file" id="file_upload1" name="file" accept="image/*,image/jpeg"/></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="Load a personal page photo"/></td>
+                    <td><input type="submit" onClick="return validate()" value="Load a personal page photo"/></td>
                 </tr>
             </table>
         </form>
         <h4>Message : ${message}</h4>
         <br>
+
+        <%@include file="validatePhotoSize.jsp" %>
+
         <div align="center">
             <form method="post" action="${pageContext.request.contextPath}/user/personalAccount/${user.id}/update/">
 
