@@ -66,6 +66,35 @@ public class BusinessPlan implements Serializable {
         this.market = market;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        BusinessPlan that = (BusinessPlan) o;
 
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (idea != null ? !idea.equals(that.idea) : that.idea != null) return false;
+        if (currentState != null ? !currentState.equals(that.currentState) : that.currentState != null) return false;
+        return market != null ? market.equals(that.market) : that.market == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (idea != null ? idea.hashCode() : 0);
+        result = 31 * result + (currentState != null ? currentState.hashCode() : 0);
+        result = 31 * result + (market != null ? market.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "BusinessPlan{" +
+                "id=" + id +
+                ", idea='" + idea + '\'' +
+                ", currentState='" + currentState + '\'' +
+                ", market='" + market + '\'' +
+                '}';
+    }
 }

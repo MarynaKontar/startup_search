@@ -106,6 +106,7 @@ public class ProjectController {
 
     @PostMapping("/{id}/update/")
     public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("command") Project project, @ModelAttribute("businessPlan")BusinessPlan businessPlan) throws IOException {
+        project.setPhoto( "projectPhoto"+ id + ".jpg");
         projectService.save(project);
         return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getId());
     }
