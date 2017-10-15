@@ -255,6 +255,8 @@ public class User implements Serializable {
     }
 
     //don't add collections (because of Stack Overflow)
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -263,17 +265,13 @@ public class User implements Serializable {
         User user = (User) o;
 
         if (!id.equals(user.id)) return false;
-        if (!username.equals(user.username)) return false;
-        if (!firstName.equals(user.firstName)) return false;
-        return lastName.equals(user.lastName);
+        return username.equals(user.username);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + username.hashCode();
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
         return result;
     }
 
@@ -282,15 +280,6 @@ public class User implements Serializable {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", contact=" + contact +
-                ", profileFotoLink='" + profileFotoLink + '\'' +
-                ", personalPageFotoLink='" + personalPageFotoLink + '\'' +
-                ", youtubeLink='" + youtubeLink + '\'' +
-                ", aboutMe='" + aboutMe + '\'' +
-                ", skills='" + skills + '\'' +
                 ", roles=" + roles +
                 '}';
     }
