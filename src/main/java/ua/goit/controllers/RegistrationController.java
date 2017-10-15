@@ -46,8 +46,7 @@ public class RegistrationController {
     @GetMapping("registration/")
     public ModelAndView registrationForm() {
         LOGGER.info("Registration form");
-        return new ModelAndView("registration-form", "usernames",
-                userService.findAll().stream().map(User::getUsername).collect(Collectors.toList()));
+        return new ModelAndView("registration-form");
     }
 
     /**
@@ -60,12 +59,12 @@ public class RegistrationController {
      */
     @PostMapping("registration/")
     public ModelAndView save(@ModelAttribute("user") User user) throws IOException {
-        //TODO сделала проверку прямо на view. Надо ли оставлять проверку здесь? Вдруг будет меняться view и это не учтут, а с моей стороны должен быть контроллер, который учитывает все
-        if (user.getUsername() == null || user.getPassword() == null || user.getContact().getEmail() == null) {
-            LOGGER.info("User " + user + " didn't save to database. Some fields from the form are empty.");
-            //TODO redirect:/error
-            return new ModelAndView("redirect:/registration/");
-        }
+//        //TODO сделала проверку прямо на view. Надо ли оставлять проверку здесь? Вдруг будет меняться view и это не учтут, а с моей стороны должен быть контроллер, который учитывает все
+//        if (user.getUsername() == null || user.getPassword() == null || user.getContact().getEmail() == null) {
+//            LOGGER.info("User " + user + " didn't save to database. Some fields from the form are empty.");
+//            //TODO redirect:/error
+//            return new ModelAndView("redirect:/registration/");
+//        }
 
         List<String> usernames = userService.findAll().stream().map(User::getUsername).collect(Collectors.toList());
         if (usernames.contains(user.getUsername())) {
@@ -82,7 +81,7 @@ public class RegistrationController {
             throw new IOException("Exception during saving user to database", e);
         }
         LOGGER.info("User " + user + " saved to database. Redirecting to login page after registration and than to main page");
-        return new ModelAndView("redirect:/main");
+        return new ModelAndView("redirect:/");
     }
 
     //TODO знаю, что проверку на наличие вводимого логина надо делать на стороне view,

@@ -17,15 +17,15 @@
     <aside>
     </aside>
 
-    <nav class="nav">
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/login">Login</a><br></li>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/registration/">Registration</a><br></li>
-            <br>
-            <li></li>
-        </ul>
-    </nav>
+    <%--<nav class="nav">--%>
+        <%--<ul>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/login">Login</a><br></li>--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/registration/">Registration</a><br></li>--%>
+            <%--<br>--%>
+            <%--<li></li>--%>
+        <%--</ul>--%>
+    <%--</nav>--%>
 
     <article class="article">
         <c:forEach var="project" items="${projects}">

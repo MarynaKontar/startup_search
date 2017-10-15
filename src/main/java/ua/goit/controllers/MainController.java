@@ -59,20 +59,20 @@ public class MainController {
     }
 
 
-    /**
-     * Mapping for url ":/"
-     * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String},
-     * and {@link java.util.List} of projects from database
-     */
-    @GetMapping("main")
-    public ModelAndView main(@RequestHeader HttpHeaders headers) {
-        LOGGER.info("Building main page after login for user from " + headers.getFirst(headers.HOST));
-        Map<String,? super Object> map = new HashMap<>();
-        map.put("projects", projectService.findAll());
-        map.put("industries", Industry.values());
-        map.put("interests", interestService.findAll());
-        return new ModelAndView("main-after-login", map);
-    }
+//    /**
+//     * Mapping for url ":/"
+//     * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String},
+//     * and {@link java.util.List} of projects from database
+//     */
+//    @GetMapping("main")
+//    public ModelAndView main(@RequestHeader HttpHeaders headers) {
+//        LOGGER.info("Building main page after login for user from " + headers.getFirst(headers.HOST));
+//        Map<String,? super Object> map = new HashMap<>();
+//        map.put("projects", projectService.findAll());
+//        map.put("industries", Industry.values());
+//        map.put("interests", interestService.findAll());
+//        return new ModelAndView("main-after-login", map);
+//    }
 
 //TODO запустить в первый раз для создания исходных юзеров
 //    @PostConstruct
