@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ua.goit.configuration.SpringSecurityConfiguration;
+import ua.goit.configuration.TestControllersConfiguration;
 import ua.goit.configuration.TestServicesConfiguration;
 import ua.goit.configuration.WebConfiguration;
 import ua.goit.entity.User;
@@ -40,7 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 @ContextConfiguration(classes = {WebConfiguration.class
         , SpringSecurityConfiguration.class,
-        TestServicesConfiguration.class})
+        TestControllersConfiguration.class})
 public class MainControllerTest {
 
     private MockMvc mvc;
