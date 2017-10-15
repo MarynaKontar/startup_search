@@ -38,9 +38,9 @@ public class TestServicesConfiguration {
     private String driverClass;
     @Value("${db.dialect}")
     private String hibernateDialect;
-    @Value("classpath:testDb.sql")
+    @Value("classpath:createTestDb.sql")
     private Resource scriptResource;
-    @Value("classpath:fillDb.sql")
+    @Value("classpath:populateTestDb.sql")
     private Resource fillScript;
 
     @Bean(destroyMethod = "close")

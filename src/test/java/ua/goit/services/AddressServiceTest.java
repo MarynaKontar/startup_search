@@ -28,8 +28,6 @@ import static org.junit.Assert.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class AddressServiceTest {
 
-    @Autowired
-    DataSourceInitializer dataSourceInitializer;
 
     @Autowired
     private AddressDao addressDao;
