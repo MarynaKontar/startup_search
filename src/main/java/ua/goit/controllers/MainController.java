@@ -3,9 +3,13 @@ package ua.goit.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.entity.enums.Industry;
@@ -49,8 +53,10 @@ public class MainController {
      * and {@link java.util.List} of projects from database
      */
     @GetMapping
-    public ModelAndView index() {
-        LOGGER.info("Building main page");
+    public ModelAndView index(@RequestHeader HttpHeaders headers) {
+        LOGGER.info("Building main page for user from " + headers.HOST);
+        System.err.println(headers.getFirst(headers.HOST));
+        System.err.println(headers);
         Map<String,? super Object> map = new HashMap<>();
         map.put("projects", projectService.findAll());
         map.put("interests", interestService.findAll());
@@ -63,8 +69,8 @@ public class MainController {
      * and {@link java.util.List} of projects from database
      */
     @GetMapping("main")
-    public ModelAndView main() {
-        LOGGER.info("Building main page after login");
+    public ModelAndView main(@RequestHeader HttpHeaders headers) {
+        LOGGER.info("Building main page after login for user from " + headers.HOST);
         Map<String,? super Object> map = new HashMap<>();
         map.put("projects", projectService.findAll());
         map.put("industries", Industry.values());
