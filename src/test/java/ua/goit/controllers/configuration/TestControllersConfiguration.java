@@ -14,7 +14,7 @@ public class TestControllersConfiguration {
         return mock(UserService.class);
     }
 
-       @Bean
+    @Bean
     public ProjectService projectService() {
         return mock(ProjectService.class);
     }

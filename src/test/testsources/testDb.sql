@@ -1,6 +1,4 @@
- CREATE SCHEMA IF NOT EXISTS `STARTUP` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ; --
-USE `startup` ;
-
+DROP SCHEMA IF EXISTS startup;
 create table IF NOT EXISTS address
 (
  id bigint auto_increment not null
