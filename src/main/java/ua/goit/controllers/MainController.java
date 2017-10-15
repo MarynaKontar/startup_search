@@ -54,9 +54,7 @@ public class MainController {
      */
     @GetMapping
     public ModelAndView index(@RequestHeader HttpHeaders headers) {
-        LOGGER.info("Building main page for user from " + headers.HOST);
-        System.err.println(headers.getFirst(headers.HOST));
-        System.err.println(headers);
+        LOGGER.info("Building main page for user from " + headers.getFirst(headers.HOST));
         Map<String,? super Object> map = new HashMap<>();
         map.put("projects", projectService.findAll());
         map.put("interests", interestService.findAll());
@@ -70,7 +68,7 @@ public class MainController {
      */
     @GetMapping("main")
     public ModelAndView main(@RequestHeader HttpHeaders headers) {
-        LOGGER.info("Building main page after login for user from " + headers.HOST);
+        LOGGER.info("Building main page after login for user from " + headers.getFirst(headers.HOST));
         Map<String,? super Object> map = new HashMap<>();
         map.put("projects", projectService.findAll());
         map.put("industries", Industry.values());
