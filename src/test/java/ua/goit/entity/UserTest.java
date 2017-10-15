@@ -131,11 +131,11 @@ public class UserTest {
     public void hashCodeTest() throws Exception {
         assertEquals(user1, user2);
         user2.setId(2L);
-        assertNotEquals(user1, user2);
+        assertNotEquals(user1.hashCode(), user2.hashCode());
         user2.setId(1L);
-        assertEquals(user1, user2);
+        assertEquals(user1.hashCode(), user2.hashCode());
         user2.setUsername("user2");
-        assertNotEquals(user1, user2);
+        assertNotEquals(user1.hashCode(), user2.hashCode());
 
     }
 

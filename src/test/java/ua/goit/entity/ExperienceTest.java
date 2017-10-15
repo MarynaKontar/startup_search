@@ -3,15 +3,15 @@ package ua.goit.entity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.context.annotation.EnableLoadTimeWeaving;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
+import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 /**
- * Created by User on 06.10.2017.
+ * Created by Vitalii Proskura on 06.10.2017.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ExperienceTest {
@@ -40,8 +40,9 @@ public class ExperienceTest {
     public void hashCodeTest(){
         Experience experience1 = new Experience();
         experience1.setId(1L);
-
+        experience1.setUser(user1);
         experience1.setPosition("pos");
+        experience1.setCompany("comp");
         experience1.setResponsibility("resp");
         experience1.setFromDate(LocalDate.MIN);
         experience1.setUntilDate(LocalDate.MAX);
@@ -49,8 +50,9 @@ public class ExperienceTest {
 
         Experience experience2 = new Experience();
         experience2.setId(1L);
-
+        experience2.setUser(user1);
         experience2.setPosition("pos");
+        experience2.setCompany("comp");
         experience2.setResponsibility("resp");
         experience2.setFromDate(LocalDate.MIN);
         experience2.setUntilDate(LocalDate.MAX);
@@ -66,6 +68,7 @@ public class ExperienceTest {
         Experience experience1 = new Experience();
         experience1.setId(1L);
         experience1.setUser(user1);
+        experience1.setCompany("comp");
         experience1.setPosition("pos");
         experience1.setResponsibility("resp");
         experience1.setFromDate(LocalDate.MIN);
@@ -75,10 +78,13 @@ public class ExperienceTest {
         Experience experience2 = new Experience();
         experience2.setId(1L);
         experience2.setUser(user1);
+        experience2.setCompany("comp");
         experience2.setPosition("pos");
         experience2.setResponsibility("resp");
         experience2.setFromDate(LocalDate.MIN);
         experience2.setUntilDate(LocalDate.MAX);
+
+        assertReflectionEquals(experience1, experience2);
 
         assertTrue(experience1.equals(experience2));
 
