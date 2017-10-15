@@ -1,4 +1,4 @@
-package ua.goit.controllers.configuration;
+package ua.goit.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

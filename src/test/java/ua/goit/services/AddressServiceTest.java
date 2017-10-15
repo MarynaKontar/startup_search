@@ -13,10 +13,10 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
+import ua.goit.configuration.TestServicesConfiguration;
 import ua.goit.dao.*;
 import ua.goit.entity.Address;
 import ua.goit.entity.enums.Country;
-import ua.goit.services.configuration.TestServicesConfiguration;
 
 import static org.junit.Assert.*;
 

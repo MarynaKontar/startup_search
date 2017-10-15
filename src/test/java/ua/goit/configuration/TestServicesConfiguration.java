@@ -1,4 +1,4 @@
-package ua.goit.services.configuration;
+package ua.goit.configuration;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;

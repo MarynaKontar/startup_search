@@ -1,4 +1,7 @@
 DROP SCHEMA IF EXISTS startup;
+create schema startup;
+
+drop table if exists address;
 create table IF NOT EXISTS address
 (
  id bigint auto_increment not null
@@ -11,7 +14,7 @@ create table IF NOT EXISTS address
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
-
+drop table if exists businessplan;
 create table IF NOT EXISTS businessplan
 (
  id bigint auto_increment not null
@@ -25,7 +28,7 @@ create table IF NOT EXISTS businessplan
 ;
 
 
-
+drop table if exists education;
 create table IF NOT EXISTS education
 (
  id bigint auto_increment not null
@@ -43,6 +46,7 @@ create table IF NOT EXISTS education
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
+drop table if exists experience;
 create table IF NOT EXISTS experience
 (
  id bigint auto_increment not null
@@ -58,6 +62,7 @@ create table IF NOT EXISTS experience
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
+drop table if exists project;
 create table IF NOT EXISTS project
 (
  id bigint auto_increment not null
@@ -78,6 +83,7 @@ create table IF NOT EXISTS project
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
+drop table if exists interest;
 create table IF NOT EXISTS interest
 (
  id bigint auto_increment not null
@@ -95,7 +101,7 @@ create table IF NOT EXISTS interest
 ;
 
 
-
+drop table if exists user;
 create table IF NOT EXISTS user
 (
  id bigint auto_increment
@@ -121,6 +127,7 @@ create table IF NOT EXISTS user
 )ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
 
+drop table if exists user_roles;
 create table IF NOT EXISTS user_roles
 (
  user_id bigint not null,
