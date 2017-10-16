@@ -4,7 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.dao.EducationDao;
+import ua.goit.dao.UserDao;
 import ua.goit.entity.Education;
+import ua.goit.entity.User;
+
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Service for {@link ua.goit.entity.Education} which will use
@@ -24,11 +29,6 @@ public class EducationService {
         this.dao = dao;
     }
 
-    @Transactional(readOnly = true)
-    public Education getOne(Long aLong) {
-        return dao.getOne(aLong);
-    }
-
     @Transactional
     public <S extends Education> S save(S entity) {
         return dao.save(entity);
@@ -38,6 +38,9 @@ public class EducationService {
     public Education findOne(Long aLong) {
         return dao.findOne(aLong);
     }
+
+    @Transactional (readOnly = true)
+    public Collection<Education> findAll () {return dao.findAll();}
 
     @Transactional
     public void delete(Long aLong) {
