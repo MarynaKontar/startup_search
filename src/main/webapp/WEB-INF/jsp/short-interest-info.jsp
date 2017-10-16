@@ -18,6 +18,7 @@
         <div class="item-desc-box">
             <div class="desc">${interest.description} <br></div>
             <div class="location">${interest.country.label}</div>
+            <div>Industry: ${interest.industry.label}</div>
             <div><a href="${pageContext.request.contextPath}/interest/${interest.id}">Learn more</a><br></div>
         </div>
     </div>

@@ -3,7 +3,6 @@ package ua.goit.controllers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,12 +14,7 @@ import org.springframework.web.context.WebApplicationContext;
 import ua.goit.configuration.SpringSecurityConfiguration;
 import ua.goit.configuration.WebConfiguration;
 import ua.goit.controllers.configuration.TestControllersConfiguration;
-import ua.goit.entity.User;
-import ua.goit.services.UserService;
 
-import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -43,8 +37,6 @@ public class RegistrationControllerTest {
 
     @Autowired
     private WebApplicationContext context;
-    @Autowired
-    private UserService userService;
 
     @Before
     public void setUp() throws Exception {
@@ -55,16 +47,16 @@ public class RegistrationControllerTest {
     }
 
     @Test
-    public void loginTest() throws Exception{
-        mvc.perform(get("/login").with(anonymous()))
-                .andExpect(view().name("login-form"))
+    public void RegistrationFormTest() throws Exception {
+        mvc.perform(get("/registration/").with(anonymous()))
+                .andExpect(view().name("registration-form"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void guestRegistrationFormTest() throws Exception {
-        mvc.perform(get("/registration/").with(anonymous()))
-                .andExpect(view().name("registration-form"))
+    public void RegistrationAfterMissingLoginFormTest() throws Exception {
+        mvc.perform(get("/registrationAfterMissingLogin/").with(anonymous()))
+                .andExpect(view().name("registration-form-missing-login"))
                 .andExpect(status().isOk());
     }
 
@@ -74,7 +66,7 @@ public class RegistrationControllerTest {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                 .param("login", "login")
                 .param("password", "password"))
-                .andExpect(redirectedUrl("/main"))
+                .andExpect(redirectedUrl("/login"))
                 .andExpect(status().isFound());
     }
 }

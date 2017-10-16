@@ -7,12 +7,16 @@
 <head>
     <title>Update Project form</title>
     <%@include file="head.jsp" %>
+    <c:set var="userId" value="${command.user.id}"/>
 </head>
 <body>
 <div class="flex-container" align="center">
+
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
 
-    <article>
+
+    <article class="article">
         <h3 align="center">Edit a project</h3>
 
         <form method="post" enctype="multipart/form-data"
@@ -29,7 +33,7 @@
             </table>
         </form>
         <br>
-
+        <h4>Message : ${message}</h4>
         <%@include file="validatePhotoSize.jsp" %>
 
         <div align="center">
@@ -130,7 +134,7 @@
             </form:form>
         </div>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

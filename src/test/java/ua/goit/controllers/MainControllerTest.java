@@ -14,6 +14,8 @@ import org.springframework.web.context.WebApplicationContext;
 import ua.goit.configuration.SpringSecurityConfiguration;
 import ua.goit.configuration.WebConfiguration;
 import ua.goit.entity.User;
+import ua.goit.entity.enums.Country;
+import ua.goit.entity.enums.Industry;
 import ua.goit.services.InterestService;
 import ua.goit.services.ProjectService;
 import ua.goit.services.UserService;
@@ -63,8 +65,10 @@ public class MainControllerTest {
     @Test
     public void indexTest() throws Exception {
         mvc.perform(get("/").with(anonymous()))
-                .andExpect(model().attribute("projects", projectService.findAll()))
-                .andExpect(model().attribute("interests", interestService.findAll()))
+                .andExpect(model().attribute("projects", projectService.findProjectsByOrderByLastChangeDesc()))
+                .andExpect(model().attribute("interests", interestService.findInterestsByOrderByLastChangeDesc()))
+                .andExpect(model().attribute("industries", Industry.values()))
+                .andExpect(model().attribute("countries", Country.values()))
                 .andExpect(view().name("index"))
                 .andExpect(status().isOk());
     }
@@ -86,8 +90,10 @@ public class MainControllerTest {
     @Test
     public void authenticatedIndexTest() throws Exception {
         mvc.perform(get("/").with(user("user").roles("ADMIN", "USER")))
-                .andExpect(model().attribute("projects", equalTo(projectService.findAll())))
-                .andExpect(model().attribute("interests", interestService.findAll()))
+                .andExpect(model().attribute("projects", projectService.findProjectsByOrderByLastChangeDesc()))
+                .andExpect(model().attribute("interests", interestService.findInterestsByOrderByLastChangeDesc()))
+                .andExpect(model().attribute("industries", Industry.values()))
+                .andExpect(model().attribute("countries", Country.values()))
                 .andExpect(view().name("index"))
                 .andExpect(status().isOk());
     }

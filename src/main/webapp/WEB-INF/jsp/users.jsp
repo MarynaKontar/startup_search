@@ -11,18 +11,20 @@
 
 <body>
 <div class="flex-container">
-    <%@include file="navbar.jsp" %>
+    <%@include file="header.jsp" %>
+    <%--<%@include file="navbar.jsp" %>--%>
+    <%--<c:set var="userId" value="${user_id}"/>--%>
     <aside>
 
     </aside>
 
-    <nav class="nav">
-        <ul>
-            <%--<li><a href="${pageContext.request.contextPath}/registration/"><h4>Add new user</h4></a><br></li><br>--%>
-            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a><br></li><br>
-            <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>
-        </ul>
-    </nav>
+    <%--<nav class="nav">--%>
+        <%--<ul>--%>
+            <%--&lt;%&ndash;<li><a href="${pageContext.request.contextPath}/registration/"><h4>Add new user</h4></a><br></li><br>&ndash;%&gt;--%>
+            <%--<li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account</a><br></li><br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li><br>--%>
+        <%--</ul>--%>
+    <%--</nav>--%>
 
     <article class="article">
         <c:if test="${isAdmin}">
@@ -32,6 +34,7 @@
                 <th>Edit</th><th>Delete</th></tr>
             <c:forEach var="user" items="${users}">
                 <tr>
+                    <td>${user.id}</td>
                     <td>${user.username}</td>
                     <td>${user.firstName}</td>
                     <td>${user.lastName}</td>
@@ -59,7 +62,7 @@
         </c:if>
     </article>
 
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

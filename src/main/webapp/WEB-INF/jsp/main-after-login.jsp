@@ -12,6 +12,7 @@
 <body>
 
 <div class="flex-container">
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
 
     <aside>
@@ -63,7 +64,7 @@
             </c:forEach>
         </section>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

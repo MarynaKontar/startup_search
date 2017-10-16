@@ -14,6 +14,8 @@ import ua.goit.entity.Address;
 import ua.goit.entity.BusinessPlan;
 import ua.goit.entity.Project;
 import ua.goit.entity.User;
+import ua.goit.entity.enums.Country;
+import ua.goit.entity.enums.Industry;
 
 import java.util.Collection;
 import java.util.List;
@@ -60,6 +62,26 @@ public class ProjectService {
     @Transactional(readOnly = true)
     public List<Project> findAll() {
         return dao.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Project> findAllByIndustry(Industry industry) {
+        return dao.findAllByIndustry(industry);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Project> findAllByAddress_Country(Country country) {
+        return dao.findAllByAddress_Country(country);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Project> findAllByIndustryAndAddress_Country(Industry industry, Country country) {
+        return dao.findAllByIndustryAndAddress_Country(industry, country);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Project> findProjectsByOrderByLastChangeDesc() {
+        return dao.findProjectsByOrderByLastChangeDesc();
     }
 
     @Transactional(readOnly = true)

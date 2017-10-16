@@ -3,16 +3,16 @@
 <html>
 <head>
     <title>Registration form</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style.css">
+    <%@include file="head.jsp" %>
 </head>
 <body>
 <div class="flex-container" align="center">
-    <%@include file="navbar.jsp" %>
-    <article>
+    <%@include file="header.jsp" %>
+    <article class="article">
         <h3 align="center">Registration form</h3>
         <%@include file="registration-form-part.jsp" %>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.dao.ExperienceDao;
+import ua.goit.dao.UserDao;
 import ua.goit.entity.Experience;
+import ua.goit.entity.User;
 
 /**
  * Service for {@link ua.goit.entity.Experience} which will use
@@ -18,10 +20,12 @@ import ua.goit.entity.Experience;
 public class ExperienceService {
 
     private final ExperienceDao dao;
+    private final UserDao userDao;
 
     @Autowired
-    public ExperienceService(ExperienceDao dao) {
+    public ExperienceService(ExperienceDao dao, UserDao userDao) {
         this.dao = dao;
+        this.userDao = userDao;
     }
 
     @Transactional(readOnly = true)
@@ -47,5 +51,12 @@ public class ExperienceService {
     @Transactional
     public void delete(Experience entity) {
         dao.delete(entity);
+    }
+
+    @Transactional
+    public void deleteEducationFromUser(Long id, Long user_id) {
+        User user = userDao.findOne(user_id);
+        Experience experience = dao.findOne(id);
+        user.removeExperience(experience);
     }
 }

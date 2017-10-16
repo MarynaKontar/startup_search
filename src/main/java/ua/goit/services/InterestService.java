@@ -9,6 +9,8 @@ import ua.goit.dao.InterestDao;
 import ua.goit.dao.UserDao;
 import ua.goit.entity.Interest;
 import ua.goit.entity.User;
+import ua.goit.entity.enums.Country;
+import ua.goit.entity.enums.Industry;
 
 import java.util.List;
 
@@ -33,6 +35,26 @@ public class InterestService {
     @Transactional(readOnly = true)
     public List<Interest> findAll() {
         return dao.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Interest> findAllByIndustry(Industry industry) {
+        return dao.findAllByIndustry(industry);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Interest> findAllByCountry(Country country) {
+        return dao.findAllByCountry(country);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Interest> findAllByIndustryAndCountry(Industry industry, Country country) {
+        return dao.findAllByIndustryAndCountry(industry, country);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Interest> findInterestsByOrderByLastChangeDesc() {
+        return dao.findInterestsByOrderByLastChangeDesc();
     }
 
     @Transactional(readOnly = true)
