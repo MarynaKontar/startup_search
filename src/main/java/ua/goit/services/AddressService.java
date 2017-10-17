@@ -32,11 +32,6 @@ public class AddressService {
         return dao.findAll();
     }
 
-    @Transactional(readOnly = true)
-    public Address getOne(Long aLong) {
-        return dao.getOne(aLong);
-    }
-
     @Transactional
     public <S extends Address> S save(S entity) {
         return dao.save(entity);
@@ -52,13 +47,4 @@ public class AddressService {
         return dao.exists(aLong);
     }
 
-    @Transactional
-    public void delete(Long aLong) {
-        dao.delete(aLong);
-    }
-
-    @Transactional
-    public void delete(Address entity) {
-        dao.delete(entity);
-    }
 }

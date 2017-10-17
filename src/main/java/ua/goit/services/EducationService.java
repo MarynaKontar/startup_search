@@ -28,11 +28,6 @@ public class EducationService {
         this.userDao = userDao;
     }
 
-    @Transactional(readOnly = true)
-    public Education getOne(Long aLong) {
-        return dao.getOne(aLong);
-    }
-
     @Transactional
     public <S extends Education> S save(S entity) {
         return dao.save(entity);

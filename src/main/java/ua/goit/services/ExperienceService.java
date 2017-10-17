@@ -28,11 +28,6 @@ public class ExperienceService {
         this.userDao = userDao;
     }
 
-    @Transactional(readOnly = true)
-    public Experience getOne(Long aLong) {
-        return dao.getOne(aLong);
-    }
-
     @Transactional
     public <S extends Experience> S save(S entity) {
         return dao.save(entity);

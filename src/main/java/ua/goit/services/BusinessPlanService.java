@@ -48,14 +48,4 @@ public class BusinessPlanService {
         return dao.exists(s);
     }
 
-    @Transactional
-    public void delete(Long s) {
-        dao.delete(s);
-    }
-
-    @Transactional
-    public void delete(BusinessPlan entity) {
-        dao.delete(entity);
-    }
-
 }
