@@ -112,21 +112,15 @@ public class UserServiceTest {
     }
 
 
-    @Test
-    public void exists() throws Exception {
-        assertTrue(userService.exists(1L));
-        assertFalse(userService.exists(5L));
-    }
-
 
     @Test
     public void deletePersonalAccount() throws Exception {
-        assertTrue(userService.exists(1L));
+        assertNotNull(userService.findOne(1L));
         assertEquals(3, interestDao.findAll().size());
         assertEquals(3, experienceDao.findAll().size());
         assertEquals(4, educationDao.findAll().size());
         userService.deletePersonalAccount(1L);
-        assertFalse(userService.exists(1L));
+        assertNull(userService.findOne(1L));
         assertEquals(2, interestDao.findAll().size());
         assertEquals(2, experienceDao.findAll().size());
         assertEquals(2, educationDao.findAll().size());

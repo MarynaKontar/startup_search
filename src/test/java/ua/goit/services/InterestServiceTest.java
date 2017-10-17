@@ -46,11 +46,6 @@ public class InterestServiceTest {
         assertEquals(3, interestService.findAll().size());
     }
 
-    @Test
-    public void findAllByPage() throws Exception {
-        PageRequest page = new PageRequest(1, 2);
-        assertEquals(2, interestService.findAll(page).getSize());
-    }
 
 
     @Test

@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ua.goit.configuration.TestServicesConfiguration;
 import ua.goit.dao.ExperienceDao;
+import ua.goit.dao.UserDao;
 import ua.goit.entity.Experience;
 import ua.goit.entity.User;
 
@@ -28,12 +29,14 @@ public class ExperienceServiceTest {
 
     @Autowired
     private ExperienceDao experienceDao;
+    @Autowired
+    private  UserDao userDao;
 
     private ExperienceService experienceService;
 
     @Before
     public void setUp () {
-        experienceService = new ExperienceService(experienceDao);
+        experienceService = new ExperienceService(experienceDao, userDao);
     }
 
 

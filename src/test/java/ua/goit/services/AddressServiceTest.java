@@ -69,24 +69,5 @@ public class AddressServiceTest {
         assertFalse(addressService.exists(4L));
     }
 
-    @Test
-    public void delete() throws Exception {
-        assertEquals(3, addressService.findAll().size());
-        addressService.delete(1L);
-        assertEquals(2, addressService.findAll().size());
-        assertFalse(addressService.exists(1L));
-    }
-
-    @Test
-    public void delete1() throws Exception {
-        Address address = addressService.findOne(1L);
-        assertEquals(3, addressService.findAll().size());
-        addressService.delete(address);
-        assertEquals(2, addressService.findAll().size());
-        assertFalse(addressService.exists(1L));
-
-
-
-    }
 
 }

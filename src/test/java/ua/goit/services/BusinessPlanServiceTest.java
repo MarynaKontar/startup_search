@@ -61,21 +61,8 @@ public class BusinessPlanServiceTest {
         assertFalse(businessPlanService.exists(4L));
     }
 
-    @Test
-    public void delete() throws Exception {
-        assertEquals(3, businessPlanService.findAll().size());
-        businessPlanService.delete(1L);
-        assertEquals(2, businessPlanService.findAll().size());
-        assertFalse(businessPlanService.exists(1L));
-    }
 
-    @Test
-    public void delete1() throws Exception {
-        BusinessPlan businessPlan = businessPlanService.findOne(1L);
-        assertEquals(3, businessPlanService.findAll().size());
-        businessPlanService.delete(businessPlan);
-        assertEquals(2, businessPlanService.findAll().size());
-        assertFalse(businessPlanService.exists(1L));
-    }
+
+
 
 }
