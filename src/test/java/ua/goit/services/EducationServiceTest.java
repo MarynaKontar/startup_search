@@ -54,24 +54,6 @@ public class EducationServiceTest {
         assertEquals(1, (long)education.getId());
     }
 
-    @Test
-    public void delete() throws Exception {
-        assertEquals(4, educationService.findAll().size());
-        educationService.delete(1L);
-        assertEquals(3, educationService.findAll().size());
-
-
-
-    }
-
-    @Test
-    public void delete1() throws Exception {
-        Education education = educationService.findOne(1L);
-        assertEquals(4, educationService.findAll().size());
-        educationService.delete(education);
-        assertEquals(3, educationService.findAll().size());
-
-    }
 
     private Education getEducation () {
         User user = new User();

@@ -81,41 +81,59 @@ public class UserServiceTest {
     @Test
     public void update() throws Exception {
         User user = userService.findOne(1L);
+        String userName = user.getUsername();
+        user.setUsername(userName + "aaa");
+        user.setLastName("lastName");
+        user.setFirstName("firstName");
+        user.setAboutMe("aboutMe");
+
         String password = "aaa";
-
-
         assertEquals("pass1", userService.findOne(1L).getPassword());
+
         userService.update(user, 1L, password);
-        assertEquals(passwordEncoder.encode("aaa"), userService.findOne(1L).getPassword());
+        assertTrue(passwordEncoder.matches(password, userService.findOne(1L).getPassword()));
+        assertEquals(userName + "aaa", userService.findOne(1L).getUsername());
+        assertEquals("lastName" , userService.findOne(1L).getLastName());
+        assertEquals("firstName" , userService.findOne(1L).getFirstName());
+        assertEquals("aboutMe" , userService.findOne(1L).getAboutMe());
 
     }
 
     @Test
     public void findOne() throws Exception {
+        assertEquals(1, (long)userService.findOne(1L).getId());
+
     }
 
     @Test
     public void findUserByUsername() throws Exception {
+        User user = userService.findUserByUsername("user1");
+        assertEquals("user1", user.getUsername());
     }
 
-    @Test
-    public void getOne() throws Exception {
-    }
 
     @Test
     public void exists() throws Exception {
+        assertTrue(userService.exists(1L));
+        assertFalse(userService.exists(5L));
     }
 
-    @Test
-    public void delete() throws Exception {
-    }
-
-    @Test
-    public void delete1() throws Exception {
-    }
 
     @Test
     public void deletePersonalAccount() throws Exception {
+        assertTrue(userService.exists(1L));
+        assertEquals(3, interestDao.findAll().size());
+        assertEquals(3, experienceDao.findAll().size());
+        assertEquals(4, educationDao.findAll().size());
+        userService.deletePersonalAccount(1L);
+        assertFalse(userService.exists(1L));
+        assertEquals(2, interestDao.findAll().size());
+        assertEquals(2, experienceDao.findAll().size());
+        assertEquals(2, educationDao.findAll().size());
+
+
+
+
     }
 
 }
