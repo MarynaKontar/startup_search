@@ -5,17 +5,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ua.goit.configuration.WebConfiguration;
 import ua.goit.configuration.SpringSecurityConfiguration;
-import ua.goit.entity.Interest;
-import ua.goit.entity.Project;
+import ua.goit.configuration.TestControllersConfiguration;
+import ua.goit.configuration.TestServicesConfiguration;
+import ua.goit.configuration.WebConfiguration;
 import ua.goit.entity.User;
+import ua.goit.entity.enums.Country;
+import ua.goit.entity.enums.Industry;
 import ua.goit.services.InterestService;
 import ua.goit.services.ProjectService;
 import ua.goit.services.UserService;
@@ -35,9 +38,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @MarynaKontar
  */
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {WebConfiguration.class, SpringSecurityConfiguration.class})
+@ContextConfiguration(classes = {WebConfiguration.class
+        , SpringSecurityConfiguration.class,
+        TestControllersConfiguration.class})
 public class MainControllerTest {
 
     private MockMvc mvc;
@@ -62,52 +67,37 @@ public class MainControllerTest {
     }
 
     @Test
-    public void guestIndexTest() throws Exception {
-
+    public void indexTest() throws Exception {
         mvc.perform(get("/").with(anonymous()))
-                .andExpect(model().attribute("projects", projectService.findAll()))
-                .andExpect(model().attribute("interests", interestService.findAll()))
+                .andExpect(model().attribute("projects", projectService.findProjectsByOrderByLastChangeDesc()))
+                .andExpect(model().attribute("interests", interestService.findInterestsByOrderByLastChangeDesc()))
+                .andExpect(model().attribute("industries", Industry.values()))
+                .andExpect(model().attribute("countries", Country.values()))
                 .andExpect(view().name("index"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void guestLoginTest() throws Exception {
+    public void loginTest() throws Exception {
         mvc.perform(get("/login").with(anonymous()))
                 .andExpect(view().name("login-form"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void guestLogoutTest() throws Exception {
+    public void logoutTest() throws Exception {
         mvc.perform(post("/logout").with(anonymous()))
                 .andExpect(redirectedUrl("/"))
                 .andExpect(status().isFound());
     }
 
     @Test
-    public void guestRegistrationFormTest() throws Exception {
-        mvc.perform(get("/registration").with(anonymous()))
-                .andExpect(model().attribute("usernames",
-                        equalTo( userService.findAll().stream().map(User::getUsername).collect(Collectors.toList()))))
-                .andExpect(view().name("registration-form"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void guestRegistrationTest() throws Exception {
-        mvc.perform(post("/registration").with(anonymous())
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-                .param("login", "login")
-                .param("password", "password"))
-                .andExpect(redirectedUrl("/login"))
-                .andExpect(status().isFound());
-    }
-
-    @Test
     public void authenticatedIndexTest() throws Exception {
         mvc.perform(get("/").with(user("user").roles("ADMIN", "USER")))
-                .andExpect(model().attribute("projects", equalTo(projectService.findAll())))
+                .andExpect(model().attribute("projects", projectService.findProjectsByOrderByLastChangeDesc()))
+                .andExpect(model().attribute("interests", interestService.findInterestsByOrderByLastChangeDesc()))
+                .andExpect(model().attribute("industries", Industry.values()))
+                .andExpect(model().attribute("countries", Country.values()))
                 .andExpect(view().name("index"))
                 .andExpect(status().isOk());
     }

@@ -13,7 +13,8 @@
             <div class="name">Interest</div>
         </div>
 
-        <a href="${pageContext.request.contextPath}/interest/${interest.id}">${interest.name}</a>
+        <div>${interest.name}</div>
+
         <div>
             <c:if test="${!(isOwner)}">
                 <tr>

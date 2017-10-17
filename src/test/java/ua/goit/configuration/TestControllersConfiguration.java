@@ -1,4 +1,4 @@
-package ua.goit.controllers.configuration;
+package ua.goit.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ public class TestControllersConfiguration {
         return mock(UserService.class);
     }
 
-       @Bean
+    @Bean
     public ProjectService projectService() {
         return mock(ProjectService.class);
     }
@@ -44,8 +44,4 @@ public class TestControllersConfiguration {
         return mock(ExperienceService.class);
     }
 
-    @Bean
-    public SearchService  searchService() {
-        return mock(SearchService.class);
-    }
 }

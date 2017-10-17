@@ -187,7 +187,6 @@ public class User implements Serializable {
     }
 
     public void addExperience(Experience experience) {
-//        Hibernate.initialize(experiences);
         if (experiences == null) {
             experiences = new HashSet<>(0);
         }
@@ -196,7 +195,6 @@ public class User implements Serializable {
     }
 
     public void removeExperience(Experience experience) {
-//        Hibernate.initialize(experiences);
         if (experiences != null) {
             experiences.remove(experience);
             experience.setUser(null);
@@ -204,7 +202,6 @@ public class User implements Serializable {
     }
 
     public void addEducation(Education education) {
-//        Hibernate.initialize(educations);
         if (educations == null) {
             educations = new HashSet<>(0);
         }
@@ -213,7 +210,6 @@ public class User implements Serializable {
     }
 
     public void removeEducatione(Education education) {
-//        Hibernate.initialize(educations);
         if (educations != null) {
             educations.remove(education);
             education.setUser(null);
@@ -221,7 +217,6 @@ public class User implements Serializable {
     }
 
     public void addProject(Project project) {
-//        Hibernate.initialize(projects);
         if (projects == null) {
             projects = new HashSet<>(0);
         }
@@ -230,7 +225,6 @@ public class User implements Serializable {
     }
 
     public void removeProject(Project project) {
-//        Hibernate.initialize(projects);
         if (projects != null) {
             projects.remove(project);
             project.setUser(null);
@@ -238,7 +232,6 @@ public class User implements Serializable {
     }
 
     public void addInterest(Interest interest) {
-//        Hibernate.initialize(interests);
         if (interests == null) {
             interests = new HashSet<>(0);
         }
@@ -247,14 +240,14 @@ public class User implements Serializable {
     }
 
     public void removeInterest(Interest interest) {
-//        Hibernate.initialize(interests);
         if (interests != null) {
             interests.remove(interest);
             interest.setUser(null);
         }
     }
 
-    //don't add collections (because of Stack Overflow)
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -263,17 +256,13 @@ public class User implements Serializable {
         User user = (User) o;
 
         if (!id.equals(user.id)) return false;
-        if (!username.equals(user.username)) return false;
-        if (!firstName.equals(user.firstName)) return false;
-        return lastName.equals(user.lastName);
+        return username.equals(user.username);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + username.hashCode();
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + lastName.hashCode();
         return result;
     }
 
@@ -282,15 +271,6 @@ public class User implements Serializable {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", contact=" + contact +
-                ", profileFotoLink='" + profileFotoLink + '\'' +
-                ", personalPageFotoLink='" + personalPageFotoLink + '\'' +
-                ", youtubeLink='" + youtubeLink + '\'' +
-                ", aboutMe='" + aboutMe + '\'' +
-                ", skills='" + skills + '\'' +
                 ", roles=" + roles +
                 '}';
     }

@@ -10,9 +10,12 @@
 </head>
 <body>
 <div class="flex-container" align="center">
+    <c:set var="userId" value="${command.user.id}"/>
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
 
-    <article>
+
+    <article class="article">
         <h3 align="center">Edit a project</h3>
 
         <form method="post" enctype="multipart/form-data"
@@ -24,7 +27,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" onClick="return validate()" value="Load a project photo"/></td>
+                    <td><input type="submit" onClick="return validate()" value="LOAD A PROJECT PHOTO"/></td>
                 </tr>
             </table>
         </form>
@@ -130,7 +133,7 @@
             </form:form>
         </div>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

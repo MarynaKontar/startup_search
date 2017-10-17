@@ -66,7 +66,8 @@ public class UserController {
     }
 
     @PostMapping("/personalAccount/{id}/update")
-    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("user") User user, @RequestParam(value = "password", required = false) String password) throws IOException {
+    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("user") User user
+            , @RequestParam(value = "password", required = false) String password) throws IOException {
         user.setProfileFotoLink( "profilePhoto"+user.getId()+".jpg");
         user.setPersonalPageFotoLink( "personalPagePhoto" + user.getId() + ".jpg");
         userService.update(user, id, password);

@@ -1,11 +1,14 @@
 package ua.goit.entity;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ua.goit.entity.enums.Country;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
+
+//import org.unitils.reflectionassert.ReflectionAssert;
+
 
 /**
  * Created by User on 05.10.2017.
@@ -18,23 +21,22 @@ public class AddressTest {
 
     @Test
     public void creationTest() {
-        Address address = null;
-        assertNull(address);
 
-        address = new Address();
-        assertNotNull(address);
+        Address address = new Address();
 
         address.setId(1l);
         assertEquals(1L, (long)address.getId());
 
-        address.setCity("city1");
-        assertEquals("city1", address.getCity());
+        address.setCity("city");
+        assertEquals("city", address.getCity());
 
-        address.setRegion("a");
-        assertEquals("a", address.getRegion());
+        address.setRegion("region");
+        assertEquals("region", address.getRegion());
 
         address.setCountry(Country.AFGHANISTAN);
         assertEquals(Country.AFGHANISTAN, address.getCountry());
+
+
 
     }
 
@@ -52,27 +54,17 @@ public class AddressTest {
 
     @Test
     public void equalsTest () {
+
         Address address1 = new Address("city1", "region1" , Country.AFGHANISTAN);
         address1.setId(1L);
-        Address address2 = new Address("city2", "region2" , Country.ALBANIA);
-        address2.setId(2L);
-        assertNotEquals(address1, address2);
-
+        Address address2 = new Address("city1", "region1" , Country.AFGHANISTAN);
         address2.setId(1L);
-        assertNotEquals(address1, address2);
 
-        address2.setCity("city1");
-        assertNotEquals(address1, address2);
 
-        address2.setRegion("region1");
-        assertNotEquals(address1, address2);
-
-        address2.setCountry(Country.AFGHANISTAN);
-        assertEquals(address1, address2);
+        assertReflectionEquals("Address fields is equals ", address1, address2);
+        assertEquals("assert equals ()", address1, address2);
     }
 
-    @After
-    public void tearDown() throws Exception {
-    }
+
 
 }

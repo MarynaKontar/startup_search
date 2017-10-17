@@ -17,6 +17,7 @@ import ua.goit.services.UserService;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,9 +46,11 @@ public class RegistrationController {
     // переадресации на страницу регистрации с выводом предупреждения в случаи совпадения логинов
     @GetMapping("registration/")
     public ModelAndView registrationForm() {
+//        List<String> usernames = userService.findAll()
+//                .stream().map(User::getUsername)
+//                .collect(Collectors.toList());
         LOGGER.info("Registration form");
-        return new ModelAndView("registration-form", "usernames",
-                userService.findAll().stream().map(User::getUsername).collect(Collectors.toList()));
+        return new ModelAndView("registration-form");
     }
 
     /**
@@ -60,12 +63,11 @@ public class RegistrationController {
      */
     @PostMapping("registration/")
     public ModelAndView save(@ModelAttribute("user") User user) throws IOException {
-        //TODO сделала проверку прямо на view. Надо ли оставлять проверку здесь? Вдруг будет меняться view и это не учтут, а с моей стороны должен быть контроллер, который учитывает все
-        if (user.getUsername() == null || user.getPassword() == null || user.getContact().getEmail() == null) {
-            LOGGER.info("User " + user + " didn't save to database. Some fields from the form are empty.");
-            //TODO redirect:/error
-            return new ModelAndView("redirect:/registration/");
-        }
+//        //TODO сделала проверку прямо на view. Надо ли оставлять проверку здесь? Вдруг будет меняться view и это не учтут, а с моей стороны должен быть контроллер, который учитывает все
+//        if (user.getUsername() == null || user.getPassword() == null || user.getContact().getEmail() == null) {
+//            LOGGER.info("User " + user + " didn't save to database. Some fields from the form are empty.");
+//            return new ModelAndView("redirect:/registration/");
+//        }
 
         List<String> usernames = userService.findAll().stream().map(User::getUsername).collect(Collectors.toList());
         if (usernames.contains(user.getUsername())) {
@@ -74,7 +76,7 @@ public class RegistrationController {
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList(Role.USER));
+        user.setRoles(Collections.singletonList(Role.USER));
         try {
             userService.save(user);
         } catch (Exception e) {
@@ -82,7 +84,7 @@ public class RegistrationController {
             throw new IOException("Exception during saving user to database", e);
         }
         LOGGER.info("User " + user + " saved to database. Redirecting to login page after registration and than to main page");
-        return new ModelAndView("redirect:/main");
+        return new ModelAndView("redirect:/login");
     }
 
     //TODO знаю, что проверку на наличие вводимого логина надо делать на стороне view,
@@ -94,33 +96,13 @@ public class RegistrationController {
         return new ModelAndView("registration-form-missing-login");
     }
 
-    //TODO в чем разница между двумя способами для @PostMapping("registration/") - через @ModelAttribute и @RequestParam? Какой лучше?
-//    /**
-//     * Mapping for url ":/registration/"
-//     * Saves {@link User} to database
-//     * @param login    login from the form
-//     * @param password password from the form
-//     * @param email    email from the form
-//     * @return redirect link to login page
-//     */
-//    @PostMapping("registration/")
-//    public String registration(@RequestParam String login, @RequestParam String password, @RequestParam String email) {
-//        User user = new User();
-//        user.setUsername(login);
-//        user.setPassword(passwordEncoder.encode(password));
-//        user.getContact().setEmail(email);
-//        userService.save(user);
-//        LOGGER.info("User " + user + " saved to database. Redirecting to login page after registration");
-//        return "redirect:/login";
-//    }
+    @ExceptionHandler(IOException.class)
+    public ResponseEntity<String> handleException(IOException ex) {
+        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).build();
+    }
 
-//    @ExceptionHandler(IOException.class)
-//    public ResponseEntity<String> handleException(IOException ex) {
-//        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).build();
-//    }
-
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<String> handleException(Exception ex) {
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
 }

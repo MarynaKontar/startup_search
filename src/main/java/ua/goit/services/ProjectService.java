@@ -14,6 +14,8 @@ import ua.goit.entity.Address;
 import ua.goit.entity.BusinessPlan;
 import ua.goit.entity.Project;
 import ua.goit.entity.User;
+import ua.goit.entity.enums.Country;
+import ua.goit.entity.enums.Industry;
 
 import java.util.Collection;
 import java.util.List;
@@ -63,8 +65,23 @@ public class ProjectService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Project> findAll(Pageable pageable) {
-        return dao.findAll(pageable);
+    public List<Project> findAllByIndustry(Industry industry) {
+        return dao.findAllByIndustry(industry);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Project> findAllByAddress_Country(Country country) {
+        return dao.findAllByAddress_Country(country);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Project> findAllByIndustryAndAddress_Country(Industry industry, Country country) {
+        return dao.findAllByIndustryAndAddress_Country(industry, country);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Project> findProjectsByOrderByLastChangeDesc() {
+        return dao.findProjectsByOrderByLastChangeDesc();
     }
 
     @Transactional(readOnly = true)
@@ -73,26 +90,9 @@ public class ProjectService {
     }
 
     @Transactional(readOnly = true)
-    public Project getOne(Long aLong) {
-        return dao.getOne(aLong);
-    }
-
-    @Transactional(readOnly = true)
     public boolean exists(Long s) {
         return dao.exists(s);
     }
-
-    @Transactional
-    public void delete(Long s) {
-
-        dao.delete(s);
-    }
-
-    @Transactional
-    public void delete(Project entity) {
-        dao.delete(entity);
-    }
-
 
     @Transactional
     public void deleteProjectFromUser(Long id, Long user_id){

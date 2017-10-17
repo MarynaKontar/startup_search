@@ -38,15 +38,20 @@
             }
         }
     </style>
+    <%--<c:set var="isOwner" value="${user.id == user_id}"/>--%>
+    <c:set var="userId" value="${user.id}"/>
 </head>
 <body>
+
 <div class="flex-container">
+
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
-    <c:set var="isOwner" value="${user.id == user_id}"/>
-    <h3 align="center">Personal account</h3>
+
+    <h3 align="center">${user.username} personal account </h3>
     <aside>
         <div class="row">
-            <div class="column">
+            <div class="column" align="center">
                 <img src="${pageContext.request.contextPath}/${user.profileFotoLink}"
                      style="width:512px;height:auto;">
             </div>
@@ -77,33 +82,33 @@
         </div>
     </aside>
 
-    <nav class="nav">
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/main">Home</a></li>
-            <br>
-            <c:if test="${isOwner || isAdmin}">
-                <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a></li>
-                </br>
-                <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
-                </br>
-                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/edit">Edit
-                    profile</a></li>
-                <br>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
-                <br>
-                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/delete">Delete
-                    profile</a></li>
-                <br>
-            </c:if>
+    <%--<nav class="nav">--%>
+        <%--<ul>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/main">Home</a></li>--%>
+            <%--<br>--%>
+            <%--<c:if test="${isOwner || isAdmin}">--%>
+                <%--<li><a href="${pageContext.request.contextPath}/startup/create">Add project</a></li>--%>
+                <%--</br>--%>
+                <%--<li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>--%>
+                <%--</br>--%>
+                <%--<li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/edit">Edit--%>
+                    <%--profile</a></li>--%>
+                <%--<br>--%>
+                <%--<li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>--%>
+                <%--<br>--%>
+                <%--<li><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/delete">Delete--%>
+                    <%--profile</a></li>--%>
+                <%--<br>--%>
+            <%--</c:if>--%>
 
-            <c:if test="${!isOwner && !isAdmin}">
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
-                <br>
-                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}/">Account</a></li>
-                <br>
-            </c:if>
-        </ul>
-    </nav>
+            <%--<c:if test="${!isOwner && !isAdmin}">--%>
+                <%--<li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>--%>
+                <%--<br>--%>
+                <%--<li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}/">Account</a></li>--%>
+                <%--<br>--%>
+            <%--</c:if>--%>
+        <%--</ul>--%>
+    <%--</nav>--%>
 
     <article class="article">
         <c:if test="${isOwner}">
@@ -153,7 +158,7 @@
     </article>
 
 
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 
 </body>

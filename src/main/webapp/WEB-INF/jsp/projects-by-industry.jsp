@@ -7,37 +7,41 @@
 <head>
     <title>Main page for startup application after login</title>
     <%@include file="head.jsp" %>
+    <c:set var="userId" value="${projectsByIndustry.user.id}"/>
 </head>
 <body>
 <div class="flex-container">
+    <%--<c:set var="isOwner" value="${projectsByIndustry.user.id == user_id}"/>--%>
+
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
-    <c:set var="isOwner" value="${projectsByIndustry.user.id == user_id}"/>
+
     <aside>
     </aside>
 
-    <nav class="nav">
-        <ul>
-            <li>
-                <form action="${pageContext.request.contextPath}/search/projectsByIndustry/" method="get">
-                    <input autofocus type="text" name="industry" value="${industries}" required>
-                    <button type="submit">Search projects by industry</button>
-                </form>
-                <br></li>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
-            <br>
-            <c:if test="${isAdmin}">
-                <li><a href="${pageContext.request.contextPath}/user/users">All users</a><br></li>
-                <br>
-            </c:if>
-        </ul>
-    </nav>
+    <%--<nav class="nav">--%>
+        <%--<ul>--%>
+            <%--<li>--%>
+                <%--<form action="${pageContext.request.contextPath}/search/projectsByIndustry/" method="get">--%>
+                    <%--<input autofocus type="text" name="industry" value="${industries}" required>--%>
+                    <%--<button type="submit">Search projects by industry</button>--%>
+                <%--</form>--%>
+                <%--<br></li>--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li>--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li>--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>--%>
+            <%--<br>--%>
+            <%--<c:if test="${isAdmin}">--%>
+                <%--<li><a href="${pageContext.request.contextPath}/user/users">All users</a><br></li>--%>
+                <%--<br>--%>
+            <%--</c:if>--%>
+        <%--</ul>--%>
+    <%--</nav>--%>
 
     <article class="article">
         <section>
@@ -109,7 +113,7 @@
 
     </article>
 
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

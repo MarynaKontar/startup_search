@@ -28,6 +28,7 @@
         <div class="item-desc-box">
             <div class="desc">${project.description} <br>
                 <div class="location">${project.address.country.label}, ${project.address.city}</div>
+                <div>Industry: ${project.industry.label}</div>
                 <div><a href="${pageContext.request.contextPath}/startup/${project.id}">Learn more</a><br></div>
             </div>
         </div>
