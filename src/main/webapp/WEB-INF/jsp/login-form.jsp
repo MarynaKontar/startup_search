@@ -9,7 +9,7 @@
 
 <body>
 <div class="flex-container" align="center">
-    <%@include file="navbar.jsp" %>
+    <%@include file="header.jsp" %>
     <article>
         <h3 align="center">Login form</h3>
         <div align="center">
@@ -51,7 +51,7 @@
         </div>
         <br>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

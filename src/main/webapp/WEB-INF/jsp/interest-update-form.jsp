@@ -7,11 +7,15 @@
 <head>
     <title>Update Interest form</title>
     <%@include file="head.jsp" %>
+    <c:set var="userId" value="${command.user.id}"/>
 </head>
 <body>
 <div class="flex-container" align="center">
+
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
-    <article>
+
+    <article class="article">
         <h3 align="center">Edit an interest</h3>
         <div align="center">
             <form:form method="post" action="${pageContext.request.contextPath}/interest/${command.id}/update/">
@@ -64,7 +68,7 @@
             </form:form>
         </div>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

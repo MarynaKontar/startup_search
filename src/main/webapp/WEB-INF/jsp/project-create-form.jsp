@@ -6,12 +6,16 @@
 <head>
     <title>Project form</title>
     <%@include file="head.jsp" %>
+    <c:set var="userId" value="${user_id}"/>
 </head>
 <body>
 
 <div class="flex-container" align="center">
+
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
-    <article>
+
+    <article class="article">
         <h3 align="center">Adding a project</h3>
         <div align="center">
             <form method="post" action="${pageContext.request.contextPath}/startup/create/" >
@@ -69,7 +73,7 @@
             </form>
         </div>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

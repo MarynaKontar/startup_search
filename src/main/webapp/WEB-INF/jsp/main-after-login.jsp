@@ -12,41 +12,42 @@
 <body>
 
 <div class="flex-container">
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
 
     <aside>
     </aside>
 
-    <nav class="nav">
-        <ul>
-            <%--<li>--%>
-                <%--<form action="${pageContext.request.contextPath}/search/projectsByIndustry/" method="get">--%>
-                    <%--<select path="industry" name="industry">--%>
-                        <%--<option value="">Industry</option>--%>
-                        <%--<c:forEach items="${industries}" var="industry">--%>
-                            <%--<option value="${industry}">${industry.label}</option>--%>
-                        <%--</c:forEach>--%>
-                    <%--</select>--%>
-                    <%--<br><button type="submit">Search projects by industry</button>--%>
-                <%--</form>--%>
-                <%--<br></li>--%>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/main">Home</a><br></li>
-                <br>
-            <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>
-            <br>
-            <li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>
-            <br>
-            <c:if test="${isAdmin}">
-                <li><a href="${pageContext.request.contextPath}/user/users">All users</a><br></li>
-                <br>
-            </c:if>
-        </ul>
-    </nav>
+    <%--<nav class="nav">--%>
+        <%--<ul>--%>
+            <%--&lt;%&ndash;<li>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<form action="${pageContext.request.contextPath}/search/projectsByIndustry/" method="get">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<select path="industry" name="industry">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<option value="">Industry</option>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<c:forEach items="${industries}" var="industry">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<option value="${industry}">${industry.label}</option>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</select>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<br><button type="submit">Search projects by industry</button>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</form>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<br></li>&ndash;%&gt;--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/main">Home</a><br></li>--%>
+                <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}">Account </a><br></li>--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/startup/create">Add project</a><br></li>--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/interest/create/">Add interest</a></li>--%>
+            <%--<br>--%>
+            <%--<li><a href="${pageContext.request.contextPath}/logout">Logout</a><br></li>--%>
+            <%--<br>--%>
+            <%--<c:if test="${isAdmin}">--%>
+                <%--<li><a href="${pageContext.request.contextPath}/user/users">All users</a><br></li>--%>
+                <%--<br>--%>
+            <%--</c:if>--%>
+        <%--</ul>--%>
+    <%--</nav>--%>
 
     <article class="article">
         <section>
@@ -63,7 +64,7 @@
             </c:forEach>
         </section>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

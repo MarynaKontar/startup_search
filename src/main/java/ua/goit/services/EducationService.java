@@ -8,9 +8,6 @@ import ua.goit.dao.UserDao;
 import ua.goit.entity.Education;
 import ua.goit.entity.User;
 
-import java.util.Collection;
-import java.util.Collections;
-
 /**
  * Service for {@link ua.goit.entity.Education} which will use
  * {@link ua.goit.dao.EducationDao} as data access object
@@ -23,10 +20,12 @@ import java.util.Collections;
 public class EducationService {
 
     private final EducationDao dao;
+    private final UserDao userDao;
 
     @Autowired
-    public EducationService(EducationDao dao) {
+    public EducationService(EducationDao dao, UserDao userDao) {
         this.dao = dao;
+        this.userDao = userDao;
     }
 
     @Transactional
@@ -39,16 +38,10 @@ public class EducationService {
         return dao.findOne(aLong);
     }
 
-    @Transactional (readOnly = true)
-    public Collection<Education> findAll () {return dao.findAll();}
-
     @Transactional
-    public void delete(Long aLong) {
-        dao.delete(aLong);
-    }
-
-    @Transactional
-    public void delete(Education entity) {
-        dao.delete(entity);
+    public void deleteEducationFromUser(Long id, Long user_id) {
+        User user = userDao.findOne(user_id);
+        Education education = dao.findOne(id);
+        user.removeEducatione(education);
     }
 }

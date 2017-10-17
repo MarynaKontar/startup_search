@@ -9,8 +9,11 @@
 </head>
 <body>
 <div class="flex-container" align="center">
+    <c:set var="userId" value="${user.id}"/>
+    <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
-    <article>
+
+    <article class="article">
         <h3 align="center">Edit account</h3>
         <form method="post" enctype="multipart/form-data"
               action="${pageContext.request.contextPath}/storage/${user.id}/saveProfilePhoto">
@@ -21,7 +24,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" onClick="return validate()" value="Load a profile photo"/></td>
+                    <td><input type="submit" onClick="return validate()" value="LOAD A PROFILE PHOTO"/></td>
                 </tr>
             </table>
         </form>
@@ -35,7 +38,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" onClick="return validate()" value="Load a personal page photo"/></td>
+                    <td><input type="submit" onClick="return validate()" value="LOAD A PERSONAL PAGE PHOTO"/></td>
                 </tr>
             </table>
         </form>
@@ -102,7 +105,7 @@
                         <td><select name="contact.country">
                             <option value="${user.contact.country}">Country</option>
                             <c:forEach items="${countries}" var="country">
-                                <option value="${user.contact.country}">${country.label}</option>
+                                <option value="${country}">${country.label}</option>
                             </c:forEach>
                         </select></td>
                     </tr>
@@ -144,9 +147,10 @@
                     </tr>
                 </table>
             </form>
+
         </div>
     </article>
-    <footer>Copyright &copy; javaEE group7</footer>
+    <%@include file="footer.jsp" %>
 </div>
 </body>
 </html>

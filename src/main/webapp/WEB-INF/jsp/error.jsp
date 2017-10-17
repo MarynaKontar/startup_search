@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Start page for startup application</title>
+    <title>Error page for startup application</title>
     <%@include file="head.jsp" %>
 
 
@@ -19,20 +19,18 @@
     <%@include file="navbar.jsp" %>
 
     <aside>
-        <%@include file="searchBar.jsp" %>
+
     </aside>
     <article class="article">
-        <h3 align="center">Startups</h3>
-        <c:forEach var="project" items="${projects}">
-        <%@include file="short-project-info.jsp" %>
-        </c:forEach>
-        <br>
-        <br>
-        <h3 align="center">Interests</h3>
-        <c:forEach var="interest" items="${interests}">
-            <%@include file="short-interest-info.jsp" %>
-        </c:forEach>
-
+        <h1 align="center">You have an error</h1>
+        <div align="center">
+            <button class="btn btn-outline-secondary" onclick="goBack()">Back to previous page</button>
+            <script>
+                function goBack() {
+                    window.history.back();
+                }
+            </script>
+        </div>
     </article>
 
     <%@include file="footer.jsp" %>

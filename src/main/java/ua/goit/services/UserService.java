@@ -81,27 +81,6 @@ public class UserService {
         return dao.findUserByUsername(username);
     }
 
-    @Transactional(readOnly = true)
-    public User getOne(Long s) {
-        return dao.getOne(s);
-    }
-
-    @Transactional(readOnly = true)
-    public boolean exists(Long s) {
-        return dao.exists(s);
-    }
-
-    @Transactional
-    public void delete(Long s) {
-        dao.delete(s);
-    }
-
-    @Transactional
-    public void delete(User entity) {
-        dao.delete(entity);
-    }
-
-    //TODO
     @Transactional
     public void deletePersonalAccount(Long id) {
         if (id != null) {
