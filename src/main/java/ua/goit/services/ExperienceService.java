@@ -44,16 +44,6 @@ public class ExperienceService {
     }
 
     @Transactional
-    public void delete(Long aLong) {
-        dao.delete(aLong);
-    }
-
-    @Transactional
-    public void delete(Experience entity) {
-        dao.delete(entity);
-    }
-
-    @Transactional
     public void deleteEducationFromUser(Long id, Long user_id) {
         User user = userDao.findOne(user_id);
         Experience experience = dao.findOne(id);

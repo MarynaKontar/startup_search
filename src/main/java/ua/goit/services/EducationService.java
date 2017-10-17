@@ -44,16 +44,6 @@ public class EducationService {
     }
 
     @Transactional
-    public void delete(Long aLong) {
-        dao.delete(aLong);
-    }
-
-    @Transactional
-    public void delete(Education entity) {
-        dao.delete(entity);
-    }
-
-    @Transactional
     public void deleteEducationFromUser(Long id, Long user_id) {
         User user = userDao.findOne(user_id);
         Education education = dao.findOne(id);

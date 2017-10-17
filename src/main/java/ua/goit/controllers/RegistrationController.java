@@ -46,6 +46,9 @@ public class RegistrationController {
     // переадресации на страницу регистрации с выводом предупреждения в случаи совпадения логинов
     @GetMapping("registration/")
     public ModelAndView registrationForm() {
+//        List<String> usernames = userService.findAll()
+//                .stream().map(User::getUsername)
+//                .collect(Collectors.toList());
         LOGGER.info("Registration form");
         return new ModelAndView("registration-form");
     }
@@ -63,7 +66,6 @@ public class RegistrationController {
 //        //TODO сделала проверку прямо на view. Надо ли оставлять проверку здесь? Вдруг будет меняться view и это не учтут, а с моей стороны должен быть контроллер, который учитывает все
 //        if (user.getUsername() == null || user.getPassword() == null || user.getContact().getEmail() == null) {
 //            LOGGER.info("User " + user + " didn't save to database. Some fields from the form are empty.");
-//            //TODO redirect:/error
 //            return new ModelAndView("redirect:/registration/");
 //        }
 
@@ -99,8 +101,8 @@ public class RegistrationController {
         return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).build();
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<String> handleException(Exception ex) {
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
 }

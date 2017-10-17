@@ -7,11 +7,10 @@
 <head>
     <title>Update Project form</title>
     <%@include file="head.jsp" %>
-    <c:set var="userId" value="${command.user.id}"/>
 </head>
 <body>
 <div class="flex-container" align="center">
-
+    <c:set var="userId" value="${command.user.id}"/>
     <%@include file="header.jsp" %>
     <%@include file="navbar.jsp" %>
 
@@ -28,12 +27,12 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" onClick="return validate()" value="Load a project photo"/></td>
+                    <td><input type="submit" onClick="return validate()" value="LOAD A PROJECT PHOTO"/></td>
                 </tr>
             </table>
         </form>
         <br>
-        <h4>Message : ${message}</h4>
+
         <%@include file="validatePhotoSize.jsp" %>
 
         <div align="center">

@@ -44,8 +44,4 @@ public class TestControllersConfiguration {
         return mock(ExperienceService.class);
     }
 
-    @Bean
-    public SearchService  searchService() {
-        return mock(SearchService.class);
-    }
 }

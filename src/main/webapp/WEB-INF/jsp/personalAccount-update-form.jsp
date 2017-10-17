@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" onClick="return validate()" value="Load a profile photo"/></td>
+                    <td><input type="submit" onClick="return validate()" value="LOAD A PROFILE PHOTO"/></td>
                 </tr>
             </table>
         </form>
@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" onClick="return validate()" value="Load a personal page photo"/></td>
+                    <td><input type="submit" onClick="return validate()" value="LOAD A PERSONAL PAGE PHOTO"/></td>
                 </tr>
             </table>
         </form>
@@ -147,6 +147,7 @@
                     </tr>
                 </table>
             </form>
+
         </div>
     </article>
     <%@include file="footer.jsp" %>

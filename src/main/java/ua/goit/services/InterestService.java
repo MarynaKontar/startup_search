@@ -57,16 +57,6 @@ public class InterestService {
         return dao.findInterestsByOrderByLastChangeDesc();
     }
 
-    @Transactional(readOnly = true)
-    public Page<Interest> findAll(Pageable pageable) {
-        return dao.findAll(pageable);
-    }
-
-    @Transactional(readOnly = true)
-    public Interest getOne(Long aLong) {
-        return dao.getOne(aLong);
-    }
-
     @Transactional
     public <S extends Interest> S save(S entity) {
         return dao.save(entity);
@@ -75,16 +65,6 @@ public class InterestService {
     @Transactional(readOnly = true)
     public Interest findOne(Long aLong) {
         return dao.findOne(aLong);
-    }
-
-    @Transactional
-    public void delete(Long aLong) {
-        dao.delete(aLong);
-    }
-
-    @Transactional
-    public void delete(Interest entity) {
-        dao.delete(entity);
     }
 
     @Transactional

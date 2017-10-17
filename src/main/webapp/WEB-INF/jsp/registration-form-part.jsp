@@ -13,6 +13,9 @@
                 function checkLogin(input) {
                     if (!document.getElementById('login').value) {
                         input.setCustomValidity('Enter login.');
+                    <%--} else if(${logins.stream()--%>
+                            <%--.forEach(log->log!=input.value)}){--%>
+                        <%--input.setCustomValidity('This login already exists.');--%>
                     } else {
                         input.setCustomValidity('');
                     }

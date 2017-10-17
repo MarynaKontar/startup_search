@@ -85,36 +85,14 @@ public class ProjectService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Project> findAll(Pageable pageable) {
-        return dao.findAll(pageable);
-    }
-
-    @Transactional(readOnly = true)
     public Project findOne(Long s) {
         return dao.findOne(s);
-    }
-
-    @Transactional(readOnly = true)
-    public Project getOne(Long aLong) {
-        return dao.getOne(aLong);
     }
 
     @Transactional(readOnly = true)
     public boolean exists(Long s) {
         return dao.exists(s);
     }
-
-    @Transactional
-    public void delete(Long s) {
-
-        dao.delete(s);
-    }
-
-    @Transactional
-    public void delete(Project entity) {
-        dao.delete(entity);
-    }
-
 
     @Transactional
     public void deleteProjectFromUser(Long id, Long user_id){
