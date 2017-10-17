@@ -123,7 +123,6 @@ public class Interest {
         if (budget != interest.budget) return false;
         if (!id.equals(interest.id)) return false;
         if (!name.equals(interest.name)) return false;
-        if (!description.equals(interest.description)) return false;
         if (!user.equals(interest.user)) return false;
         if (country != interest.country) return false;
         if (industry != interest.industry) return false;

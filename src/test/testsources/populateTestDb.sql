@@ -18,3 +18,7 @@ insert into education values (4, 3, 'institution2', 'faculty2', 'stage2', 'field
 insert into experience values (1, 1, 'company1', 'position1', 'responsibility1', '1000-01-01 00:00:00.000000', '1000-01-01 00:00:00.000000');
 insert into experience values (2, 2, 'company2', 'position2', 'responsibility2', '1000-01-01 00:00:00.000000', '1000-01-01 00:00:00.000000');
 insert into experience values (3, 3, 'company3', 'position3', 'responsibility3', '1000-01-01 00:00:00.000000', '1000-01-01 00:00:00.000000');
+
+insert into interest (id, name, user_id, budget) values (1, 'name1', 1, 100);
+insert into interest (id, name, user_id, budget) values (2, 'name2', 2, 200);
+insert into interest (id, name, user_id, budget) values (3, 'name3', 3, 300);
