@@ -77,8 +77,14 @@ public class UserService {
         return dao.findOne(s);
     }
 
+    @Transactional(readOnly = true)
     public User findUserByUsername(String username) {
         return dao.findUserByUsername(username);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean exists(Long aLong) {
+        return dao.exists(aLong);
     }
 
     @Transactional

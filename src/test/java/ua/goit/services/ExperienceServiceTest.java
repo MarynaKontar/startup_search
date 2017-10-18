@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import ua.goit.configuration.TestServicesConfiguration;
 import ua.goit.dao.ExperienceDao;
 import ua.goit.dao.UserDao;
@@ -50,6 +51,16 @@ public class ExperienceServiceTest {
     public void findOne() throws Exception {
         Experience experience = experienceService.findOne(1L);
         assertEquals(1L, (long)experience.getId());
+    }
+
+    @Test
+    @Transactional
+    public void deleteEducationFromUser() {
+        User user = userDao.findOne(1L);
+        assertEquals(1, user.getExperiences().size());
+        experienceService.deleteEducationFromUser(1L, 1L);
+        assertEquals(0, user.getExperiences().size());
+
     }
 
 

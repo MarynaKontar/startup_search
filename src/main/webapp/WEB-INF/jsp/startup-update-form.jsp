@@ -17,7 +17,7 @@
 
     <article class="article">
         <h3 align="center">Edit a project</h3>
-
+        <c:if test="${isOwner || isAdmin}">
         <form method="post" enctype="multipart/form-data"
               action="${pageContext.request.contextPath}/storage/${command.id}/saveProjectPhoto">
             <table align="center">
@@ -132,6 +132,7 @@
                 </table>
             </form:form>
         </div>
+        </c:if>
     </article>
     <%@include file="footer.jsp" %>
 </div>

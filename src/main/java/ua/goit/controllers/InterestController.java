@@ -15,6 +15,9 @@ import ua.goit.services.UserService;
 
 import java.io.IOException;
 
+import static ua.goit.controllers.Validation.validateInterest;
+import static ua.goit.controllers.Validation.validateUser;
+
 /**
  * * Controller for {@link ua.goit.entity.Interest}
  */
@@ -63,7 +66,8 @@ public class InterestController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView info(@PathVariable("id") Long id) {
+    public ModelAndView info(@PathVariable("id") Long id) throws Exception {
+        validateInterest(id, interestService);
         ModelAndView projectInfo = new ModelAndView("interest-info");
         Interest interest = interestService.findOne(id);
         projectInfo.addObject("interest", interest);
@@ -72,7 +76,9 @@ public class InterestController {
     }
 
     @GetMapping("{user_id}/{id}/delete")
-    public ModelAndView delete(@PathVariable("user_id") Long user_id, @PathVariable("id") Long id) {
+    public ModelAndView delete(@PathVariable("user_id") Long user_id, @PathVariable("id") Long id) throws Exception {
+        validateUser(user_id, userService);
+        validateInterest(id, interestService);
         interestService.deleteInterestFromUser(id, user_id);
         LOGGER.info("Redirecting to personal account page after deleting interest with id='{}'", id);
         return new ModelAndView("redirect:/user/personalAccount/" + user_id);
@@ -80,7 +86,8 @@ public class InterestController {
 
 
     @GetMapping("/{id}/edit")
-    public ModelAndView edit(@PathVariable("id") Long id) {
+    public ModelAndView edit(@PathVariable("id") Long id) throws Exception {
+        validateInterest(id, interestService);
         Interest interest = interestService.findOne(id);
         ModelAndView modelAndView = new ModelAndView("interest-update-form", "command", interest);
         modelAndView.addObject("countries", Country.values());
@@ -89,8 +96,14 @@ public class InterestController {
     }
 
     @PostMapping("/{id}/update/")
-    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("command") Interest interest) throws IOException {
+    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("command") Interest interest) throws Exception {
+        validateInterest(id, interestService);
         interestService.save(interest);
         return new ModelAndView("redirect:/user/personalAccount/" + interest.getUser().getId());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(Exception ex) {
+        return new ModelAndView("/error", "exception", ex.getMessage());
     }
 }

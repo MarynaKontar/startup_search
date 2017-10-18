@@ -17,6 +17,7 @@
 
     <article class="article">
         <h3 align="center">Edit an interest</h3>
+        <c:if test="${isOwner || isAdmin}">
         <div align="center">
             <form:form method="post" action="${pageContext.request.contextPath}/interest/${command.id}/update/">
                 <form:input path="user.id" type="number" name="user.id" value="${command.user.id}" hidden="true"/>
@@ -67,6 +68,7 @@
                 </table>
             </form:form>
         </div>
+        </c:if>
     </article>
     <%@include file="footer.jsp" %>
 </div>
