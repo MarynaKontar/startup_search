@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 import ua.goit.configuration.TestServicesConfiguration;
 import ua.goit.dao.EducationDao;
 import ua.goit.dao.UserDao;
@@ -55,6 +56,16 @@ public class EducationServiceTest {
     public void findOne() throws Exception {
         Education education = educationService.findOne(1L);
         assertEquals(1, (long)education.getId());
+    }
+
+    @Test
+    @Transactional
+    public void deletEducationFromUser() {
+        User user = userDao.findOne(1L);
+        assertEquals(2, user.getEducations().size());
+        educationService.deleteEducationFromUser(1L, 1L);
+        assertEquals(1, user.getEducations().size());
+
     }
 
 
