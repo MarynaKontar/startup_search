@@ -13,7 +13,6 @@ import ua.goit.entity.Project;
 import ua.goit.entity.enums.Country;
 import ua.goit.entity.enums.Industry;
 import ua.goit.services.*;
-import ua.goit.util.InitDefaultEntities;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
