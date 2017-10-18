@@ -22,3 +22,7 @@ insert into experience values (3, 3, 'company3', 'position3', 'responsibility3',
 insert into interest (id, name, user_id, budget, industry, country) values (1, 'name1', 1, 100, 'AGRICULTURE', 'AFGHANISTAN');
 insert into interest (id, name, user_id, budget, industry, country) values (2, 'name2', 2, 200, 'BANKING', 'ALBANIA');
 insert into interest (id, name, user_id, budget, industry, country) values (3, 'name3', 3, 300, 'COMMUNICATIONS', 'ALGERIA');
+
+insert into project (id, name, user_id, lastChange, industry, address_id) values (1, 'name1', 1, '1000-01-01 00:00:00.000000', 'AGRICULTURE', 1);
+insert into project (id, name, user_id, lastChange, industry, address_id) values (2, 'name2', 2, '1000-01-01 00:00:00.000000', 'BANKING', 2);
+insert into project (id, name, user_id, lastChange, industry, address_id) values (3, 'name1', 3, '1000-01-01 00:00:00.000000', 'COMMUNICATIONS', 3);
