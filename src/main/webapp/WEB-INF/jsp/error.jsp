@@ -22,7 +22,7 @@
 
     </aside>
     <article class="article">
-        <h1 align="center">You have an error</h1>
+        <h1 align="center" style="color: darkred">You have an error. ${exception}</h1>
         <div align="center">
             <button class="btn btn-outline-secondary" onclick="goBack()">Back to previous page</button>
             <script>

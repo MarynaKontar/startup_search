@@ -25,7 +25,7 @@
                 <li><a href="${pageContext.request.contextPath}/user/personalAccount/${userId}/edit">Edit
                     profile</a></li>
                 <br>
-                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${userId}/delete">Delete
+                <li><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}/${userId}/delete">Delete
                     profile</a></li>
                 <br>
             </c:if>

@@ -18,7 +18,7 @@
 
         var file_size=document.getElementById('file_upload1').files[0].size;
         if(file_size>=size){
-            alert('File too large. It should not be more than ' + size + ' kb');
+            alert('File too large. It should not be more than ' + size/1000 + ' kb');
             return false;
         }
         var type='image/jpeg';
