@@ -7,13 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ua.goit.services.ProjectService;
 import ua.goit.services.UserService;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import static ua.goit.controllers.Validation.validateProject;
+import static ua.goit.controllers.Validation.validateUser;
 
 /**
  * Created by User on 11.10.2017.
@@ -22,20 +27,20 @@ import java.nio.file.Paths;
 @RequestMapping(value = "/storage")
 public class StorageController {
     private final UserService userService;
-
+    private final ProjectService projectService;
     private final static Logger LOGGER = LoggerFactory.getLogger(StorageController.class);
 
     @Autowired
-    public StorageController(UserService userService) {
+    public StorageController(UserService userService, ProjectService projectService) {
         this.userService = userService;
-
+        this.projectService = projectService;
     }
 
     @PostMapping("/{id}/saveProfilePhoto")
     public String saveProfilePhoto(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes, @PathVariable("id") Long id) {
+                                   RedirectAttributes redirectAttributes, @PathVariable("id") Long id) throws Exception {
+        validateUser(id, userService);
         String realPathtoUploads = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("");
-        System.out.println(realPathtoUploads);
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:/user/personalAccount/{id}/edit";
@@ -48,7 +53,7 @@ public class StorageController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new Exception("File " + file.getOriginalFilename() + " didn't uploaded", e);
         }
 
         return "redirect:/user/personalAccount/{id}/edit";
@@ -56,9 +61,9 @@ public class StorageController {
 
     @PostMapping("/{id}/savePersonalPagePhoto")
     public String savePersonalPagePhoto(@RequestParam("file") MultipartFile file,
-                                        RedirectAttributes redirectAttributes, @PathVariable("id") Long id) {
+                                        RedirectAttributes redirectAttributes, @PathVariable("id") Long id) throws Exception {
+        validateUser(id, userService);
         String realPathtoUploads = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("");
-        System.out.println(realPathtoUploads);
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:/user/personalAccount/{id}/edit";
@@ -71,16 +76,17 @@ public class StorageController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new Exception("File " + file.getOriginalFilename() + " didn't uploaded", e);
         }
         return "redirect:/user/personalAccount/{id}/edit";
     }
 
     @PostMapping("/{id}/saveProjectPhoto")
     public String saveProjectPhoto(@RequestParam("file") MultipartFile file,
-                                        RedirectAttributes redirectAttributes, @PathVariable("id") Long id) {
+                                        RedirectAttributes redirectAttributes, @PathVariable("id") Long id) throws Exception {
+        validateProject(id, projectService);
         String realPathtoUploads = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("");
-        System.out.println(realPathtoUploads);
+
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:/startup/{id}/edit";
@@ -93,10 +99,13 @@ public class StorageController {
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new Exception("File " + file.getOriginalFilename() + " didn't uploaded", e);
         }
         return "redirect:/startup/{id}/edit";
     }
 
-
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(Exception ex) {
+        return new ModelAndView("/error", "exception", ex.getMessage());
+    }
 }

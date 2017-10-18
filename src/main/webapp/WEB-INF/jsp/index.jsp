@@ -22,13 +22,17 @@
         <%@include file="searchBar.jsp" %>
     </aside>
     <article class="article">
-        <h3 align="center">Startups</h3>
+        <c:if test="${projects!=null}">
+        <h4 align="center">Startups</h4>
+        </c:if>
         <c:forEach var="project" items="${projects}">
         <%@include file="short-project-info.jsp" %>
         </c:forEach>
         <br>
         <br>
-        <h3 align="center">Interests</h3>
+        <c:if test="${interests!=null}">
+        <h4 align="center">Investments</h4>
+        </c:if>
         <c:forEach var="interest" items="${interests}">
             <%@include file="short-interest-info.jsp" %>
         </c:forEach>

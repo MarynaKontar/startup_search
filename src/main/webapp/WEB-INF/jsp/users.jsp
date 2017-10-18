@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Table of all users for admn</title>
+    <title>Table of all users for admin</title>
     <%@include file="head.jsp" %>
 </head>
 
@@ -54,7 +54,7 @@
 
                     <td>${user.aboutMe}</td>
                     <td><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/edit">edit</a></td>
-                    <td><a href="${pageContext.request.contextPath}/user/personalAccount/${user.id}/delete">delete</a></td>
+                    <td><a href="${pageContext.request.contextPath}/user/personalAccount/${user_id}/${user.id}/delete">delete</a></td>
 
                 </tr>
             </c:forEach>

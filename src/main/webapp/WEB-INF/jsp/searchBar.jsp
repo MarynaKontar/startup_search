@@ -4,7 +4,7 @@
         <%--<th>Search</th>--%>
         <br>
         <form method="get" action="${pageContext.request.contextPath}/">
-            <th>Projects by industry</th>
+            <th>Startups by industry</th>
             <select name="projectIndustry">
                 <option value="">Industry</option>
                 <c:forEach items="${industries}" var="industry">
@@ -12,7 +12,7 @@
                 </c:forEach>
             </select>
             <br>
-            <th>Projects by country</th>
+            <th>Startups by country</th>
             <select name="projectCountry">
                 <option value="">Country</option>
                 <c:forEach items="${countries}" var="country">
@@ -20,7 +20,7 @@
                 </c:forEach>
             </select>
             <br>
-            <th>Interests by industry</th>
+            <th>Investments by industry</th>
             <select name="interestIndustry">
                 <option value="">Industry</option>
                 <c:forEach items="${industries}" var="industry">
@@ -28,7 +28,7 @@
                 </c:forEach>
             </select>
             <br>
-            <th>Interests by country</th>
+            <th>Investments by country</th>
             <select name="interestCountry">
                 <option value="">Country</option>
                 <c:forEach items="${countries}" var="country">

@@ -8,7 +8,7 @@
         </div>
         <div class="labels">
             <div class="date">${interest.lastChange}</div>
-            <div class="name">Interest</div>
+            <div class="name">Investment</div>
         </div>
     </div>
     <a href="${pageContext.request.contextPath}/interest/${interest.id}">${interest.name}</a>
