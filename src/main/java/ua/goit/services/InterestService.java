@@ -67,6 +67,11 @@ public class InterestService {
         return dao.findOne(aLong);
     }
 
+    @Transactional(readOnly = true)
+    public boolean exists(Long aLong) {
+        return dao.exists(aLong);
+    }
+
     @Transactional
     public void deleteInterestFromUser(Long id, Long user_id) {
         User user = userDao.findOne(user_id);

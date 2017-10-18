@@ -75,6 +75,12 @@ public class RegistrationController {
             return new ModelAndView("redirect:/registrationAfterMissingLogin/");
         }
 
+//        List<String> usernames = userService.findAll().stream().map(User::getUsername).collect(Collectors.toList());
+//        if (usernames.contains(user.getUsername())) {
+//            LOGGER.info("Login " + user.getUsername() + " already exists");
+//            throw new IOException("Login " + user.getUsername() + " already exists");
+//        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Collections.singletonList(Role.USER));
         try {
@@ -96,13 +102,14 @@ public class RegistrationController {
         return new ModelAndView("registration-form-missing-login");
     }
 
-    @ExceptionHandler(IOException.class)
-    public ResponseEntity<String> handleException(IOException ex) {
-        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).build();
-    }
+//    @ExceptionHandler(IOException.class)
+//    @GetMapping("/error")
+//    public ModelAndView handleIOException(IOException ex) {
+//        return new ModelAndView("/error", "exception", ex);
+//    }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    public ModelAndView handleException(Exception ex) {
+        return new ModelAndView("/error", "exception", ex.getMessage());
     }
 }

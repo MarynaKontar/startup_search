@@ -63,24 +63,35 @@ public class MainController {
         LOGGER.info("Building main page for user from " + headers.getFirst(HttpHeaders.HOST));
         Map<String, ? super Object> map = new HashMap<>();
 
-        List<Project> projects;
-        List<Interest> interests;
+        List<Project> projects = projectService.findProjectsByOrderByLastChangeDesc();
+        List<Interest> interests = interestService.findInterestsByOrderByLastChangeDesc();
 
         if (projectIndustry != null) {
             if (projectCountry != null) {
                 projects = projectService.findAllByIndustryAndAddress_Country(projectIndustry, projectCountry);
             } else projects = projectService.findAllByIndustry(projectIndustry);
         } else projects = projectService.findAllByAddress_Country(projectCountry);
-        if(projectIndustry == null && projectCountry == null){
-            projects = projectService.findProjectsByOrderByLastChangeDesc();}
+        if (projectIndustry == null && projectCountry == null
+                && (interestIndustry != null || interestCountry != null)
+                ) {
+//            projects = projectService.findProjectsByOrderByLastChangeDesc();}
+            projects = null;}
 
         if (interestIndustry != null) {
             if (interestCountry != null) {
                 interests = interestService.findAllByIndustryAndCountry(interestIndustry, interestCountry);
             } else interests = interestService.findAllByIndustry(interestIndustry);
         } else interests = interestService.findAllByCountry(interestCountry);
-        if(interestIndustry == null && interestCountry == null){
-            interests = interestService.findInterestsByOrderByLastChangeDesc();}
+        if (interestIndustry == null && interestCountry == null
+                && (projectIndustry != null || projectCountry != null)
+                ) {
+//            interests = interestService.findInterestsByOrderByLastChangeDesc();}
+            interests = null;}
+
+        if (interestIndustry == null && interestCountry == null && projectIndustry == null && projectCountry == null){
+            projects = projectService.findProjectsByOrderByLastChangeDesc();
+            interests = interestService.findInterestsByOrderByLastChangeDesc();
+        }
 
         map.put("projects", projects);
         map.put("interests", interests);

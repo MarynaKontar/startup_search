@@ -15,6 +15,9 @@ import ua.goit.services.UserService;
 import java.io.IOException;
 import java.util.*;
 
+import static ua.goit.controllers.Validation.validateUser;
+import static ua.goit.controllers.Validation.validateUserForDelete;
+
 
 /**
  * Controller for {@link ua.goit.entity.User}
@@ -39,22 +42,27 @@ public class UserController {
     }
 
     @GetMapping("/personalAccount/{id}")
-    public ModelAndView viewPersonalAccount(@PathVariable("id") Long id) {
+    public ModelAndView viewPersonalAccount(@PathVariable("id") Long id) throws Exception {
+        validateUser(id, userService);
         User user = userService.findOne(id);
         LOGGER.info("Personal account page for " + user);
         return new ModelAndView("personalAccount", "user", user);
     }
 
-    @GetMapping("/personalAccount/{id}/delete")
-    public ModelAndView delete(@PathVariable("id") Long id) {
+    @GetMapping("/personalAccount/{current_id}/{id}/delete")
+    public ModelAndView delete(@PathVariable("id") Long id, @PathVariable("current_id") Long current_id) throws Exception {
+        validateUser(id, userService);
+        validateUserForDelete(id, current_id, userService);
         userService.deletePersonalAccount(id);
         LOGGER.info("Redirecting to logout page after deleting personal account with username='{}'", id);
-        return new ModelAndView("redirect:/logout");
-    //TODO если у админа есть возможность удалить юзера, то надо подумать как организовать после єтого redirect
+        if(current_id==id){
+        return new ModelAndView("redirect:/logout");}
+        else return new ModelAndView("redirect:/");
     }
 
     @GetMapping("/personalAccount/{id}/edit")
-    public ModelAndView edit(@PathVariable("id") Long id) {
+    public ModelAndView edit(@PathVariable("id") Long id) throws Exception {
+        validateUser(id, userService);
         User user = userService.findOne(id);
         Map<String,? super Object> map = new HashMap<>();
         map.put("user", user);
@@ -66,8 +74,11 @@ public class UserController {
     }
 
     @PostMapping("/personalAccount/{id}/update")
-    public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("user") User user
-            , @RequestParam(value = "password", required = false) String password) throws IOException {
+    public ModelAndView update(@PathVariable("id") Long id
+            , @ModelAttribute("user") User user
+            , @RequestParam(value = "password", required = false) String password)
+            throws Exception {
+        validateUser(id, userService);
         user.setProfileFotoLink( "profilePhoto"+user.getId()+".jpg");
         user.setPersonalPageFotoLink( "personalPagePhoto" + user.getId() + ".jpg");
         userService.update(user, id, password);
@@ -81,12 +92,8 @@ public class UserController {
         return new ModelAndView("users", "users", users);
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<String> handleException(Exception ex) {
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//    }
-//    @ExceptionHandler(IOException.class)
-//    public ResponseEntity<String> handleIOException(IOException ex) {
-//        return ResponseEntity.status(HttpStatus.INSUFFICIENT_STORAGE).build();
-//    }
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(Exception ex) {
+        return new ModelAndView("/error", "exception", ex.getMessage());
+    }
 }

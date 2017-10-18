@@ -10,7 +10,7 @@
         </c:if>
         <div class="labels">
             <div class="date">${interest.lastChange}</div>
-            <div class="name">Interest</div>
+            <div class="name">Investment</div>
         </div>
 
         <div>${interest.name}</div>
@@ -44,3 +44,4 @@
             </div>
         </div>
     </div>
+</div>

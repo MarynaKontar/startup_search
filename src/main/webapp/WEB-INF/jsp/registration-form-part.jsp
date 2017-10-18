@@ -25,7 +25,8 @@
             <tr align="center">
                 <th>Password</th>
                 <td>
-                    <input name="password" required type="password" id="password" placeholder="Password" oninput="checkPassword(this)">
+                    <input name="password" required type="password" id="password"
+                           placeholder="Password" oninput="checkPassword(this)">
                 </td>
             </tr>
             <script language='javascript' type='text/javascript'>
@@ -47,6 +48,7 @@
             <script language='javascript' type='text/javascript'>
                 function checkPasswordToMatching(input) {
                     if (!document.getElementById('password_confirm').value || input.value != document.getElementById('password').value) {
+//                    if (!input.value || document.getElementById('password_confirm').value != document.getElementById('password').value) {
                         input.setCustomValidity('Password Must be Matching.');
                     } else {
                         input.setCustomValidity('');
