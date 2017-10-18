@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
@@ -127,6 +128,14 @@ public class UserServiceTest {
 
 
 
+
+    }
+
+    @Test
+    public void userDetailsServiceTest () {
+        UserDetailsServiceImpl userDetailsService = new UserDetailsServiceImpl(userService);
+        UserDetails userDetails = userDetailsService.loadUserByUsername("user1");
+        assertEquals("user1", userDetails.getUsername());
 
     }
 
