@@ -4,7 +4,7 @@
 
 #### Final Project on GoIT JavaEE 6 course group 7
 
-The SStartup Store is an investment platform for participants on the venture market - start-ups,
+The Startup Store is an investment platform for participants on the venture market - start-ups,
 private investors - which helps entrepreneurs quickly find the first round of investment 
 or their startups, investors - to effectively invest.
 
