@@ -9,11 +9,11 @@ private investors - which helps entrepreneurs quickly find the first round of in
 or their startups, investors - to effectively invest.
 
 The application has been built by Model-View-Controller architecture pattern and use next frameworks and technologies: 
- - Spring MVC, Spring Security); 
- - ORM - Hibernate; 
- - SQL - MySQL; 
+ - Spring MVC, Spring Security; 
+ - ORM - JPA, Hibernate; 
+ - DB - MySQL; 
  - Frontend - JSP, JSTL, CSS; 
- - Logger - Log4j; 
- - Testing - Junit, Mockito, Spring; 
+ - Logger - Slf4j, Log4j; 
+ - Testing - Junit, Mockito, Spring, Unitils, H2; 
  - Building - Apache Maven.
 
