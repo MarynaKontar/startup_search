@@ -10,7 +10,7 @@ import java.util.List;
 
 
 /**
- * Service for {@link ua.goit.entity.Address} which will use
+ * Service for {@link ua.goit.entity.Address} which uses
  * {@link ua.goit.dao.AddressDao} as data access object
  *
  * @KontarMaryna
