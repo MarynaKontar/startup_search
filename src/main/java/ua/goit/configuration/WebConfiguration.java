@@ -21,37 +21,28 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan({"ua.goit.controllers"})
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
-    //прописала, как маппить странички браузера с *.jpeg, *.css, *.html на ресурсы в файловой системе
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/*.jpg").addResourceLocations("/WEB-INF/jpg/");
         registry.addResourceHandler("/*.css").addResourceLocations("/WEB-INF/css/");
-//        registry.addResourceHandler("/*.html").addResourceLocations("/WEB_INF/html/");
-
     }
 
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // View -> RedirectView
         registry.addViewController("/login").setViewName("login-form");
         registry.addViewController("/error").setViewName("error");
-//        registry.addViewController("/registration").setViewName("registration-form");
-//        registry.addRedirectViewController("/login", "/user/show");
     }
 
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-
-        //TODO 4. пока используем jsp для View (-> JstlView)
         resolver.setViewClass(JstlView.class);
         resolver.setPrefix("/WEB-INF/jsp/");
         resolver.setSuffix(".jsp");
         return resolver;
     }
 
-    // Bean name must be "multipartResolver", by default Spring uses method name as bean name.
     @Bean
     public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();

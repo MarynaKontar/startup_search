@@ -28,16 +28,30 @@ public class ExperienceService {
         this.userDao = userDao;
     }
 
+    /**
+     * Method saves {@link Experience} to repository if no {@link Experience} with such id exists
+     * @param entity Experience to save
+     */
     @Transactional
     public <S extends Experience> S save(S entity) {
         return dao.save(entity);
     }
 
+    /**
+     * Retrieves an experience by its id.
+     * @param aLong id for searching experience in repository, must not be {@literal null}.
+     * @return {@link Experience} from repository with given id or {@literal null} if none found
+     */
     @Transactional(readOnly = true)
     public Experience findOne(Long aLong) {
         return dao.findOne(aLong);
     }
 
+    /**
+     * Delete {@link Experience} with id from {@link User}
+     * @param id the id of {@link Experience} to delete
+     * @param user_id the id of {@link User} from which the experience is deleted
+     */
     @Transactional
     public void deleteEducationFromUser(Long id, Long user_id) {
         User user = userDao.findOne(user_id);

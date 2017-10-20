@@ -66,16 +66,4 @@ public class ModelConfiguration {
     public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
         return new JpaTransactionManager(entityManagerFactory);
     }
-
-//    @Bean
-//    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource){
-//        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-//        populator.addScript(scriptResource);
-//
-//        DataSourceInitializer initializer = new DataSourceInitializer();
-//        initializer.setDataSource(dataSource);
-//        initializer.setDatabasePopulator(populator);
-//        return initializer;
-//    }
-
 }

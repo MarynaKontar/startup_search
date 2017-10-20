@@ -20,7 +20,6 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    //TODO 2. дописать правила доступа (antMatchers(...).hasAnyRole(...))
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -38,12 +37,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
-                // разрешаем делать логаут всем
                 .logout().permitAll()
-                // указываем URL логаута
                 .logoutUrl("/logout")
-                // указываем URL при удачном логауте
-//                .logoutSuccessUrl("/login?logout")
                 .logoutSuccessUrl("/")
                 // делаем не валидной текущую сессию
                 .invalidateHttpSession(true).permitAll()
