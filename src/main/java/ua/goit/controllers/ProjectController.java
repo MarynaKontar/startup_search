@@ -16,7 +16,6 @@ import ua.goit.services.ProjectService;
 import ua.goit.services.UserService;
 
 import java.io.IOException;
-import java.util.*;
 
 import static ua.goit.controllers.Validation.validateProject;
 import static ua.goit.controllers.Validation.validateUser;
@@ -43,6 +42,11 @@ public class ProjectController {
         this.userService = userService;
     }
 
+    /**
+     * Mapping for url ":/startup/create"
+     * @return a {@link ModelAndView} object holding the name of jsp represented by {@link java.lang.String},
+     * and arrays of {@link ua.goit.entity.enums.Country} and {@link ua.goit.entity.enums.Industry}
+     */
     @GetMapping("/create")
     public ModelAndView createStartup() {
         ModelAndView modelAndView = new ModelAndView("project-create-form");
@@ -73,6 +77,12 @@ public class ProjectController {
         return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getId());
     }
 
+    /**
+     * Mapping for url ":/startup/{id}"
+     * @param id the id of startup from url
+     * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String},
+     * @throws Exception if startup with id doesn't exists
+     */
     @GetMapping("/{id}")
     public ModelAndView info(@PathVariable("id") Long id) throws Exception {
         validateProject(id, projectService);
@@ -83,6 +93,15 @@ public class ProjectController {
         return projectInfo;
     }
 
+    /**
+     * Mapping for url ":/startup/{user_id}/{id}/delete"
+     * Method deletes {@link Project with chosen id from database
+     * @param user_id the id of user that delete startup from url
+     * @param id the id of startup to delete from url
+     * @return a {@link ModelAndView} object holding the name of jsp for redirect to personal account
+     * page with id=user_id
+     * @throws Exception if user with user_id doesn't exists or startup with id doesn't exists
+     */
     @GetMapping("{user_id}/{id}/delete")
     public ModelAndView delete(@PathVariable("user_id") Long user_id, @PathVariable("id") Long id) throws Exception {
         validateUser(user_id, userService);
@@ -92,6 +111,14 @@ public class ProjectController {
         return new ModelAndView("redirect:/user/personalAccount/" + user_id);
     }
 
+    /**
+     * Mapping for url ":/startup/{id}/edit"
+     * Method take project with id from database and sends it to {@link Project} update form
+     * @param id the id of startup to update from url
+     * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String} and
+     * interest to update, arrays of all {@link Country} and {@link Industry}
+     * @throws Exception if startup with id doesn't exists
+     */
     @GetMapping("/{id}/edit")
     public ModelAndView edit(@PathVariable("id") Long id) throws Exception {
         validateProject(id, projectService);
@@ -102,6 +129,15 @@ public class ProjectController {
         return modelAndView;
     }
 
+    /**
+     * Mapping for url ":/startup/{id}/update/"
+     * Method updates {@link Project} in database with parameters which come from {@link Project} update form
+     * @param id the id of startup to update from url
+     * @param project for updating
+     * @return a {@link ModelAndView} object holding the name of jsp for redirect to personal account
+     * page with id=user_id
+     * @throws Exception if startup with id doesn't exists
+     */
     @PostMapping("/{id}/update/")
     public ModelAndView update(@PathVariable("id") Long id, @ModelAttribute("command") Project project, @ModelAttribute("businessPlan")BusinessPlan businessPlan) throws Exception {
         validateProject(id, projectService);
@@ -110,6 +146,12 @@ public class ProjectController {
         return new ModelAndView("redirect:/user/personalAccount/" + project.getUser().getId());
     }
 
+    /**
+     * Exception handler
+     * @param ex exception for handling
+     * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String} for error page
+     * and exception message
+     */
     @ExceptionHandler(Exception.class)
     public ModelAndView handleException(Exception ex) {
         return new ModelAndView("/error", "exception", ex.getMessage());

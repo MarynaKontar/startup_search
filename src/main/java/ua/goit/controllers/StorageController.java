@@ -21,7 +21,7 @@ import static ua.goit.controllers.Validation.validateProject;
 import static ua.goit.controllers.Validation.validateUser;
 
 /**
- * Created by User on 11.10.2017.
+ * Controller for uploading images
  */
 @Controller
 @RequestMapping(value = "/storage")
@@ -36,6 +36,17 @@ public class StorageController {
         this.projectService = projectService;
     }
 
+    /**
+     * Mapping for url ":/storage/{id}/saveProfilePhoto"
+     * Method upload profile photo to realPathtoUploads + "/WEB-INF/jpg/" folder with "profilePhoto"+id+".jpg" name.
+     * It's doesn't save name of profile photo to database. Profile photo name saves to database
+     * in {@code update} method of {@link UserController}
+     * @param file
+     * @param redirectAttributes for out information on page
+     * @param id the id of user from url
+     * @return redirect link to personal account edit page
+     * @throws Exception if file didn't uploaded
+     */
     @PostMapping("/{id}/saveProfilePhoto")
     public String saveProfilePhoto(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes, @PathVariable("id") Long id) throws Exception {
@@ -59,6 +70,17 @@ public class StorageController {
         return "redirect:/user/personalAccount/{id}/edit";
     }
 
+    /**
+     * Mapping for url ":/storage/{id}/savePersonalPagePhoto"
+     * Method upload profile photo to realPathtoUploads + "/WEB-INF/jpg/" folder with "personalPagePhoto"+id+".jpg" name.
+     * It's doesn't save name of personal page photo to database. Personal page photo name saves to database
+     * in {@code update} method of {@link UserController}
+     * @param file
+     * @param redirectAttributes for out information on page
+     * @param id the id of user from url
+     * @return redirect link to personal account edit page
+     * @throws Exception if file didn't uploaded
+     */
     @PostMapping("/{id}/savePersonalPagePhoto")
     public String savePersonalPagePhoto(@RequestParam("file") MultipartFile file,
                                         RedirectAttributes redirectAttributes, @PathVariable("id") Long id) throws Exception {
@@ -81,6 +103,17 @@ public class StorageController {
         return "redirect:/user/personalAccount/{id}/edit";
     }
 
+    /**
+     * Mapping for url ":/storage/{id}/saveProjectPhoto"
+     * Method upload profile photo to realPathtoUploads + "/WEB-INF/jpg/" folder with "projectPhoto"+id+".jpg" name.
+     * It's doesn't save name of project photo to database. Project photo name saves to database
+     * in {@code update} method of {@link ProjectController}
+     * @param file
+     * @param redirectAttributes for out information on page
+     * @param id the id of project from url
+     * @return redirect link to startup edit page
+     * @throws Exception if file didn't uploaded
+     */
     @PostMapping("/{id}/saveProjectPhoto")
     public String saveProjectPhoto(@RequestParam("file") MultipartFile file,
                                         RedirectAttributes redirectAttributes, @PathVariable("id") Long id) throws Exception {
@@ -104,6 +137,12 @@ public class StorageController {
         return "redirect:/startup/{id}/edit";
     }
 
+    /**
+     * Exception handler
+     * @param ex exception for handling
+     * @return a {@link ModelAndView} object holding the name of jsp represented by {@code String} for error page
+     * and exception message
+     */
     @ExceptionHandler(Exception.class)
     public ModelAndView handleException(Exception ex) {
         return new ModelAndView("/error", "exception", ex.getMessage());

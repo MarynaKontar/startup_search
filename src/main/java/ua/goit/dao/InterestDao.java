@@ -14,10 +14,13 @@ import java.util.List;
  * @GuillaumeGingembre
  * @VitaliiProskura
  */
-public interface InterestDao  extends JpaRepository<Interest, Long> {
+public interface InterestDao extends JpaRepository<Interest, Long> {
     List<Interest> findAllByIndustry(Industry industry);
+
     List<Interest> findAllByCountry(Country country);
+
     List<Interest> findAllByIndustryAndCountry(Industry industry, Country country);
+
     List<Interest> findInterestsByOrderByLastChangeDesc();
 
 }

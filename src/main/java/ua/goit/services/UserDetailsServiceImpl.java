@@ -9,7 +9,7 @@ import ua.goit.entity.*;
 
 
 /**
- * This is implementation for user {@link ua.goit.entity.User} detailed service which will use
+ * Implementation for user {@link ua.goit.entity.User} detailed service which will use
  * {@link ua.goit.services.UserService} as users repository.
  *
  * @KontarMaryna

@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * Created by Maryna Kontar on 23.08.2017.
  *
  * @KontarMaryna
  * @GuillaumeGingembre

@@ -16,18 +16,15 @@ import java.util.List;
  * @GuillaumeGingembre
  * @VitaliiProskura
  */
-public interface ProjectDao extends JpaRepository<Project, Long>{
-List<Project> findAllByUserUsername(String username);
+public interface ProjectDao extends JpaRepository<Project, Long> {
+    List<Project> findAllByUserUsername(String username);
 
-//    /*Project findByName(String name);
     List<Project> findAllByIndustry(Industry industry);
-    List<Project> findAllByAddress_Country(Country country);
-    List<Project> findAllByIndustryAndAddress_Country(Industry industry, Country country);
-    List<Project> findProjectsByOrderByLastChangeDesc();
 
-//    List<Project> findByRegion(String region);
-//    List<Project> findByInvSize(long invSize);
-//    List<Project> findByMinIrr(long minIrr);
-//    List<Project> findActive();*/
+    List<Project> findAllByAddress_Country(Country country);
+
+    List<Project> findAllByIndustryAndAddress_Country(Industry industry, Country country);
+
+    List<Project> findProjectsByOrderByLastChangeDesc();
 
 }
