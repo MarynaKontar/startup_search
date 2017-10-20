@@ -1,6 +1,5 @@
 package ua.goit.entity;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -143,6 +142,4 @@ public class UserDetailsExt implements UserDetails {
         result = 31 * result + grantedAuthorities.hashCode();
         return result;
     }
-
-    //TODO 5 Добавлять геттеры для всех новых полей, которые появятся в {@link ua.goit.entity.User}
 }

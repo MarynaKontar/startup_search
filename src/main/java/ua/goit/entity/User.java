@@ -186,6 +186,10 @@ public class User implements Serializable {
         this.interests = interests;
     }
 
+    /**
+     * Method add {@link Experience} to {@link User} according to bidirectional @OneToMany mapping with orphanRemoval = true
+     * @param experience for adding to {@link User}
+     */
     public void addExperience(Experience experience) {
         if (experiences == null) {
             experiences = new HashSet<>(0);
@@ -194,6 +198,10 @@ public class User implements Serializable {
         experience.setUser(this);
     }
 
+    /**
+     * Method remove {@link Experience} from {@link User} according to bidirectional @OneToMany mapping with orphanRemoval = true
+     * @param experience for removing from {@link User}
+     */
     public void removeExperience(Experience experience) {
         if (experiences != null) {
             experiences.remove(experience);
@@ -201,6 +209,10 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * Method add {@link Education} to {@link User} according to bidirectional @OneToMany mapping with orphanRemoval = true
+     * @param education for adding to {@link User}
+     */
     public void addEducation(Education education) {
         if (educations == null) {
             educations = new HashSet<>(0);
@@ -209,6 +221,10 @@ public class User implements Serializable {
         education.setUser(this);
     }
 
+    /**
+     * Method remove {@link Education} from {@link User} according to bidirectional @OneToMany mapping with orphanRemoval = true
+     * @param education for removing from {@link User}
+     */
     public void removeEducatione(Education education) {
         if (educations != null) {
             educations.remove(education);
@@ -216,6 +232,10 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * Method add {@link Project} to {@link User} according to bidirectional @OneToMany mapping with orphanRemoval = true
+     * @param project for adding to {@link User}
+     */
     public void addProject(Project project) {
         if (projects == null) {
             projects = new HashSet<>(0);
@@ -224,6 +244,10 @@ public class User implements Serializable {
         project.setUser(this);
     }
 
+    /**
+     * Method remove {@link Project} from {@link User} according to bidirectional @OneToMany mapping with orphanRemoval = true
+     * @param project for removing from {@link User}
+     */
     public void removeProject(Project project) {
         if (projects != null) {
             projects.remove(project);
@@ -231,6 +255,10 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * Method add {@link Interest} to {@link User} according to bidirectional @OneToMany mapping with orphanRemoval = true
+     * @param interest for adding to {@link User}
+     */
     public void addInterest(Interest interest) {
         if (interests == null) {
             interests = new HashSet<>(0);
@@ -239,6 +267,10 @@ public class User implements Serializable {
         interest.setUser(this);
     }
 
+    /**
+     * Method remove {@link Interest} from {@link User} according to bidirectional @OneToMany mapping with orphanRemoval = true
+     * @param interest for removing from {@link User}
+     */
     public void removeInterest(Interest interest) {
         if (interests != null) {
             interests.remove(interest);

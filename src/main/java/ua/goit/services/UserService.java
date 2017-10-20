@@ -50,11 +50,22 @@ public class UserService {
         return dao.findAll();
     }
 
+    /**
+     * Method saves {@link User} to repository if no {@link User} with such id exists
+     * @param entity User to save
+     */
     @Transactional
     public <S extends User> S save(S entity) {
         return dao.save(entity);
     }
 
+    /**
+     * Method updates {@link User} with id to repository
+     * @param updatedUser User to update
+     * @param id the id of {@link User} to update
+     * @param password of {@link User} to update
+     * @return updated user
+     */
     @Transactional
     public <S extends User> S update(S updatedUser, Long id, String password) {
         User user = dao.findOne(id);
@@ -72,6 +83,11 @@ public class UserService {
         return dao.save(updatedUser);
     }
 
+    /**
+     * Retrieves a user by its id.
+     * @param s id for searching user in repository, must not be {@literal null}.
+     * @return {@link User} from repository with given id or {@literal null} if none found
+     */
     @Transactional(readOnly = true)
     public User findOne(Long s) {
         return dao.findOne(s);
@@ -82,11 +98,20 @@ public class UserService {
         return dao.findUserByUsername(username);
     }
 
+    /**
+     * Returns whether a user with the given id exists.
+     * @param aLong id of the user
+     * @return true if an entity with the given id exists, {@literal false} otherwise
+     */
     @Transactional(readOnly = true)
     public boolean exists(Long aLong) {
         return dao.exists(aLong);
     }
 
+    /**
+     * Delete user (personal account) with id
+     * @param id the id of {@link User} to delete
+     */
     @Transactional
     public void deletePersonalAccount(Long id) {
         if (id != null) {
