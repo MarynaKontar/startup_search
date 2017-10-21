@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="submit" onClick="return validate()" value="LOAD A PERSONAL PAGE PHOTO"/></td>
+                        <td><input type="submit" onClick="return validate1()" value="LOAD A PERSONAL PAGE PHOTO"/></td>
                     </tr>
                 </table>
             </form>
