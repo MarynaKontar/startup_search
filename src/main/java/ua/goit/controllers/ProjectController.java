@@ -60,8 +60,7 @@ public class ProjectController {
     /**
      * Mapping for url ":/startup/create/"
      * Saves {@link Project} to database
-     *
-     * @param project
+     * @param project for saving
      * @return redirect link to personal account page
      * @throws IOException if {@link ua.goit.entity.Project} was not saved in the database
      */

@@ -1,7 +1,7 @@
 package ua.goit.entity;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import ua.goit.entity.enums.Country;
 import ua.goit.entity.enums.Industry;
 
@@ -11,12 +11,44 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Created by User on 07.10.2017.
+ * Test for {@link Interest}
  */
 public class InterestTest {
 
+    private Interest interest1;
+    private Interest interest2;
+
+    private User user;
+    private User user2;
+
+    @Before
+    public void init() {
+        user = mock(User.class);
+        user2 = mock(User.class);
+        interest1 = new Interest();
+        interest1.setId(1L);
+        interest1.setName("nam");
+        interest1.setDescription("des");
+        interest1.setBudget(10);
+        interest1.setCountry(Country.AFGHANISTAN);
+        interest1.setIndustry(Industry.AGRICULTURE);
+        interest1.setLastChange(LocalDate.MAX);
+        interest1.setUser(user);
+
+        interest2 = new Interest();
+        interest2.setId(1L);
+        interest2.setName("nam");
+        interest2.setDescription("des");
+        interest2.setBudget(10);
+        interest2.setCountry(Country.AFGHANISTAN);
+        interest2.setIndustry(Industry.AGRICULTURE);
+        interest2.setLastChange(LocalDate.MAX);
+        interest2.setUser(user);
+
+    }
+
     @Test
-    public void creationTest () {
+    public void creationTest() {
         Interest interest = new Interest("nam",
                 "des",
                 10,
@@ -33,35 +65,16 @@ public class InterestTest {
     }
 
     @Test
-    public void hashCodeTest () {
-        User user = mock(User.class);
-        User user2 = mock(User.class);
+    public void equalsTest() {
+        assertTrue(interest1.equals(interest2));
+        interest2.setId(2L);
+        assertFalse(interest1.equals(interest2));
+    }
 
-        Interest interest1 = new Interest();
-        interest1.setId(1L);
-        interest1.setName("nam");
-        interest1.setDescription("des");
-        interest1.setBudget(10);
-        interest1.setCountry(Country.AFGHANISTAN);
-        interest1.setIndustry(Industry.AGRICULTURE);
-        interest1.setLastChange(LocalDate.MAX);
-        interest1.setUser(user);
-
-        Interest interest2 = new Interest();
-        interest2.setId(1L);
-        interest2.setName("nam");
-        interest2.setDescription("des");
-        interest2.setBudget(10);
-        interest2.setCountry(Country.AFGHANISTAN);
-        interest2.setIndustry(Industry.AGRICULTURE);
-        interest2.setLastChange(LocalDate.MAX);
-        interest2.setUser(user);
-
-
+    @Test
+    public void hashCodeTest() {
         assertEquals(interest1.hashCode(), interest2.hashCode());
-
         interest2.setUser(user2);
         assertNotEquals(interest1.hashCode(), interest2.hashCode());
     }
-
 }

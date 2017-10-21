@@ -173,8 +173,7 @@ public class Project implements Serializable {
         if (name != null ? !name.equals(project.name) : project.name != null) return false;
         if (user != null ? !user.equals(project.user) : project.user != null) return false;
         if (funds != null ? !funds.equals(project.funds) : project.funds != null) return false;
-        if (minInvestment != null ? !minInvestment.equals(project.minInvestment) : project.minInvestment != null)
-            return false;
+        if (minInvestment != null ? !minInvestment.equals(project.minInvestment) : project.minInvestment != null) return false;
         if (industry != project.industry) return false;
         if (address != null ? !address.equals(project.address) : project.address != null) return false;
         if (description != null ? !description.equals(project.description) : project.description != null) return false;
