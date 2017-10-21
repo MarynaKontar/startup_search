@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import static org.junit.Assert.*;
 
 /**
- * Created by User on 08.10.2017.
+ * Test for {@link Project}
  */
 public class ProjectTest {
     private Project project1;
@@ -64,18 +64,14 @@ public class ProjectTest {
         project1.setBusinessPlan(businessPlan);
         project1.setLastChange(LocalDate.MAX);
         project1.setActive(true);
+        project1.setPhoto("photo");
 
-        project2 = new Project();
+        project2 = new Project("name",BigDecimal.TEN,BigDecimal.ONE,
+                Industry.AGRICULTURE,address, "desc", LocalDate.MAX);
         project2.setId(1L);
-        project2.setName("name");
         project2.setUser(user);
-        project2.setFunds(BigDecimal.TEN);
-        project2.setMinInvestment(BigDecimal.ONE);
-        project2.setIndustry(Industry.AGRICULTURE);
-        project2.setAddress(address);
-        project2.setDescription("desc");
         project2.setBusinessPlan(businessPlan);
-        project2.setLastChange(LocalDate.MAX);
         project2.setActive(true);
+        project2.setPhoto("photo");
     }
 }

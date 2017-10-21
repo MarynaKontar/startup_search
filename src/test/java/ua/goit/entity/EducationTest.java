@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import static org.junit.Assert.*;
 
 /**
- * Created by User on 06.10.2017.
+ * Test for {@link Education}
  */
 public class EducationTest {
 

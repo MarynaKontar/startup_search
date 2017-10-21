@@ -10,7 +10,6 @@ import ua.goit.services.UserService;
  */
 public class Validation {
 
-
     /**
      * Method validate if {@link ua.goit.entity.User} exists
      * @param id of {@link ua.goit.entity.User} for validation
@@ -66,5 +65,4 @@ public class Validation {
             throw new Exception("You can't delete profile with id=" + id);
         }
     }
-
 }

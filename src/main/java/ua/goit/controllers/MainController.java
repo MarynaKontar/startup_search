@@ -27,7 +27,6 @@ public class MainController {
     private final ProjectService projectService;
     private final InterestService interestService;
 
-
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     @Autowired

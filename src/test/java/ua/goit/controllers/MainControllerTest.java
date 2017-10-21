@@ -4,8 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -14,18 +12,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ua.goit.configuration.SpringSecurityConfiguration;
 import ua.goit.configuration.TestControllersConfiguration;
-import ua.goit.configuration.TestServicesConfiguration;
 import ua.goit.configuration.WebConfiguration;
-import ua.goit.entity.User;
 import ua.goit.entity.enums.Country;
 import ua.goit.entity.enums.Industry;
 import ua.goit.services.InterestService;
 import ua.goit.services.ProjectService;
 import ua.goit.services.UserService;
 
-import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -34,9 +27,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Tests for main controller
- *
- * @MarynaKontar
+ * Tests for {@link MainController}
+ * @author Maryna Kontar
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -108,6 +100,4 @@ public class MainControllerTest {
                 .andExpect(redirectedUrl("/"))
                 .andExpect(status().isFound());
     }
-
-
 }

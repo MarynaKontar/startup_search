@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -14,7 +13,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import ua.goit.configuration.SpringSecurityConfiguration;
 import ua.goit.configuration.TestControllersConfiguration;
-import ua.goit.configuration.TestServicesConfiguration;
 import ua.goit.configuration.WebConfiguration;
 import ua.goit.entity.Project;
 import ua.goit.entity.User;
@@ -30,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
+ * Test for {@link ProjectController}
  * @author Vitalii Proskura
  */
 
@@ -51,9 +50,15 @@ public class ProjectControllerTest {
     @Autowired
     private WebApplicationContext context;
 
+    private Project project;
+    private User user;
+    private Long id;
 
     @Before
     public void setUp() throws Exception {
+        project = Mockito.mock(Project.class);
+        user = Mockito.mock(User.class);
+        id = 1L;
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
                 .apply(springSecurity())
@@ -71,11 +76,8 @@ public class ProjectControllerTest {
 
     @Test
     public void saveTest() throws Exception {
-        Project project = Mockito.mock(Project.class);
-        User user = Mockito.mock(User.class);
-        Mockito.when(user.getId()).thenReturn(1L);
+        Mockito.when(user.getId()).thenReturn(id);
         Mockito.when(project.getUser()).thenReturn(user);
-
         mvc.perform(post("/startup/create/")
                         .with(user("user")
                         .roles("ADMIN", "USER"))
@@ -83,68 +85,57 @@ public class ProjectControllerTest {
                 .andExpect(model().attribute("project", project))
                 .andExpect(redirectedUrl("/user/personalAccount/" + project.getUser().getId()))
                 .andExpect(status().is3xxRedirection());
-
-
     }
 
     @Test
     public void infoTest() throws Exception {
-        Project project = Mockito.mock(Project.class);
+        Mockito.when(projectService.exists(id)).thenReturn(true);
         Mockito.when(projectService.findOne(1L)).thenReturn(project);
-
         mvc.perform(get("/startup/{id}", 1).with(user("user").roles("ADMIN", "USER")))
                 .andExpect(model().attribute("project", projectService.findOne(1L)))
                 .andExpect(view().name("project-info"))
                 .andExpect(status().isOk());
-
-
     }
 
     @Test
     public void deleteTest() throws Exception {
-        mvc.perform(get("/startup/1/1/delete")
+        Mockito.when(projectService.exists(id)).thenReturn(true);
+        Mockito.when(userService.exists(id)).thenReturn(true);
+        mvc.perform(get("/startup/{user_id}/{id}/delete", id, id)
                 .with(user("user")
                         .roles("ADMIN", "USER")))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/user/personalAccount/1"));
+                .andExpect(redirectedUrl("/user/personalAccount/" + id));
     }
 
     @Test
     public void editTest() throws Exception {
-        Project project = Mockito.mock(Project.class);
-        Mockito.when(project.getId()).thenReturn(1L);
-        Mockito.when(projectService.findOne(1L)).thenReturn(project);
-
-        mvc.perform(get("/startup/{id}/edit", 1L)
+        Mockito.when(projectService.exists(id)).thenReturn(true);
+        Mockito.when(projectService.findOne(id)).thenReturn(project);
+        mvc.perform(get("/startup/{id}/edit", id)
                 .with(user("user")
                         .roles("ADMIN", "USER")))
-                .andExpect(model().attribute("command", projectService.findOne(1L)))
+                .andExpect(model().attribute("command", projectService.findOne(id)))
                 .andExpect(model().attribute("countries", Country.values()))
                 .andExpect(model().attribute("industries", Industry.values()))
                 .andExpect(view().name("startup-update-form"))
                 .andExpect(status().isOk());
-
     }
 
     @Test
     public void updateTest() throws Exception {
-        Project project = Mockito.mock(Project.class);
-        Mockito.when(project.getId()).thenReturn(1L);
-
-        User user = Mockito.mock(User.class);
-        Mockito.when(user.getId()).thenReturn(1L);
-
+        Mockito.when(projectService.exists(id)).thenReturn(true);
         Mockito.when(project.getUser()).thenReturn(user);
-
-
-        mvc.perform(post("/startup/{id}/update/", 1L)
+        Mockito.when(user.getId()).thenReturn(id);
+        User user = Mockito.mock(User.class);
+        Mockito.when(user.getId()).thenReturn(id);
+        Mockito.when(project.getUser()).thenReturn(user);
+        mvc.perform(post("/startup/{id}/update/", id)
                 .with(user("user")
                         .roles("ADMIN", "USER"))
                 .flashAttr("command", project))
                 .andExpect(model().attribute("command", project))
                 .andExpect(redirectedUrl("/user/personalAccount/" + project.getUser().getId()))
                 .andExpect(status().is3xxRedirection());
-
     }
-
 }

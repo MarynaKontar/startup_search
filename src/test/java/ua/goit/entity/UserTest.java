@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 /**
- * Created by User on 15.10.2017.
+ * Test for {@link User}
  */
 public class UserTest {
     private User user1;
@@ -29,7 +29,6 @@ public class UserTest {
         Project project = Mockito.mock(Project.class);
         Interest interest = Mockito.mock(Interest.class);
         Role role = Role.ADMIN;
-
 
         user1 = new User();
         user1.setId(1L);
@@ -69,7 +68,6 @@ public class UserTest {
 
     }
 
-
     @Test
     public void interestTest() {
         Interest interest = Mockito.mock(Interest.class);
@@ -98,9 +96,6 @@ public class UserTest {
         assertEquals(2, user1.getEducations().size());
         user1.removeEducatione(education);
         assertEquals(1, user1.getEducations().size());
-
-
-
     }
 
     @Test
@@ -115,9 +110,7 @@ public class UserTest {
 
     @Test
     public void equalsTest() throws Exception {
-
         assertReflectionEquals(user1, user2);
-
         assertTrue("equals by method", user1.equals(user2));
         user2.setId(2L);
         assertFalse(user1.equals(user2));
@@ -136,7 +129,6 @@ public class UserTest {
         assertEquals(user1.hashCode(), user2.hashCode());
         user2.setUsername("user2");
         assertNotEquals(user1.hashCode(), user2.hashCode());
-
     }
 
 }
