@@ -37,6 +37,7 @@ public class InterestController {
 
     /**
      * Mapping for url ":/interest/create"
+     *
      * @return a {@link ModelAndView} object holding the name of jsp represented by {@link java.lang.String},
      * and arrays of {@link ua.goit.entity.enums.Country} and {@link ua.goit.entity.enums.Industry}
      */
@@ -78,11 +79,9 @@ public class InterestController {
     @GetMapping("/{id}")
     public ModelAndView info(@PathVariable("id") Long id) throws Exception {
         validateInterest(id, interestService);
-        ModelAndView projectInfo = new ModelAndView("interest-info");
         Interest interest = interestService.findOne(id);
-        projectInfo.addObject("interest", interest);
-        LOGGER.info("Building info page for " +interest);
-        return projectInfo;
+        LOGGER.info("Building info page for " + interest);
+        return new ModelAndView("interest-info","interest", interest);
     }
 
     /**

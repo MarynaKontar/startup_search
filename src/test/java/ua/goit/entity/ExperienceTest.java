@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 /**
- * Created by Vitalii Proskura on 06.10.2017.
+ * Test for {@link Experience}
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ExperienceTest {
@@ -29,6 +29,7 @@ public class ExperienceTest {
                 LocalDate.MIN,
                 LocalDate.MAX);
 
+        assertEquals("comp", experience.getCompany());
         assertEquals("pos", experience.getPosition());
         assertEquals("resp", experience.getResponsibility());
         assertEquals(LocalDate.MIN, experience.getFromDate());

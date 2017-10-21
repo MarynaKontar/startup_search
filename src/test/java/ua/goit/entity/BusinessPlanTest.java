@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by User on 05.10.2017.
+ * Test for {@link BusinessPlan}
  */
 public class BusinessPlanTest {
 
